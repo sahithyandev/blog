@@ -1,12 +1,15 @@
 .post--title {
 	font-size: 1.6em;
 	margin-bottom: 5px;
+	margin-top: 40px;
 }
 
 .post--time {
-	font-size: .9em;
+	font-size: .88em;
 	opacity: .9;
 }
+
+/* Some of the styles have been moved to global */
 
 .post--content {
 	margin-top: 32px;

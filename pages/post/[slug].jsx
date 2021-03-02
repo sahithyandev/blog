@@ -1,4 +1,4 @@
-import { createRef, useEffect } from "react"
+import { createRef, useEffect, useState } from "react"
 import hydrate from "next-mdx-remote/hydrate"
 
 import { Nav, HeadBase, Footer } from "../../components"
@@ -11,6 +11,7 @@ import styles from "../../styles/post.module.css"
 const PostPage = (postData) => {
 	const { slug, title, content, dateCreated, description } = postData
 	const postContentRef = createRef()
+	const [x, setX] = useState()
 
 	const createLinkables = () => {
 		const LinkableElements = ["h1", "h2", "h3", "h4", "h5", "h6"]
@@ -28,7 +29,19 @@ const PostPage = (postData) => {
 		}
 	}
 
+	const makeLinksExternal = () => {
+		const aTags = Array.from(document.querySelectorAll('a'))
+			.filter(aTag => {
+				return new URL(aTag.href).origin !== window.location.origin
+			})
+
+		for (let t of aTags) {
+			t.target = '_blank'
+		}
+	}
+
 	useEffect(() => {
+		makeLinksExternal()
 		createLinkables()
 	})
 
@@ -37,8 +50,8 @@ const PostPage = (postData) => {
 			<HeadBase title={`${title} - ${SITE_CONSTANTS.title}`} description={description} />
 
 			<Nav />
-
 			<main className="post--container">
+				{x}
 				<h2 className={styles["post--title"]}>{title}</h2>
 				<div className={styles["post--time"]}>{NormalDateFormat.format(dateCreated)}</div>
 

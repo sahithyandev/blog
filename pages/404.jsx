@@ -3,9 +3,7 @@ import { SITE_CONSTANTS } from "../global"
 
 import styles from "../styles/not-found.module.css";
 
-const NotFoundPage = (props) => {
-	// TODO test it
-	console.log(props)
+const NotFoundPage = () => {
 	return (
 		<div className={styles.page}>
 			<HeadBase title={`NoT_foUND`} description={"Page not found"} />

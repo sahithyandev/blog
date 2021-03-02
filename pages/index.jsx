@@ -13,12 +13,12 @@ export default function Home({ latestPosts }) {
       <main>
         <div className={styles["me-banner"]}>
           <div className={styles["banner--name"]}>Sahithyan</div>
-          <div className={styles["small-intro"]}>lorem ipsum dolor sit amet</div>
+          <div className={styles["small-intro"]}>// placeholder</div>
         </div>
 
 
         <section>
-          <h2>Latest Posts</h2>
+          <h2 className={styles["latest-posts-heading"]}>Latest Posts</h2>
 
           <div className="posts-container">
             {latestPosts.map(post => <PostCard key={post.title} {...post} />)}
@@ -34,7 +34,7 @@ export default function Home({ latestPosts }) {
 export async function getServerSideProps(context) {
   return {
     props: {
-      latestPosts: getAllPosts().slice(0, 5)
+      latestPosts: getAllPosts().slice(0, 4)
     }
   }
 }

@@ -1,6 +1,8 @@
 import { HeadBase, Footer, Nav } from "../components"
 import { SITE_CONSTANTS } from "../global"
 
+import styles from "../styles/about.module.css"
+
 const AboutPage = () => {
 	return (
 		<>
@@ -11,7 +13,7 @@ const AboutPage = () => {
 
 			<Nav />
 
-			<main>
+			<main className={styles["main"]}>
 				<h1>I... am...</h1>
 
 				<p>

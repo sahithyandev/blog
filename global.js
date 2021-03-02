@@ -1,4 +1,4 @@
-export const SITE_CONSTANTS = {
+const SITE_CONSTANTS = {
 	title: "Sahithyan's Blog",
 	description: "Blog of a teen web developer named Sahithyan",
 	author: "@iamSahithyan",
@@ -8,4 +8,8 @@ export const SITE_CONSTANTS = {
 	 */
 	POSTS_DIR: "./posts/",
 	POSTS_DATA_FILE: "./posts.json"
+}
+
+module.exports = {
+	SITE_CONSTANTS
 }
