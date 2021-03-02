@@ -1,0 +1,30 @@
+.post-card {
+	background-color: var(--post-card-bg);
+	padding: 14px 16px;
+	border-radius: 4px;
+	transition: all .3s;
+}
+
+.post-card:hover {
+	background-color: var(--post-card-bg-hover);
+}
+
+.title {
+	margin-top:0;
+	margin-bottom: 8px;
+}
+
+.description {
+	font-size: .9em;
+	margin-bottom: 8px;
+}
+
+.post-created-time {
+	font-size: .9em;
+	opacity: .5;
+	transition: opacity .3s;
+}
+
+.post-card:hover .post-created-time {
+	opacity: .8;
+}

@@ -1,0 +1,28 @@
+.post--title {
+	font-size: 1.6em;
+	margin-bottom: 5px;
+}
+
+.post--time {
+	font-size: .9em;
+	opacity: .9;
+}
+
+.post--content {
+	margin-top: 32px;
+	line-height: 25px;
+}
+
+.post--content h2 {
+	/* margin-top: 50px; */
+	margin-bottom: 32px;
+}
+
+.post--content a {
+  font-weight: 500 !important;
+}
+
+.post--content strong {
+	font-weight: 600;
+	text-decoration: underline solid white 2px;
+}
