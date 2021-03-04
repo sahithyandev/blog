@@ -9,6 +9,8 @@
   --secondary: #087F8C;
   --post-card-bg: hsl(236, 10%, 25%);
   --post-card-bg-hover: hsl(220, 12%, 35%);
+  
+  --social-twitter: hsl(203, 89%, 42%);
 }
 
 
@@ -35,6 +37,7 @@ a.reset {
 a {
   --color: var(--main);
   
+  cursor: pointer;
   color: var(--color);
   text-decoration: none;
   border-bottom: dashed var(--color) 2px;
@@ -69,3 +72,20 @@ a:hover {
   flex-direction: column;
   gap: 20px;
  }
+ 
+button {
+  border: none;
+  border-radius: 4px;
+  color: white;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: filter .1s;
+}
+
+button.twitter-tweet {
+  background: var(--social-twitter);
+}
+
+button:hover {
+  filter: brightness(92%);
+}

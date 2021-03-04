@@ -1,4 +1,4 @@
-import { createRef, useEffect, useState } from "react"
+import { createRef, useEffect } from "react"
 import hydrate from "next-mdx-remote/hydrate"
 
 import { Nav, HeadBase, Footer } from "../../components"
@@ -11,7 +11,7 @@ import styles from "../../styles/post.module.css"
 const PostPage = (postData) => {
 	const { slug, title, content, dateCreated, description } = postData
 	const postContentRef = createRef()
-	const [x, setX] = useState()
+	const twitterShareButton = createRef()
 
 	const createLinkables = () => {
 		const LinkableElements = ["h1", "h2", "h3", "h4", "h5", "h6"]
@@ -41,6 +41,8 @@ const PostPage = (postData) => {
 	}
 
 	useEffect(() => {
+		twitterShareButton.current.href = encodeURI(`https://www.twitter.com/share?text=${title} by ${SITE_CONSTANTS.author}&url=${window.location.href}`)
+
 		makeLinksExternal()
 		createLinkables()
 	})
@@ -51,12 +53,14 @@ const PostPage = (postData) => {
 
 			<Nav />
 			<main className="post--container">
-				{x}
 				<h2 className={styles["post--title"]}>{title}</h2>
 				<div className={styles["post--time"]}>{NormalDateFormat.format(dateCreated)}</div>
 
 				<div ref={postContentRef} className={styles["post--content"]}>{hydrate(content)}</div>
 
+				<a className="reset" ref={twitterShareButton} href="">
+					<button className="twitter-tweet">Tweet</button>
+				</a>
 				{/* TODO add share feature */}
 			</main>
 
