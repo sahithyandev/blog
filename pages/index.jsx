@@ -12,7 +12,7 @@ export default function Home({ latestPosts }) {
 
       <main>
         <div className={styles["me-banner"]}>
-          <div className={styles["banner--name"]}>Sahithyan</div>
+          <div className={styles["banner--name"]}>Saithyan</div>
           <div className={styles["small-intro"]}>// placeholder</div>
         </div>
 
