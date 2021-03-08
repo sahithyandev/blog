@@ -17,6 +17,12 @@ export const Nav = ({ showLogo }) => {
 
 			<ul className="nav--links-container">
 				<li className="nav--link">
+					<Link href="/projects">
+						<a className="reset">Projects</a>
+					</Link>
+				</li>
+
+				<li className="nav--link">
 					<Link href="/posts">
 						<a className="reset">Posts</a>
 					</Link>
@@ -30,4 +36,4 @@ export const Nav = ({ showLogo }) => {
 
 		</nav>
 	)
-} 
+}
