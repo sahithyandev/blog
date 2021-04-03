@@ -7,7 +7,7 @@ const SITE_CONSTANTS = {
 	 * uppercase keys: files and directories 
 	 */
 	POSTS_DIR: "./posts/",
-	POSTS_DATA_FILE: "./posts.json"
+	POSTS_DATA_FILE: "./public/posts.json" // TODO test this. Fix this.
 }
 
 module.exports = {
