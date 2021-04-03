@@ -1,0 +1,68 @@
+.post--title {
+	font-size: 1.6em;
+	margin-bottom: 5px;
+	margin-top: 40px;
+}
+
+.post--time {
+	font-size: .88em;
+	opacity: .9;
+}
+
+/* Some of the styles have been moved to global */
+
+.post--content {
+	margin-top: 32px;
+	line-height: 25px;
+}
+
+.post--content h2 {
+	/* margin-top: 50px; */
+	margin-bottom: 32px;
+}
+
+.post--content a {
+  font-weight: 500 !important;
+}
+
+.post--content strong {
+	font-weight: 600;
+	text-decoration: underline solid white 2px;
+}
+
+
+.post--content img {
+display: block;
+margin: 0 auto;
+	width: auto;
+	max-height: 600px;
+}
+
+.post--content table {
+	margin: 20px auto;
+	text-align: center;
+	border-spacing: 40px 4px;
+	font-size: 1.1em;
+}
+
+.post--share-section {
+	/* width: fit-content; */
+	justify-content: flex-end;
+	display: flex;
+	/* flex-direction: column; */
+}
+
+.post--share-section span {
+	font-size: .8em;
+	opacity: .7;
+	margin-right: 8px;
+}
+
+.post--share-section a i {
+	opacity: .7;
+	transition: all .26s;
+}
+
+.post--share-section a:hover i {
+	opacitY: 1;
+}

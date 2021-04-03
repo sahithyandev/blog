@@ -1,0 +1,32 @@
+---
+title: Introduction To My Blog
+description: "Creating my own blogging website. \"Why?\" & \"How?\" answered."
+dateCreated: 2021-02-26T13:48:04.357Z
+---
+
+Hello people! Welcome to my blog!. This is my blog, built with [Next.js](https://nextjs.org/), [MDX](https://mdxjs.com/) and a [few other open source packages](#packages-i-used).
+
+After thinking of starting a blog for about a week, I finally decided to start developing it. As the first blog post, I am writing about how I created this blog. 
+
+### First, WHY?
+
+I, occasionally, write to share my insights. In the past, I used [Medium](https://www.medium.com), a famous writing site. But its *Only 2 free stories per month* plan bothered me so much. This is not just me, many of the people hate Medium for this.
+
+So I decided to create it on my own. Because, by creating my own website, I can be my own boss. I can style and structure this my blog, however I want. Medium can't give me that power. That's why I am reinventing the wheel.
+
+### How I built it?
+
+This blog was initiated with [Next.js](https://nextjs.org/), a React framework that makes it easy to do server side rendering.
+Then [MDX](https://mdxjs.com/) was added. MDX is JSX and Markdown combined.
+
+Posts are server-rendered on each request. People may ask, "why don't you render them as static files at build time?". Well, yes, I can. But it's not that much necessary.
+
+### Packages I used
+
+In this section, I mentioned all the top-level packages, that I used to build this blog.
+
+- [gray-matter](https://www.npmjs.com/package/gray-matter) - To compile the MDX files into JS objects
+- [next-mdx-remote](https://www.npmjs.com/package/next-mdx-remote) - To render MDX dynamically
+- [next](https://www.npmjs.com/package/next) - The next framework
+- [react](https://www.npmjs.com/package/react) - Next is build on top of react
+- [react-dom](https://www.npmjs.com/package/react-dom) - React needs this package
