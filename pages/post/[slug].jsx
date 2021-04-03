@@ -15,8 +15,6 @@ const PostPage = (postData) => {
 	const postContentRef = createRef()
 	const twitterShareButton = createRef()
 
-	console.log("Q<", postData)
-
 	/**
 	 * Make the headings linkable using #heading-content
 	 */

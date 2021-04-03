@@ -22,7 +22,7 @@ async function loadPost(slug = "", wantContent = true) {
 		throw new Error("post not found")
 	}
 
-	postDataObj.content = await renderToString(postDataObj.content)
+	postDataObj.content = await renderToString(postDataObj.__content)
 
 	return postDataObj
 }
