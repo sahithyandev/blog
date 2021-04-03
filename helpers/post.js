@@ -27,7 +27,7 @@ async function loadPost(slug = "", wantContent = true) {
 }
 
 function getAllPosts() {
-	return JSON.parse(fs.readFileSync(POSTS_DATA_FILE))
+	return require("./../public/posts.json")
 }
 
 module.exports = {
