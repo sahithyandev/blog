@@ -15,6 +15,8 @@ const PostPage = (postData) => {
 	const postContentRef = createRef()
 	const twitterShareButton = createRef()
 
+	console.log("Q<", postData)
+
 	/**
 	 * Make the headings linkable using #heading-content
 	 */
@@ -76,7 +78,7 @@ const PostPage = (postData) => {
 				<div className={styles["post--share-section"]}>
 					<span>Share this article on</span>
 					<a className="reset" ref={twitterShareButton} title="Twitter">
-						<i class="fab fa-twitter"></i>
+						<i className="fab fa-twitter"></i>
 					</a>
 				</div>
 			</main>

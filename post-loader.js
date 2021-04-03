@@ -18,9 +18,11 @@ function __formatPost(slug = "") {
 	const postDataObj = {
 		..._extracted.data
 	}
+	console.log(_extracted)
 
 	postDataObj.dateCreated = new Date(+postDataObj.dateCreated).valueOf()
 	postDataObj.slug = slug
+	postDataObj.content = _extracted.content
 
 	return postDataObj
 }
