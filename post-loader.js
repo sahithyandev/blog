@@ -39,6 +39,8 @@ function getAllPosts() {
 
 const posts = getAllPosts()
 
+console.log("Loaded", posts.length, "posts");
+
 fs.writeFile(POSTS_DATA_FILE, JSON.stringify(posts, 0, 4), {}, (err) => {
 	if (err) console.error(err)
 })

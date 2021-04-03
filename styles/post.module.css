@@ -44,3 +44,25 @@ margin: 0 auto;
 	border-spacing: 40px 4px;
 	font-size: 1.1em;
 }
+
+.post--share-section {
+	/* width: fit-content; */
+	justify-content: flex-end;
+	display: flex;
+	/* flex-direction: column; */
+}
+
+.post--share-section span {
+	font-size: .8em;
+	opacity: .7;
+	margin-right: 8px;
+}
+
+.post--share-section a i {
+	opacity: .7;
+	transition: all .26s;
+}
+
+.post--share-section a:hover i {
+	opacitY: 1;
+}

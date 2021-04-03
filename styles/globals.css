@@ -24,6 +24,10 @@ body {
   color: var(--light);
 }
 
+body {
+  scroll-behavior: smooth;
+}
+
 * {
   box-sizing: border-box;
 }

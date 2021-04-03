@@ -14,15 +14,15 @@ const AboutPage = () => {
 			<Nav />
 
 			<main className={styles["main"]}>
-				<h1>I... am...</h1>
+				<h1>I.. am...</h1>
 
 				<p>
-					Hello!, I am Sahithyan, a 17-year-old web developer, a student and a tech enthusiast. I am from Jaffna, Sri Lanka.
+					Hello!, I am Sahithyan, a 17-year-old web developer, a student and a tech enthusiast. I am from Jaffna, Sri Lanka. I like to code in JavaScript and TypeScript. And as a front end developer, I also know HTML & CSS. I learnt Python and Go too (But I am not fluent in them).
 				</p>
 
 				<h3>About the blog</h3>
 				<p>
-					This is a place for me to write about all the things I love: Web Dev, Tech and Mathematics.
+					This is a place for me to write about all the things I love: Web Dev, Tech and Mathematics. I rarely write articles.
 				</p>
 
 				<h3>Contact me</h3>
