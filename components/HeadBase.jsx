@@ -29,7 +29,6 @@ export const HeadBase = ({ title, description }) => {
 				{/*  */}
 
 				{/* TODO add the required fonts from google fonts */}
-
 			</Head>
 		</>
 	)
