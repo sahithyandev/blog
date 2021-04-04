@@ -18,7 +18,12 @@ function __formatPost(slug = "") {
 	const postDataObj = {
 		..._extracted.data
 	}
-
+	if (postDataObj.tags === undefined) {
+		postDataObj.tags = []
+	} else if (typeof postDataObj.tags === "string") {
+		postDataObj.tags = postDataObj.tags.split(',')
+	}
+	
 	postDataObj.dateCreated = new Date(+postDataObj.dateCreated).valueOf()
 	postDataObj.slug = slug
 	postDataObj.__content = _extracted.content
@@ -34,7 +39,7 @@ function getAllPosts() {
 		.map(fileName => fileName.replace(postNameRegex, ""))
 
 	const posts = postFilesSlug.map(slug => __formatPost(slug))
-
+	
 	return posts
 }
 

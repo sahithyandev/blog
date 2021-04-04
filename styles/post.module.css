@@ -4,6 +4,12 @@
 	margin-top: 40px;
 }
 
+.post--head {
+	display: flex;
+	/* background: red; */
+	justify-content: space-between;
+}
+
 .post--time {
 	font-size: .88em;
 	opacity: .9;
@@ -30,10 +36,10 @@
 	text-decoration: underline solid white 2px;
 }
 
-
 .post--content img {
-display: block;
-margin: 0 auto;
+	display: block;
+	margin: 0 auto;
+	max-width: 100%;
 	width: auto;
 	max-height: 600px;
 }
@@ -46,10 +52,8 @@ margin: 0 auto;
 }
 
 .post--share-section {
-	/* width: fit-content; */
 	justify-content: flex-end;
 	display: flex;
-	/* flex-direction: column; */
 }
 
 .post--share-section span {
