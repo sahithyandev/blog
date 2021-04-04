@@ -26,6 +26,7 @@ function __formatPost(slug = "") {
 	
 	postDataObj.dateCreated = new Date(+postDataObj.dateCreated).valueOf()
 	postDataObj.slug = slug
+	postDataObj.__content = _extracted.content
 
 	return postDataObj
 }
