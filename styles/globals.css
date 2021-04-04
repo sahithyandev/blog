@@ -32,6 +32,13 @@ body {
   box-sizing: border-box;
 }
 
+@media (max-width: 600px) {
+  html, body {
+    max-width: 90vw;
+    width: auto; 
+  }
+}
+
 a.reset {
 	text-decoration: none !important;
 	color: inherit !important;	
@@ -59,11 +66,19 @@ a:hover {
 	letter-spacing: 0.1px;;
 }
 
-@media (max-width: 600px) {
-  html, body {
-    max-width: 90vw;
-    width: auto; 
-  }
+.tags-container {
+  display: flex;
+  gap: 6px;
+  /* background: red; */
+}
+
+.tag::before {
+  content: "#";
+  opacity: .5;
+  margin-right: 2px;
+}
+.tag {
+  opacity: .8;
 }
 
 .post--content .linkable {

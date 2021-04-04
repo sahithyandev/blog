@@ -4,6 +4,12 @@
 	margin-top: 40px;
 }
 
+.post--head {
+	display: flex;
+	/* background: red; */
+	justify-content: space-between;
+}
+
 .post--time {
 	font-size: .88em;
 	opacity: .9;

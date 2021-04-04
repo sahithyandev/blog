@@ -3,12 +3,17 @@
         "title": "Divisibility Rules - An Explanation",
         "description": "How much time would you need to check if a given number is divisible by 2 –15 without a computer? Well, for the first few numbers, you would be so fast. But you will get stuck at 7 or 13 right? Don't worry. After reading this article, you won't. Give it a try.",
         "dateCreated": 1614422404357,
+        "tags": [
+            "mathematics",
+            "blah"
+        ],
         "slug": "divisibility-rules"
     },
     {
         "title": "Introduction To My Blog",
         "description": "Creating my own blogging website. \"Why?\" & \"How?\" answered.",
         "dateCreated": 1614347284357,
+        "tags": [],
         "slug": "introduction-to-my-blog"
     }
 ]
