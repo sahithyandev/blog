@@ -23,7 +23,7 @@ function __formatPost(slug = "") {
 	} else if (typeof postDataObj.tags === "string") {
 		postDataObj.tags = postDataObj.tags.split(',')
 	}
-	
+
 	postDataObj.dateCreated = new Date(+postDataObj.dateCreated).valueOf()
 	postDataObj.slug = slug
 	postDataObj.__content = _extracted.content
@@ -39,14 +39,26 @@ function getAllPosts() {
 		.map(fileName => fileName.replace(postNameRegex, ""))
 
 	const posts = postFilesSlug.map(slug => __formatPost(slug))
-	
+
 	return posts
 }
 
-const posts = getAllPosts()
 
-console.log("Loaded", posts.length, "posts");
+function updatePostsJson() {
+	const posts = getAllPosts()
 
-fs.writeFile(POSTS_DATA_FILE, JSON.stringify(posts, 0, 4), {}, (err) => {
-	if (err) console.error(err)
-})
+	console.log("Loaded", posts.length, "posts");
+
+	fs.writeFile(POSTS_DATA_FILE, JSON.stringify(posts, 0, 4), {}, (err) => {
+		if (err) console.error(err)
+	})
+}
+
+if (process.argv.includes("-w")) {
+	console.log("-w is given. Hence, posts will be updated every 5s")
+	setInterval(() => {
+		updatePostsJson()
+	}, 5000)
+} else {
+	updatePostsJson()
+}

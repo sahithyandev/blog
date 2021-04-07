@@ -11,11 +11,11 @@ export const PostCard = (postData) => {
 				<div className={styles["post-card"]}>
 					<h3 className={styles["title"]}>{postData.title}</h3>
 					<p className={styles["description"]}>{postData.description}</p>
-					
+
 					<div className={styles["meta"]}>
 						<span className={styles["post-created-time"]}>{NormalDateFormat.format(postData.dateCreated)}</span>
 						<div className="tags-container">
-							{postData.tags.map(tag => <span className="tag">{tag}</span>)}
+							{postData.tags.map(tag => <span key={tag} className="tag">{tag}</span>)}
 						</div>
 					</div>
 				</div>

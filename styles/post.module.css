@@ -44,12 +44,29 @@
 	max-height: 600px;
 }
 
+.post--content pre {
+	border-radius: 6px;
+	padding: 5px 10px;
+	font-family: Menlo, Monaco, "Courier New", Courier, monospace;
+	background: var(--post-card-bg);
+	font-size: .9em;
+	
+	/* width: 90%; */
+	/* word-wrap: break-word;
+	margin: 0 auto; */
+}
+
+.post--content pre code {
+	word-break: break-word;
+}
+
 .post--content table {
 	margin: 20px auto;
 	text-align: center;
 	border-spacing: 40px 4px;
 	font-size: 1.1em;
 }
+
 
 .post--share-section {
 	justify-content: flex-end;

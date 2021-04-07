@@ -1,4 +1,6 @@
 import Head from "next/head"
+// TODO implement syntax highlighting 
+// reference: https://mdxjs.com/guides/syntax-highlighting
 
 import { createRef, useEffect } from "react"
 import hydrate from "next-mdx-remote/hydrate"
@@ -67,14 +69,14 @@ const PostPage = (postData) => {
 			<Nav />
 			<main className="post-container">
 				<h2 className={styles["post--title"]}>{title}</h2>
-				
+
 				<div className={styles["post--head"]}>
 					<div className="tags-container">
-						{tags.map(tag => <span className="tag">{tag}</span>)}
+						{tags.map(tag => <span key={tag} className="tag">{tag}</span>)}
 					</div>
 					<div className={styles["post--time"]}>{NormalDateFormat.format(dateCreated)}</div>
 				</div>
-				
+
 				<div ref={postContentRef} className={styles["post--content"]}>{hydrate(content)}</div>
 
 				{/* TODO add a "give your feedback" section */}

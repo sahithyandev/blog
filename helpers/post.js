@@ -28,7 +28,9 @@ async function loadPost(slug = "", wantContent = true) {
 }
 
 function getAllPosts() {
-	return require("./../public/posts.json")
+	return require("./../public/posts.json").sort((postA, postB) => {
+		return -(new Date(postA.dateCreated) - new Date(postB.dateCreated))
+	})
 }
 
 module.exports = {
