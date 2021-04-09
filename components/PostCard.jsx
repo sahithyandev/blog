@@ -20,6 +20,6 @@ export const PostCard = (postData) => {
 					</div>
 				</div>
 			</a>
-		</Link>
+		</Link >
 	)
 }

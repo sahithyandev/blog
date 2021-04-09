@@ -21,19 +21,36 @@ const PostPage = (postData) => {
 	 * Make the headings linkable using #heading-content
 	 */
 	const createLinkables = () => {
-		const LinkableElements = ["h1", "h2", "h3", "h4", "h5", "h6"]
+		const LINKABLE_ELEMENTS = ["h1", "h2", "h3", "h4", "h5", "h6"]
 
 		const linkablesRef = []
-		for (let L of LinkableElements) {
+		for (let L of LINKABLE_ELEMENTS) {
 			const availableLinkables = Array.from(postContentRef.current.querySelectorAll(L)).filter(el => {
 				return !el.classList.contains("linkable")
 			})
 			linkablesRef.push(...availableLinkables)
 		}
 
-		for (let el of linkablesRef) {
-			el.classList.add('linkable')
-			el.id = el.innerText.replaceAll(" ", "-").toLowerCase()
+		for (let _i = 0; _i < linkablesRef.length; _i++) {
+			/** @type {HTMLElement} */
+			let linkableElement = linkablesRef[_i]
+			const elementId = linkableElement.innerText.replaceAll(" ", "-").toLowerCase()
+
+			linkableElement.classList.add('linkable')
+			linkableElement.id = elementId
+
+			const a = document.createElement("a")
+			a.classList.add("heading-link", "reset")
+			a.href = `#${elementId}`
+			a.innerHTML = "#"
+
+			a.onclick = () => {
+				navigator.clipboard.writeText(a.href).err(error => {
+					console.log(error)
+				})
+			}
+
+			linkableElement.prepend(a)
 		}
 	}
 
@@ -63,7 +80,10 @@ const PostPage = (postData) => {
 			<HeadBase title={`${title} - ${SITE_CONSTANTS.title}`} description={description} />
 
 			<Head>
-				<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous" />
+				<link defer
+					rel="stylesheet"
+					href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+					integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossOrigin="anonymous" />
 			</Head>
 
 			<Nav />

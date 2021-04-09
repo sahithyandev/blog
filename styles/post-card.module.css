@@ -5,7 +5,7 @@
 	transition: all .3s;
 }
 
-.post-card:hover {
+.post-card:hover, a:focus .post-card {
 	background-color: var(--post-card-bg-hover);
 }
 
@@ -26,10 +26,11 @@
 
 .post-created-time {
 	font-size: .9em;
-	opacity: .5;
+	opacity: 0;
 	transition: opacity .3s;
 }
 
-.post-card:hover .post-created-time {
+.post-card:hover .post-created-time,
+a:focus .post-created-time {
 	opacity: .8;
 }

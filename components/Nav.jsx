@@ -5,15 +5,15 @@ export const Nav = ({ showLogo }) => {
 
 	return (
 		<nav>
-			<Link href="/">
-				<a className="name nav--logo reset">
-					{
-						showLogo ?
-							"Sahithyan"
-							: null
-					}
-				</a>
-			</Link>
+			{
+				showLogo ?
+					<Link href="/">
+						<a className="name nav--logo reset">
+							Sahithyan
+						</a>
+					</Link>
+					: <div></div>
+			}
 
 			<ul className="nav--links-container">
 				<li className="nav--link">

@@ -38,9 +38,9 @@ console.log(~~z) // returns 14
 
 ## 3. String to Boolean
 
-```
+```javascript
 let strValue = "true"
-let boolValue = strValue == "true" ? true : false // returns true
+let boolValue = strValue == "true" ? true : false // true
 ```
 
 I am sure you will think that is shorthand. But there is a shorthand for this too. The operator used above is called a Ternary operator. You can use this as a shorthand for an If-Else loop. The below code is a shorthand for the string to boolean conversion. It also works for number values too.
@@ -53,11 +53,11 @@ let boolValue = !!strValue // returns true
 
 As mentioned earlier, you can use the ternary operator as shorthand for the If-Else statement-based assignment. But when using multiline-blocks in If-Else statement, the ternary operator wants to be extended as shown below.
 
-```
+```javascript
 age > 13 ? (
-// do something when age is higher than 13
+// age is higher than 13
 ) : (
-// do something when age is not higher than 13
+// age is not higher than 13
 )
 ```
 
@@ -69,7 +69,7 @@ We all know AND-OR gates. We use them in many places. Some of them may have hear
 
 The XOR gate returns true if the number of inputs is odd. Sometimes we want this too. AND and OR can be accessed in JS with && and || operators respectively. But how we can access XOR?
 
-```
+```javascript
 let A = true
 let B = false
 // the below two lines will work as XOR.
@@ -79,7 +79,7 @@ console.log((A + B) && (!A + !B)) // returns true
 
 But the above code is too big and we want a lot of time to write it without any problem. The problem can be solved with just a “^”.
 
-```
+```javascript
 // Shorthand
 console.log(true ^ false) // ^ works as XOR
 ```
@@ -90,16 +90,16 @@ The above short-handed code will work. But there is a small problem with the ope
 
 Sometimes, we want to split a string into one-letter-array as shown below.
 
-```
+```javascript
 let name = "Sahithyan" // my name
-console.log(name.split('')) // [S, a, h, i, t, h, y, a, n]
+let letters = name.split('') // [S, a, h, i, t, h, y, a, n]
 ```
 
 In most cases, it’s ok to write .split(‘’) one or two times in our code. But when we want to split a string into a letter array, this gets horrible. But, fortunately, there is a shorthand for the split method.
 
-```
+```javascript
 let name = "Sahithyan" // again my name
-console.log([...name]) // [S, a, h, i, t, h, y, a, n]
+let letters = [...name] // [S, a, h, i, t, h, y, a, n]
 ```
 
 Unfortunately, I don’t know what happens there. if you know, please tell that in the comments. But I am sure that it works.

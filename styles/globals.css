@@ -25,6 +25,7 @@ body {
 }
 
 body {
+  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
@@ -55,7 +56,7 @@ a {
   transition: color .1s;
 }
 
-a:hover {
+a:hover, a:focus {
   --color: rgb(122, 94, 247);
 }
 
@@ -81,9 +82,11 @@ a:hover {
   opacity: .8;
 }
 
-.post--content .linkable {
-	/* content: '&&'; */
-	background: red !important;
+.heading-link {
+	opacity: .6;
+  margin-right: 10px;
+  font-family: monospace;
+  font-size: 1.1em;
 }
 
 .posts-container {
