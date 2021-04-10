@@ -1,8 +1,9 @@
 const fs = require('fs')
-const { SITE_CONSTANTS } = require("../global")
+
 const renderToString = require("next-mdx-remote/render-to-string")
 const matter = require("gray-matter")
 
+const { SITE_CONSTANTS } = require("../global")
 const { POSTS_DATA_FILE, POSTS_DIR } = SITE_CONSTANTS
 
 /**

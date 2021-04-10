@@ -26,6 +26,8 @@
 	margin-bottom: 32px;
 }
 
+/* only on desktop */
+@media (min-width: 600px) {
 .post--content h1,
 .post--content h2,
 .post--content h3,
@@ -35,6 +37,8 @@
 	position: relative;
 	left: -24px;
 	scroll-margin-top: 28px;
+
+}
 }
 
 .post--content a {

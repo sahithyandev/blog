@@ -1,4 +1,5 @@
 import Head from "next/head"
+
 // TODO implement syntax highlighting 
 // reference: https://mdxjs.com/guides/syntax-highlighting
 
@@ -21,6 +22,8 @@ const PostPage = (postData) => {
 	 * Make the headings linkable using #heading-content
 	 */
 	const createLinkables = () => {
+		if (!postContentRef.current) return
+
 		const LINKABLE_ELEMENTS = ["h1", "h2", "h3", "h4", "h5", "h6"]
 
 		const linkablesRef = []
@@ -97,7 +100,9 @@ const PostPage = (postData) => {
 					<div className={styles["post--time"]}>{NormalDateFormat.format(dateCreated)}</div>
 				</div>
 
-				<div ref={postContentRef} className={styles["post--content"]}>{hydrate(content)}</div>
+				<div ref={postContentRef} className={styles["post--content"]}>
+					{hydrate(content)}
+				</div>
 
 				{/* TODO add a "give your feedback" section */}
 

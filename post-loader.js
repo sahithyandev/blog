@@ -6,7 +6,9 @@
  */
 
 const fs = require('fs')
-const matter = require('gray-matter');
+
+const matter = require('gray-matter')
+
 const { getPostRaw } = require("./helpers/post")
 const { SITE_CONSTANTS } = require("./global")
 
