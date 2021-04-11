@@ -43,7 +43,7 @@
 
 .post--content a {
   font-weight: 500 !important;
-	color: rgba(0, 0, 255, 0.658);
+	/* color: rgba(0, 0, 255, 0.658); */
 }
 
 .post--content strong {
@@ -92,6 +92,11 @@
 	font-size: .8em;
 	opacity: .7;
 	margin-right: 8px;
+}
+
+.post--share-section div {
+	display: flex;
+	gap: 8px;
 }
 
 .post--share-section a i {

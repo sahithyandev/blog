@@ -16,7 +16,6 @@ import styles from "../../styles/post.module.css"
 const PostPage = (postData) => {
 	const { slug, title, content, dateCreated, description, tags } = postData
 	const postContentRef = createRef()
-	const twitterShareButton = createRef()
 
 	/**
 	 * Make the headings linkable using #heading-content
@@ -71,9 +70,24 @@ const PostPage = (postData) => {
 		}
 	}
 
-	useEffect(() => {
-		twitterShareButton.current.href = encodeURI(`https://www.twitter.com/share?text=${title} by ${SITE_CONSTANTS.author}&url=${window.location.href.split("#")[0]}`)
+	const generateShareLinks = () => {
+		const postLink = window.location.href.split("#")[0],
+			author = SITE_CONSTANTS.author
 
+		return [
+			{
+				name: "Twitter",
+				url: `https://www.twitter.com/share?text=${title} by ${author}&url=${postLink}&via=${author.slice(1)}`
+			},
+			{
+				name: "WhatsApp",
+				url: `https://wa.me/?text=${title} by ${author}. Read at ${postLink}`
+			}
+		]
+	}
+
+
+	useEffect(() => {
 		makeLinksExternal()
 		createLinkables()
 	})
@@ -108,9 +122,14 @@ const PostPage = (postData) => {
 
 				<div className={styles["post--share-section"]}>
 					<span>Share this article on</span>
-					<a className="reset" ref={twitterShareButton} title="Twitter">
-						<i className="fab fa-twitter"></i>
-					</a>
+
+					<div>
+						{generateShareLinks().map(link => {
+							return <a key={link.name} className="reset" title={link.name} href={link.url}>
+								<i className={`fab fa-${link.name.toLowerCase()}`}></i>
+							</a>
+						})}
+					</div>
 				</div>
 			</main>
 
