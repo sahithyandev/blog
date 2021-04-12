@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "node post-loader.js && next dev",
+    "dev-bare": "next dev",
+    "dev": "node post-loader.js && npm run dev-bare",
     "build": "node post-loader.js && next build",
     "start": "next start"
   },

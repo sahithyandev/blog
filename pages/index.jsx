@@ -6,10 +6,26 @@ import { getAllPosts } from "../helpers/post"
 import styles from '../styles/home.module.css'
 
 export default function Home({ latestPosts }) {
-  const socialMediaLinks = Object.entries({
-    "twitter": "https://www.twitter.com/iamSahithyan",
-    "instagram": "https://www.instagram.com/sahithyan_"
-  })
+  const createSocialMediaLinkObj = (dataArr) => {
+    /**
+     * @type {string}
+     */
+    const [providerName, link, __icon] = dataArr;
+
+    return {
+      providerName, link,
+      icon: __icon || providerName.toLowerCase(),
+      id: link.split("/").reverse()[0]
+    }
+  }
+
+  const updatedSocialMedia = [
+    // ["providerName", "profileLink", "<optional>iconName"]
+    ["Twitter", "https://www.twitter.com/iamSahithyan"],
+    ["Instagram", "https://www.instagram.com/sahithyan_"],
+    ["GitHub", "https://www.github.com/sahithyandev"],
+    ["Telegram", "https://www.t.me/sahithyan", "telegram-plane"],
+  ].map(createSocialMediaLinkObj)
 
   return (
     <>
@@ -31,10 +47,12 @@ export default function Home({ latestPosts }) {
           <div className={styles["small-intro"]}>student, web developer & tech enthusiast</div>
 
           <div className={styles["social-media-icons-container"]}>
-            {socialMediaLinks.map(s => {
-              return <a className="reset" href={s[1]} key={s[0]}>
-                <i className={`fab fa-${s[0]}`}></i>
-              </a>
+            {updatedSocialMedia.map(s => {
+              return (
+                <a className="reset" href={s.link} key={s.providerName} title={`${s.providerName} (${s.id})`}>
+                  <i className={`fab fa-${s.icon}`}></i>
+                </a>
+              )
             })}
           </div>
         </div>

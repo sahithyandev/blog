@@ -1,5 +1,4 @@
 import Head from 'next/head'
-import { useEffect } from 'react/cjs/react.development'
 
 import { SITE_CONSTANTS } from "../global"
 
