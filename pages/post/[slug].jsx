@@ -14,7 +14,7 @@ import { SITE_CONSTANTS } from "../../global"
 import styles from "../../styles/post.module.css"
 
 const PostPage = (postData) => {
-	const { slug, title, content, dateCreated, description, tags } = postData
+	const { slug, title, content, dateCreated, description, tags, estReadTime } = postData
 	const postContentRef = createRef()
 
 	/**
@@ -70,9 +70,14 @@ const PostPage = (postData) => {
 		}
 	}
 
-	const generateShareLinks = () => {
-		const postLink = window.location.href.split("#")[0],
-			author = SITE_CONSTANTS.author
+	const generateShareLinks = (wantFull = false) => {
+		console.log("WANTFULL", wantFull)
+		const author = SITE_CONSTANTS.author
+
+		let postLink = "";
+		if (wantFull) {
+			postLink = window.location.href.split("#")[0]
+		}
 
 		return [
 			{
@@ -90,6 +95,13 @@ const PostPage = (postData) => {
 	useEffect(() => {
 		makeLinksExternal()
 		createLinkables()
+
+		const shareLinks = generateShareLinks(true)
+		const linksContainer = document.getElementById("post-share-links")
+
+		for (let child of linksContainer.children) {
+			child.href = shareLinks.find(link => link.name === child.title).url
+		}
 	})
 
 	return (
@@ -111,8 +123,15 @@ const PostPage = (postData) => {
 					<div className="tags-container">
 						{tags.map(tag => <span key={tag} className="tag">{tag}</span>)}
 					</div>
-					<div className={styles["post--time"]}>{NormalDateFormat.format(dateCreated)}</div>
+					<div style={{ display: 'flex', flexDirection: "column", alignItems: "flex-end" }}>
+						<span className={styles["post--time"]}>
+							{NormalDateFormat.format(dateCreated)}
+						</span>
+
+						<span>{estReadTime} min read</span>
+					</div>
 				</div>
+
 
 				<div ref={postContentRef} className={styles["post--content"]}>
 					{hydrate(content)}
@@ -123,8 +142,8 @@ const PostPage = (postData) => {
 				<div className={styles["post--share-section"]}>
 					<span>Share this article on</span>
 
-					<div>
-						{generateShareLinks().map(link => {
+					<div id="post-share-links">
+						{generateShareLinks(false).map(link => {
 							return <a key={link.name} className="reset" title={link.name} href={link.url}>
 								<i className={`fab fa-${link.name.toLowerCase()}`}></i>
 							</a>

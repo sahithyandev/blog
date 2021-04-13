@@ -5,12 +5,12 @@
  * Recent (or all) posts can be loaded using this file, faster.
  */
 
-const fs = require('fs')
+import fs from "fs";
 
-const matter = require('gray-matter')
+import matter from "gray-matter"
 
-const { getPostRaw } = require("./helpers/post")
-const { SITE_CONSTANTS } = require("./global")
+import { getPostRaw } from "./helpers/post.js"
+import { SITE_CONSTANTS } from "./global.js"
 
 const { POSTS_DIR, POSTS_DATA_FILE } = SITE_CONSTANTS
 
@@ -29,6 +29,10 @@ function __formatPost(slug = "") {
 	postDataObj.dateCreated = new Date(+postDataObj.dateCreated).valueOf()
 	postDataObj.slug = slug
 	postDataObj.__content = _extracted.content
+
+	const wordCount = postDataObj.__content.split(" ").length
+	const AVERAGE_READING_SPEED = 200
+	postDataObj.estReadTime = Math.ceil(wordCount / AVERAGE_READING_SPEED)
 
 	return postDataObj
 }

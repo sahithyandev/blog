@@ -1,17 +1,16 @@
 .post--title {
-	font-size: 1.6em;
+	font-size: 1.7em;
 	margin-bottom: 5px;
 	margin-top: 40px;
 }
 
 .post--head {
 	display: flex;
-	/* background: red; */
 	justify-content: space-between;
+	font-size: .8em;
 }
 
 .post--time {
-	font-size: .88em;
 	opacity: .9;
 }
 
