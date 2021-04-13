@@ -6,7 +6,7 @@ import Head from "next/head"
 import { createRef, useEffect } from "react"
 import hydrate from "next-mdx-remote/hydrate"
 
-import { Nav, HeadBase, Footer } from "../../components"
+import { Nav, HeadBase, ViewCounter, Footer } from "../../components"
 import { loadPost } from "../../helpers/post"
 import { NormalDateFormat } from "../../helpers/other"
 import { SITE_CONSTANTS } from "../../global"
@@ -14,7 +14,7 @@ import { SITE_CONSTANTS } from "../../global"
 import styles from "../../styles/post.module.css"
 
 const PostPage = (postData) => {
-	const { slug, title, content, dateCreated, description, tags, estReadTime, viewCount } = postData
+	const { slug, title, content, dateCreated, description, tags, estReadTime } = postData
 	const postContentRef = createRef()
 
 	/**
@@ -71,7 +71,6 @@ const PostPage = (postData) => {
 	}
 
 	const generateShareLinks = (wantFull = false) => {
-		console.log("WANTFULL", wantFull)
 		const author = SITE_CONSTANTS.author
 
 		let postLink = "";
@@ -90,7 +89,6 @@ const PostPage = (postData) => {
 			}
 		]
 	}
-
 
 	useEffect(() => {
 		makeLinksExternal()
@@ -120,16 +118,19 @@ const PostPage = (postData) => {
 				<h2 className={styles["post--title"]}>{title}</h2>
 
 				<div className={styles["post--head"]}>
-					<div className="tags-container">
-						{tags.map(tag => <span key={tag} className="tag">{tag}</span>)}
-					</div>
-					<div style={{ display: 'flex', flexDirection: "column", alignItems: "flex-end" }}>
+					<div>
+
 						<span className={styles["post--time"]}>
 							{NormalDateFormat.format(dateCreated)}
 						</span>
+						<div className="tags-container">
+							{tags.map(tag => <span key={tag} className="tag">{tag}</span>)}
+						</div>
+					</div>
 
+					<div style={{ display: 'flex', gap: 6 }}>
 						<span>{estReadTime} min read</span>
-						<span>{viewCount} views</span>
+						<ViewCounter slug={slug} />
 					</div>
 				</div>
 
@@ -164,13 +165,6 @@ export async function getServerSideProps(context) {
 
 	try {
 		const _postData = await loadPost(props.slug)
-
-		// TODO add swr
-		// increment and get the viewCount
-		// const viewCount = await fetch({
-		// 	method: "POST",
-		// 	url: `/api/views/${props.slug}`
-		// })
 
 		props = { ...props, ..._postData }
 	} catch (e) {

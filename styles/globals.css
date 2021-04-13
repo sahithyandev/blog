@@ -81,7 +81,7 @@ a:hover, a:focus {
   margin-right: 1px;
 }
 .tag {
-  opacity: .8;
+  /* opacity: .8 !important; */
   
 }
 

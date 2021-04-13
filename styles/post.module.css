@@ -7,11 +7,12 @@
 .post--head {
 	display: flex;
 	justify-content: space-between;
+	opacity: .9;
 	font-size: .8em;
 }
 
 .post--time {
-	opacity: .9;
+	/* opacity: .9; */
 }
 
 /* Some of the styles have been moved to global */
