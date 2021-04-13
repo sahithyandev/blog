@@ -132,7 +132,6 @@ const PostPage = (postData) => {
 					</div>
 				</div>
 
-
 				<div ref={postContentRef} className={styles["post--content"]}>
 					{hydrate(content)}
 				</div>
