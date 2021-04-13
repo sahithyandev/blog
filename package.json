@@ -9,6 +9,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "dotenv": "^8.2.0",
+    "firebase-admin": "^9.6.0",
     "gray-matter": "^4.0.2",
     "next": "10.0.7",
     "next-mdx-remote": "^2.1.3",

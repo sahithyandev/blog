@@ -14,7 +14,7 @@ import { SITE_CONSTANTS } from "../../global"
 import styles from "../../styles/post.module.css"
 
 const PostPage = (postData) => {
-	const { slug, title, content, dateCreated, description, tags, estReadTime } = postData
+	const { slug, title, content, dateCreated, description, tags, estReadTime, viewCount } = postData
 	const postContentRef = createRef()
 
 	/**
@@ -129,6 +129,7 @@ const PostPage = (postData) => {
 						</span>
 
 						<span>{estReadTime} min read</span>
+						<span>{viewCount} views</span>
 					</div>
 				</div>
 
@@ -163,6 +164,14 @@ export async function getServerSideProps(context) {
 
 	try {
 		const _postData = await loadPost(props.slug)
+
+		// TODO add swr
+		// increment and get the viewCount
+		// const viewCount = await fetch({
+		// 	method: "POST",
+		// 	url: `/api/views/${props.slug}`
+		// })
+
 		props = { ...props, ..._postData }
 	} catch (e) {
 		console.log(e)
