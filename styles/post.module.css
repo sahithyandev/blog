@@ -11,10 +11,6 @@
 	font-size: .8em;
 }
 
-.post--time {
-	/* opacity: .9; */
-}
-
 /* Some of the styles have been moved to global */
 
 .post--content {
@@ -59,21 +55,22 @@
 	max-height: 600px;
 }
 
-.post--content pre {
+/* .post--content pre {
 	border-radius: 6px;
 	padding: 5px 10px;
 	font-family: Menlo, Monaco, "Courier New", Courier, monospace;
 	background: var(--post-card-bg);
 	font-size: .9em;
 	
-	/* width: 90%; */
-	/* word-wrap: break-word;
-	margin: 0 auto; */
+	width: 90%;
+	word-wrap: break-word;
+	margin: 0 auto;
 }
+*/
 
-.post--content pre code {
+/*.post--content pre code {
 	word-break: break-word;
-}
+} */
 
 .post--content table {
 	margin: 20px auto;

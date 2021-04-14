@@ -1,10 +1,10 @@
 const fs = require('fs')
 
 const renderToString = require("next-mdx-remote/render-to-string")
-const matter = require("gray-matter")
 
 const { SITE_CONSTANTS } = require("../global")
 const { POSTS_DATA_FILE, POSTS_DIR } = SITE_CONSTANTS
+const markdownToHtml = require("../lib/markdown")
 
 /**
  * Used externally only
@@ -13,7 +13,7 @@ function getPostRaw(slug = "") {
 	return fs.readFileSync(POSTS_DIR + slug + ".mdx")
 }
 
-async function loadPost(slug = "", wantContent = true) {
+async function loadPost(slug = "", wantContent = true, testing = false) {
 	if (wantContent === undefined) wantContent = true
 
 	const postDataObj = getAllPosts().find(post => {
@@ -23,7 +23,17 @@ async function loadPost(slug = "", wantContent = true) {
 		throw new Error("post not found")
 	}
 
-	postDataObj.content = await renderToString(postDataObj.__content)
+	if (testing) {
+		// TODO find why this is not working
+		const content = await markdownToHtml(postDataObj.__content)
+
+		return {
+			meta: { ...postDataObj, __content: '' },
+			content
+		}
+	} else {
+		postDataObj.content = await renderToString(postDataObj.__content)
+	}
 
 	return postDataObj
 }

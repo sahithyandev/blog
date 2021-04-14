@@ -16,9 +16,9 @@ const { POSTS_DIR, POSTS_DATA_FILE } = SITE_CONSTANTS
 
 function __formatPost(slug = "") {
 	const postRaw = getPostRaw(slug)
-	const _extracted = matter(postRaw)
+	const { data, content } = matter(postRaw)
 	const postDataObj = {
-		..._extracted.data
+		...data
 	}
 	if (postDataObj.tags === undefined) {
 		postDataObj.tags = []
@@ -28,9 +28,9 @@ function __formatPost(slug = "") {
 
 	postDataObj.dateCreated = new Date(+postDataObj.dateCreated).valueOf()
 	postDataObj.slug = slug
-	postDataObj.__content = _extracted.content
+	postDataObj.__content = content
 
-	const wordCount = postDataObj.__content.split(" ").length
+	const wordCount = postDataObj.__content.split(/\s+/gu).length
 	const AVERAGE_READING_SPEED = 200
 	postDataObj.estReadTime = Math.ceil(wordCount / AVERAGE_READING_SPEED)
 

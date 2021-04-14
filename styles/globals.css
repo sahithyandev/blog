@@ -80,10 +80,6 @@ a:hover, a:focus {
   opacity: .54;
   margin-right: 1px;
 }
-.tag {
-  /* opacity: .8 !important; */
-  
-}
 
 .heading-link {
 	opacity: .6;
