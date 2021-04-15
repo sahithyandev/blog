@@ -6,7 +6,6 @@ import { getAllPosts } from "../helpers/post"
 import styles from '../styles/home.module.css'
 
 export default function Home({ latestPosts }) {
-  console.log(latestPosts)
   const createSocialMediaLinkObj = (dataArr) => {
     /**
      * @type {string}
@@ -73,7 +72,7 @@ export default function Home({ latestPosts }) {
   )
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   return {
     props: {
       latestPosts: getAllPosts().slice(0, 4)

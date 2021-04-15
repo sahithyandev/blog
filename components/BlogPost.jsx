@@ -14,7 +14,6 @@ const PRISM_THEME_URL = "https://unpkg.com/prismjs@1.23.0/themes/prism-twilight.
 
 export const BlogPost = (props) => {
 	const { meta, children } = props;
-	console.log(meta)
 	const { title, description, slug, tags, estReadTime, dateCreated } = meta;
 
 	const postContentRef = createRef()
