@@ -1,4 +1,4 @@
+- Use MDXComponents to style `a` tags instead of manual css changing.
 - Add "subscribe" feature
 - Add "table of contents" for articles
 - Add search feature on posts page
-- Add syntax highlighting (use leerob.io's implementation for idea)

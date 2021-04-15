@@ -1,6 +1,3 @@
-
-import { createRef, useEffect } from "react"
-
 import { loadPost } from "../../helpers/post"
 import { NormalDateFormat } from "../../helpers/other"
 import { SITE_CONSTANTS } from "../../global"
@@ -8,8 +5,6 @@ import { BlogPost } from "components/"
 
 
 const PostPage = ({ meta, content }) => {
-	// const { slug, title, content, dateCreated, description, tags, estReadTime } = postData
-
 	return <BlogPost meta={meta}>{content}</BlogPost>
 }
 
@@ -19,12 +14,11 @@ export async function getServerSideProps(context) {
 	}
 
 	try {
-		const _postData = await loadPost(props.slug, true, true)
-		console.log(_postData.meta)
+		const _postData = await loadPost(props.slug, true)
 
 		props = { ...props, ..._postData }
 	} catch (e) {
-		console.log(e)
+		console.warn(e)
 
 		return {
 			notFound: true

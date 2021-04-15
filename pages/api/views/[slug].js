@@ -1,17 +1,15 @@
 import db from "@/lib/firebase.js"
 
-import postsJson from "@/public/posts.json";
+import { doesPostExist } from "@/helpers/post.js"
+
+// import postsJson from "@/public/posts.json";
 
 export default async (req, res) => {
 	const slug = req.query.slug;
 	const doc = db().collection("post-views").doc(slug)
 
 	if (!(await doc.get()).exists) {
-		const postExists = postsJson.find(post => {
-			return post.slug === slug
-		});
-
-		if (postExists) {
+		if (doesPostExist(slug)) {
 			const newDoc = {
 				viewCount: 1
 			}

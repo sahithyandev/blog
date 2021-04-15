@@ -1,9 +1,15 @@
 /**
+ * DON'T USE IT ANYMORE
+ * SLOWLY MIGRATE OUT OF THIS
+ * @deprecated @REMOVE_IT_IN_FUTURE
+ * 
+ * 
  * This script generates a json file from all the posts on the build time.
  * The script will contain the details of the posts (except content)
  * 
  * Recent (or all) posts can be loaded using this file, faster.
  */
+
 
 import fs from "fs";
 

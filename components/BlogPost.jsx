@@ -1,22 +1,20 @@
 import Head from "next/head"
 import { createRef, useEffect } from "react"
 
-import hydrate from "next-mdx-remote/hydrate"
-
 import { Nav } from "./Nav"
 import { HeadBase } from "./HeadBase"
 import { ViewCounter } from "./ViewCounter"
 import { Footer } from "./Footer"
 import { SITE_CONSTANTS } from "../global"
-
-
 import { NormalDateFormat } from "../helpers/other"
 
 import styles from "../styles/post.module.css"
 
+const PRISM_THEME_URL = "https://unpkg.com/prismjs@1.23.0/themes/prism-twilight.css"
+
 export const BlogPost = (props) => {
 	const { meta, children } = props;
-
+	console.log(meta)
 	const { title, description, slug, tags, estReadTime, dateCreated } = meta;
 
 	const postContentRef = createRef()
@@ -111,10 +109,14 @@ export const BlogPost = (props) => {
 			<HeadBase title={`${title} - ${SITE_CONSTANTS.title}`} description={description} />
 
 			<Head>
+				{/* For icons */}
 				<link defer
 					rel="stylesheet"
 					href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
 					integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossOrigin="anonymous" />
+
+				{/* Fpr syntax highlighting */}
+				<link rel="stylesheet" href={PRISM_THEME_URL} />
 			</Head>
 
 			<Nav />
@@ -134,15 +136,18 @@ export const BlogPost = (props) => {
 
 					<div style={{ display: 'flex', gap: 6 }}>
 						<span>{estReadTime} min read</span>
+						|
 						<ViewCounter slug={slug} />
 					</div>
 				</div>
 
+
 				<div
 					ref={postContentRef}
 					className={styles["post--content"]}
-					dangerouslySetInnerHTML={{ __html: children }}
 				>
+					<article dangerouslySetInnerHTML={{ __html: children }}>
+					</article>
 				</div>
 
 				{/* TODO add a "give your feedback" section */}

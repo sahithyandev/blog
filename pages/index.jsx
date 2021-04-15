@@ -6,6 +6,7 @@ import { getAllPosts } from "../helpers/post"
 import styles from '../styles/home.module.css'
 
 export default function Home({ latestPosts }) {
+  console.log(latestPosts)
   const createSocialMediaLinkObj = (dataArr) => {
     /**
      * @type {string}
@@ -62,7 +63,7 @@ export default function Home({ latestPosts }) {
           <h2 className={styles["latest-posts-heading"]}>Latest Posts</h2>
 
           <div className="posts-container">
-            {latestPosts.map(post => <PostCard key={post.title} {...post} />)}
+            {latestPosts.map(post => <PostCard key={post.meta.title} {...post.meta} />)}
           </div>
         </section>
       </main>

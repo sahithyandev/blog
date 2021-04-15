@@ -15,7 +15,7 @@ const PostsPage = ({ posts }) => {
 				<p>Here are all of my posts.</p>
 
 				<div className="posts-container">
-					{posts.map(_post => <PostCard key={_post.title} {..._post} />)}
+					{posts.map(_post => <PostCard key={_post.meta.title} {..._post.meta} />)}
 				</div>
 			</main>
 
