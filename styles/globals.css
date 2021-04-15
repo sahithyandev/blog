@@ -42,24 +42,10 @@ body {
   }
 }
 
-a.reset {
+a {
 	text-decoration: none !important;
 	color: inherit !important;	
 	border-bottom: none;
-}
-
-a {
-  --color: var(--main);
-  
-  cursor: pointer;
-  color: var(--color);
-  text-decoration: none;
-  border-bottom: dashed var(--color) 2px;
-  transition: color .1s;
-}
-
-a:hover, a:focus {
-  --color: rgb(122, 94, 247);
 }
 
 .name {  

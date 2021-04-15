@@ -1,10 +1,17 @@
+import hydrate from "next-mdx-remote/hydrate"
+
 import { loadPost } from "../../helpers/post"
 import { NormalDateFormat } from "../../helpers/other"
 import { SITE_CONSTANTS } from "../../global"
 import { BlogPost } from "components/"
+import { MDXComponents } from "components/MDXComponents"
 
 
-const PostPage = ({ meta, content }) => {
+const PostPage = ({ meta, mdxSource }) => {
+	const content = hydrate(mdxSource, {
+		components: MDXComponents
+	})
+
 	return <BlogPost meta={meta}>{content}</BlogPost>
 }
 

@@ -1,12 +1,13 @@
 const fs = require('fs')
-const { join, format } = require("path")
+const { join } = require("path")
 
 const renderToString = require("next-mdx-remote/render-to-string")
 const matter = require("gray-matter")
+const mdxPrism = require("mdx-prism")
 
 const { SITE_CONSTANTS } = require("../global")
-const { POSTS_DATA_FILE, POSTS_DIR } = SITE_CONSTANTS
-const markdownToHtml = require("../lib/markdown")
+const { POSTS_DIR } = SITE_CONSTANTS
+const { MDXComponents } = require('components/MDXComponents')
 
 /**
  * @deprecated @REMOVE_IT_IN_FUTURE
@@ -26,11 +27,16 @@ async function loadPost(slug = "", wantContent = true) {
 		throw new Error("post not found")
 	}
 
-	const content = await markdownToHtml(postDataObj.content)
+	const mdxSource = await renderToString(postDataObj.content, {
+		components: MDXComponents,
+		mdxOptions: {
+			rehypePlugins: [mdxPrism]
+		}
+	})
 
 	return {
 		meta: postDataObj.meta,
-		content
+		mdxSource
 	}
 }
 

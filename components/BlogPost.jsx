@@ -146,7 +146,8 @@ export const BlogPost = (props) => {
 					ref={postContentRef}
 					className={styles["post--content"]}
 				>
-					<article dangerouslySetInnerHTML={{ __html: children }}>
+					<article>
+						{children}
 					</article>
 				</div>
 

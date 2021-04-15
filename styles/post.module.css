@@ -37,10 +37,10 @@
 }
 }
 
-.post--content a {
+/* .post--content a {
   font-weight: 500 !important;
-	/* color: rgba(0, 0, 255, 0.658); */
-}
+	color: rgba(0, 0, 255, 0.658);
+} */
 
 .post--content strong {
 	font-weight: 600;
