@@ -1,0 +1,18 @@
+.page {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+
+.page-container {
+	flex: 1;
+	display: flex;
+
+	padding: 10px;
+	color: var(--main-half-opacity);
+}
+.not-found-message {
+	color: var(--light);
+	width: fit-content;	
+	margin: auto;
+}

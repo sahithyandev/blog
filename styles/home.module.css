@@ -1,0 +1,26 @@
+.me-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 50px 0;
+  font-size: 1.1em;
+  
+  height: 120px;
+}
+
+.banner--name {
+  font-size: 1.75em;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.small-intro {
+  opacity: .8;
+  font-weight: normal;
+  max-width: 480px;
+  text-align: center;
+}
+
+.latest-posts-heading {
+  font-size: 1.34em;
+}

@@ -1,0 +1,114 @@
+---
+title: JavaScript Shorthands
+description: "Do you write JavaScript a lot? These shorthands might be helpful to you."
+dateCreated: 2021-04-07T06:22:04.357Z
+tags: javascript
+---
+
+<!-- TODO fix this introduction -->
+<!-- I love JavaScript, I hope you too. JavaScript is super-simple for beginners, even it has many WTF situations. By using shorthands, you can be more productive & you can impress your friends when coding. I want to show you some shorthands in JavaScript. They’re great. -->
+
+<TableOfContents />
+
+## parseInt()
+
+```js
+let x = "11"
+console.log(parseInt(x)) // 100
+```
+
+parseInt is a function in JavaScript which is used to convert a string to a number. There is an awesome shorthand is available for parseInt. “+” is the shorthand. It’s very easy when writing a 1000-line-JS.
+
+```js
+let y = "100"
+console.log(+y) // 100
+```
+
+It works with **parseFloat()** too.
+
+## Math.floor()
+
+```js
+let z = 14.45
+Math.floor(z) // 14
+```
+
+Math.floor is a function that is used to return the largest integer value that is less than or equal to a number. **“~~”** is the shorthand for this function. I hope you have a smile now.
+
+```js
+console.log(~~z) // returns 14 
+```
+
+## String to Boolean
+
+```js
+let strValue = "true"
+strValue == "true" ? true : false // true
+```
+
+I am sure you will think that this is the shorthand. But there is a even short way for this too. The operator used above is called a Ternary operator. You can use this as a shorthand for an If-Else loop. The below code is a shorthand for the string to boolean conversion. It also works for number values too.
+
+```js
+let boolValue = !!strValue // true
+```
+
+## If-Else statement
+
+As mentioned earlier, you can use the ternary operator as shorthand for the If-Else statement-based assignment. But when using multiline-blocks in If-Else statement, the ternary operator wants to be extended as shown below.
+
+```js
+age > 13 ? (
+// age is higher than 13
+) : (
+// age is not higher than 13
+)
+```
+
+## XOR gate?
+
+We all know AND-OR gates. We use them in many places. Some of them may have heard the XOR gate. It is a mixture of AND-OR concepts. Here is the truth table for the XOR gate. for more.
+
+|A|B|A XOR B|
+|-|-|-------|
+|0|0|   0   |
+|0|1|   1   |
+|1|0|   1   |
+|1|1|   0   |
+
+The XOR gate returns true if the number of inputs is odd. Sometimes we want this too. AND and OR can be accessed in JS with && and || operators respectively. But how we can access XOR?
+
+```js
+let A = true
+let B = false
+
+// these will work as XOR.
+(A && !B) || (!A && B) // true
+(A + B) && (!A + !B) // true
+```
+
+But the above code is too big and we want a lot of time to write it without any problem. The problem can be solved with just a “^”.
+
+```js
+// Shorthand
+A ^ B // ^ works as XOR
+```
+
+The above short-handed code will work. But there is a small problem with the operator, it returns a number instead of a boolean. You can simply convert it into a boolean with the shorthand #3.
+
+## string.split('')
+
+Sometimes, we want to split a string into one-letter-array as shown below.
+
+```js
+let name = "Sahithyan" // my name
+let letters = name.split('') // [S, a, h, i, t, h, y, a, n]
+```
+
+In most cases, it’s ok to write .split(‘’) one or two times in our code. But when we want to split a string into a letter array, this gets horrible. But, fortunately, there is a shorthand for the split method.
+
+```js
+let name = "Sahithyan" // my name
+let letters = [...name] // [S, a, h, i, t, h, y, a, n]
+```
+
+Unfortunately, I don’t know what happens there. if you know, please tell that in the comments. But I am sure that it works.

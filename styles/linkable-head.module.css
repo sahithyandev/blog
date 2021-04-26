@@ -1,0 +1,23 @@
+.linkable {
+	margin-bottom: 24px;
+}
+
+@media (min-width: 600px) {
+	.linkable {
+		position: relative;
+		left: -24px;
+	}
+}
+
+.link-hashtag {
+	font-weight: 500;
+	font-family: monospace;
+	font-size: 1.1em;
+	opacity: .6;
+	margin-right: 10px;
+	transition: opacity .2s;
+}
+
+.link-hashtag:hover {
+	opacity: .8;
+}

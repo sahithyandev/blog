@@ -1,0 +1,30 @@
+nav {
+	margin-top: 10px;
+	margin-bottom: 20px;
+	align-items: center;
+	justify-content: space-between;
+	display: flex;
+}
+
+.nav--logo {
+	text-transform: uppercase;
+}
+
+.nav--links-container {
+	display: flex;
+	width: fit-content;
+	gap: 20px;
+	
+	list-style: none;
+	padding: 0;
+}
+
+.nav--link {
+	padding: none;
+	opacity: 0.6;
+	transition: opacity .2s;
+}
+
+.nav--link:hover {
+	opacity: 1;
+}

@@ -1,0 +1,33 @@
+---
+title: Introduction To My Blog
+description: "Creating my own blogging website. \"Why?\" & \"How?\" answered."
+dateCreated: 2021-02-26T13:48:04.357Z
+---
+
+Hello people! Welcome to my blog!. This is my blog, built with [Next.js](https://nextjs.org/), [MDX](https://mdxjs.com/) and a [few other open source packages](#packages-i-used).
+
+After thinking of starting a blog for about a week, I finally decided to start developing it. And as the first blog post, I wanted to write about how I created this blog. I hope it's helpful.
+
+<TableOfContents />
+
+## First, WHY?
+
+I, occasionally, write to share my insights. In the past, I used [Medium](https://www.medium.com), a famous writing site, to write my insights as articles. But I didn't like their *Only 2 free stories per month* plan. Hence, I started looking for alternatives. And nothing seemed suitable for me.
+
+So I decided that I should create one on my own for me. Because, by creating my own website, I can be my own boss. I can style and structure this my blog, however I want. Medium can't give me that power. That's why I decided to reinventing the wheel.
+
+## How I built it?
+
+This blog was initiated with [Next.js](https://nextjs.org/), The React Framework for Production.
+
+I wanted to write using Markdown as it's easy to use. As I was searching for a markdown-to-html compiler, I came across [MDX](https://mdxjs.com/). MDX is Markdown and JSX combined. It seemed more powerful. Hence, I decided to use it.
+
+At first, I went with Server-side rendering. But now, I changed to static build.
+
+## Packages I used
+
+In this section, I mentioned all the packages, that I installed for a specific use. (That means, I left the framework's dependencies)
+
+- [gray-matter](https://www.npmjs.com/package/gray-matter) - To compile the MDX files into JS objects
+- [next-mdx-remote](https://www.npmjs.com/package/next-mdx-remote) - To compile MDX into html 
+- [mdx-prism](https://www.npmjs.com/package/mdx-prism) - To use prism (for syntax highlighting) with MDX

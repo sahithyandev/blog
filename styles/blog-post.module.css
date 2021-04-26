@@ -1,0 +1,86 @@
+.post--title {
+	font-size: 1.7em;
+	margin-bottom: 5px;
+	margin-top: 40px;
+}
+
+.post--head {
+	display: flex;
+	justify-content: space-between;
+	opacity: .9;
+	font-size: .8em;
+}
+
+/* Some of the styles have been moved to global */
+
+.post--content {
+	margin-top: 32px;
+	line-height: 25px;
+}
+
+.post--content-a,
+.post--content a {
+	--color: #60a5fa;
+	--hover-color: #2563eb;
+	
+	color: var(--color);
+	transition: color .1s;
+}
+
+.post--content-a:hover,
+.post--content a:hover {
+	color: var(--hover-color);
+}
+
+.post--content strong {
+	font-weight: 600;
+	text-decoration: underline solid white 2px;
+}
+
+.post--content img {
+	display: block;
+	margin: 0 auto;
+	max-width: 100%;
+	width: auto;
+	max-height: 600px;
+}
+
+.post--content p {
+	line-height: 26px;	
+}
+
+.post--content table {
+	margin: 20px auto;
+	text-align: center;
+	border-spacing: 40px 4px;
+	font-size: 1.1em;
+}
+
+.post--bottom-bar {
+	display: flex;
+	justify-content: space-between;
+	font-size: .88em;
+}
+
+.post--share-section {
+	display: flex;
+}
+
+.post--share-section span {
+	opacity: .7;
+	margin-right: 8px;
+}
+
+.post--share-section div {
+	display: flex;
+	gap: 8px;
+}
+
+.post--share-section a i {
+	opacity: .7;
+	transition: all .26s;
+}
+
+.post--share-section a:hover i {
+	opacitY: 1;
+}
