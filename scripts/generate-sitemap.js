@@ -3,8 +3,22 @@ const fs = require("fs")
 const globby = require("globby");
 const prettier = require("prettier");
 
-const WEBSITE_URL = "https://sahithyandev.github.io/";
+const WEBSITE_URL = "https://sahithyandev.github.io";
 const OUTPUT_FILE = "public/sitemap.xml";
+
+/**
+ * @param {Date} mtime
+ */
+const lastModifiedTimeFormat = (mtime) => {
+	const _ = new Intl.DateTimeFormat("en", {
+		day: "2-digit",
+		year: "numeric",
+		month: "2-digit"
+	})
+
+	const [month, date, year] = _.format(mtime).split("/");
+	return [year, month, date].join("-")
+}
 
 (async () => {
 	const _pages = await globby([
@@ -13,16 +27,19 @@ const OUTPUT_FILE = "public/sitemap.xml";
 		"posts/*.mdx"
 	])
 
-	const pages = _pages.map(page => page
-		.replace("pages/", "")
-		.replace("posts/", "post/")
-		.replace(/\.\w+/, "")
-	)
+	const urlTags = _pages.map(_path => {
+		const path = _path
+			.replace("pages/", "")
+			.replace("posts/", "post/")
+			.replace(/\.\w+/, "")
 
-	const urlTags = pages.map(path => {
-		const route = path === "index" ? "" : path;
+		const route = path === "index" ? "" : path
+		const lastModifiedTime = lastModifiedTimeFormat(fs.statSync(_path).mtime)
+
 		return `<url>
-							<loc>${WEBSITE_URL}${route}</loc>
+							<loc>${WEBSITE_URL}/${route}</loc>
+							<changefreq>monthly</changefreq>
+							<lastmod>${lastModifiedTime}</lastmod>
 					</url>`
 	})
 
