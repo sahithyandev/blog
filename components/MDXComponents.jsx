@@ -1,5 +1,7 @@
-import Link from "next/link";
-import { useEffect, useState } from "react";
+import Link from "next/link"
+import { useEffect, useState } from "react"
+
+import TableOfContents from "./TableOfContents.MDX"
 
 const getHeadContent = (children) => {
 	if (typeof children === "string") {
@@ -39,88 +41,20 @@ const linkableHead = (HeadElement) => {
 	}
 }
 
-// TODO move TOC into a seperate file
-import TOCStyle from "@/styles/table-of-contents.module.css"
-
-const TOCItem = ({ linkable, slug }) => {
-	const linkText = linkable.headingText
-	const hash = linkText.replaceAll(" ", "-").toLowerCase()
-
-	return <li key={linkText}>
-		<Link href={{
-			pathname: `/post/[slug]`,
-			hash,
-			query: { slug }
-		}}>
-			<a className={TOCStyle["toc-link"]}>{linkText}</a>
-
-		</Link>
-		{linkable.innerHeadings.length === 0 ? null : (linkable.innerHeadings.map(innerLinkable => {
-			return <ul key={linkable.headingText}>
-				<TOCItem linkable={innerLinkable} slug={slug} />
-			</ul>
-		})
-		)}
-	</li>
-}
-
-const TableOfContents = () => {
-	const [linkableElements, setLinkableElements] = useState([]);
-	const [slug, setSlug] = useState("");
-
-	// TODO rewrite the createHeadingMap function in a optimal way
-	/**
-	 * @param {HTMLElement[]} headings 
-	 */
-	const createHeadingMap = (headings) => {
-		let m = [];
-
-		for (let heading of headings) {
-			const tagName = heading.tagName.toLowerCase();
-			if (tagName === "h2") {
-				m.push({
-					headingText: heading.innerText.slice(1),
-					innerHeadings: []
-				})
-			} else if (tagName === "h3") {
-				const lastHeading = m[m.length - 1]
-				lastHeading.innerHeadings.push({
-					headingText: heading.innerText.slice(1),
-					innerHeadings: []
-				})
-			}
-		}
-
-		return m;
-	}
-
-	useEffect(() => {
-		// data-is-linkable=true elements will be shown in the TableOfContents
-		const C = Array.from(document.querySelectorAll("*[data-is-linkable=true]"));
-		setLinkableElements(createHeadingMap(C))
-
-		setSlug(window.location.pathname.split("/").reverse()[0])
-	}, [])
-
-	if (linkableElements.length === 0) return <div style={{ height: 80 }}></div>
-
-	return (
-		<section className={TOCStyle["parent-section"]}>
-			<h3 className={TOCStyle["toc-heading"]}>Table Of Contents</h3>
-
-			<ol className={TOCStyle["links-container"]}>
-				{linkableElements.map(linkable => {
-					return <TOCItem linkable={linkable} slug={slug} key={linkable.headingText} />
-				})}
-			</ol>
-		</section>
-	)
-}
-
 export const CustomLink = (props) => {
+	const HREF_PLACEHOLDERS = Object.entries({
+		__YOUTUBE_CHANNEL__: "https://www.youtube.com/channel"
+	})
+
 	/** @type {string} */
-	const href = props.href;
+	let href = props.href;
 	const isInternal = href && (href.startsWith('/')) || href.startsWith("#")
+
+	if (!href) console.info(`A link without 'href' is found\nDEBUG_NOTE ${props.children}`)
+
+	HREF_PLACEHOLDERS.map(([placeholder, value]) => {
+		href = href.replace(placeholder, value)
+	})
 
 	if (isInternal) {
 		return (
@@ -133,10 +67,17 @@ export const CustomLink = (props) => {
 	return <a target="_blank" rel="noopener noreferrer" {...props} />
 }
 
+const Image = (props) => {
+	if (!props.alt) console.info(`Image found with no alt\nDEBUG_NOTE ${props.src}`)
+	if (!props.src) console.info(`Image found with no src\nDEBUG_NOTE ${props.alt}`)
+
+	return <img {...props} loading="lazy" />
+}
+
 export const MDXComponents = {
 	a: CustomLink,
 	h2: linkableHead("h2"),
 	h3: linkableHead("h3"),
-	// h3: LinkableH3,
+	img: Image,
 	TableOfContents
 }
