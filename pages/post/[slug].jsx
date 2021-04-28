@@ -1,6 +1,6 @@
 import hydrate from "next-mdx-remote/hydrate"
 
-import { getAllPosts, loadPost } from "@/helpers/post"
+import { loadPost, getAllSlugs } from "@/helpers/post"
 import { BlogPost, MDXComponents } from "@/components"
 
 const PostPage = ({ meta, mdxSource }) => {
@@ -11,13 +11,11 @@ const PostPage = ({ meta, mdxSource }) => {
 }
 
 export async function getStaticPaths() {
-	const posts = await getAllPosts()
+	const slugs = await getAllSlugs()
 
 	return {
-		paths: posts.map(p => ({
-			params: {
-				slug: p.meta.slug
-			}
+		paths: slugs.map(slug => ({
+			params: { slug }
 		})),
 		fallback: false
 	}

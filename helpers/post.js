@@ -1,4 +1,6 @@
 const fs = require('fs')
+// TODO try to move to fsAsync
+const fsAsync = fs.promises
 const { join } = require("path")
 
 const renderToString = require("next-mdx-remote/render-to-string")
@@ -8,13 +10,6 @@ const mdxPrism = require("mdx-prism")
 const { SITE_CONSTANTS } = require("../global")
 const { POSTS_DIR } = SITE_CONSTANTS
 const { MDXComponents } = require('components/MDXComponents')
-
-/**
- * Used externally only
- */
-// function getPostRaw(slug = "") {
-// 	return fs.readFileSync(POSTS_DIR + slug + ".mdx")
-// }
 
 async function loadPost(slug = "", wantContent = true) {
 	if (wantContent === undefined) wantContent = true
@@ -93,6 +88,11 @@ function getAllPosts() {
 	return posts;
 }
 
+async function getAllSlugs() {
+	const postsDir = join(process.cwd(), "posts")
+	return (await fsAsync.readdir(postsDir)).map(slug => slug.replace(/\.mdx$/i, ""))
+}
+
 module.exports = {
-	loadPost, getAllPosts, doesPostExist
+	loadPost, getAllPosts, doesPostExist, getAllSlugs
 }
