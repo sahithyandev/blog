@@ -22,7 +22,6 @@
 
 .sm-icon {
 	font-size: 18px !important;
-	font-size: monospace;
 	font-weight: bold;
-	font-family: cursive;
+  font-family: monospace;
 }
