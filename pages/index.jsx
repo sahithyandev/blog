@@ -46,7 +46,7 @@ export default function Home({ latestPosts }) {
 export async function getStaticProps(context) {
   return {
     props: {
-      latestPosts: getAllPosts().slice(0, 4)
+      latestPosts: (await getAllPosts()).slice(0, 4)
     }
   }
 }

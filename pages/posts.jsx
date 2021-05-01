@@ -111,7 +111,7 @@ const PostsPage = ({ posts }) => {
 export async function getStaticProps(context) {
 	return {
 		props: {
-			posts: getAllPosts()
+			posts: await getAllPosts()
 		}
 	}
 }

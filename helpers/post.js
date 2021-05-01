@@ -11,10 +11,16 @@ const { SITE_CONSTANTS } = require("../global")
 const { POSTS_DIR } = SITE_CONSTANTS
 const { MDXComponents } = require('components/MDXComponents')
 
-async function loadPost(slug = "", wantContent = true) {
-	if (wantContent === undefined) wantContent = true
+const isProduction = process.env.NODE_ENV === "production"
+/**
+ * Checks if the post is finished and ready on production
+ * 
+ * @param {string} slug
+ */
+const isPostCompleted = slug => slug.charAt(0) !== "-"
 
-	const postDataObj = getAllPosts().find(post => {
+async function loadPost(slug = "") {
+	const postDataObj = (await getAllPosts()).find(post => {
 		return post.meta.slug === slug
 	})
 	if (postDataObj === undefined) {
@@ -56,29 +62,29 @@ function formatPostMeta(meta, content) {
  * @param {string} slug
  */
 function getPostBySlug(slug) {
-	const realSlug = slug.replace(/\.mdx$/, "")
-	const fullPath = join(POSTS_DIR, slug)
+	// const realSlug = slug.replace(/\.mdx$/, "")
+	const fullPath = join(POSTS_DIR, slug + ".mdx")
 	const fileContent = fs.readFileSync(fullPath)
 	const { data, content } = matter(fileContent)
 
 	return {
 		meta: {
-			slug: realSlug,
+			slug,
 			...formatPostMeta(data, content)
 		},
 		content
 	}
 }
 
-function doesPostExist(slug) {
-	const allPosts = getAllPosts()
+async function doesPostExist(slug) {
+	const allPosts = await getAllPosts()
 	const post = allPosts.find(post => post.meta.slug === slug)
 
 	return post !== undefined
 }
 
-function getAllPosts() {
-	const slugs = fs.readdirSync(POSTS_DIR)
+async function getAllPosts() {
+	const slugs = await getAllSlugs()
 	const posts = slugs.map(slug => getPostBySlug(slug))
 	posts.sort((postA, postB) => {
 		// recent posts first
@@ -88,11 +94,23 @@ function getAllPosts() {
 	return posts;
 }
 
+
+// /**
+//  * Changes the slug name to the default state
+//  * That means, even if it is an not-finished post, it will change the slug name to normal 
+//  * 
+//  * @param {string} slug 
+//  */
+// const sss = slug => ;
+
 async function getAllSlugs() {
 	const postsDir = join(process.cwd(), "posts")
-	return (await fsAsync.readdir(postsDir)).map(slug => slug.replace(/\.mdx$/i, ""))
+	return (await fsAsync.readdir(postsDir))
+		.map(slug => slug.replace(/\.mdx$/i, ""))
+		// filter the not-finished blog posts on production
+		.filter(slug => isProduction ? isPostCompleted(slug) : true)
 }
 
 module.exports = {
-	loadPost, getAllPosts, doesPostExist, getAllSlugs
+	loadPost, getAllPosts, doesPostExist, getAllSlugs, isPostCompleted
 }
