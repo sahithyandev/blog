@@ -1,12 +1,11 @@
 import { SocialLinks } from "components/SocialLinks"
 import Head from "next/head"
 
-import { HeadBase, Footer, Nav } from "@/components"
+import { HeadBase, Footer, Nav, CustomLink } from "@/components"
 import { SITE_CONSTANTS } from "../global"
 
 import styles from "@/styles/about.module.css"
 import postStyles from "@/styles/blog-post.module.css"
-import { CustomLink } from "@/components/MDXComponents"
 
 const AboutPage = () => {
 
@@ -14,7 +13,7 @@ const AboutPage = () => {
 		<>
 			<HeadBase
 				title={`About Me - ${SITE_CONSTANTS.title}`}
-				description="Sahithyan, a teen web developer, and a tech enthusiast who likes Mathematics"
+				description="Sahithyan, a teen web developer, and a tech enthusiast"
 			/>
 
 			<Head>

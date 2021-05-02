@@ -5,7 +5,7 @@ import { Nav } from "./Nav"
 import { HeadBase } from "./HeadBase"
 import { ViewCounter } from "./ViewCounter"
 import { Footer } from "./Footer"
-import { CustomLink } from "./MDXComponents"
+import { CustomLink } from "./CustomLink"
 import { SITE_CONSTANTS } from "../global"
 import { NormalDateFormat } from "@/helpers/other"
 

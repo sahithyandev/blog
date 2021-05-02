@@ -1,4 +1,4 @@
-import { CustomLink } from "./MDXComponents"
+import { CustomLink } from "./CustomLink"
 
 import styles from "@/styles/social-links.module.css"
 export const SocialLinks = (props) => {

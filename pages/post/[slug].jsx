@@ -12,9 +12,7 @@ const PostPage = ({ meta, mdxSource }) => {
 
 export async function getStaticPaths() {
 	let slugs = await getAllSlugs()
-
-	console.log({ slugs })
-
+	
 	return {
 		paths: slugs.map(slug => ({
 			params: { slug }

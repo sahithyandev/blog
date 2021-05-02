@@ -31,7 +31,7 @@ const TOCItem = ({ linkable, slug }) => {
 	</li>
 }
 
-const TableOfContents = () => {
+export const TableOfContents = () => {
 	const [linkableElements, setLinkableElements] = useState([]);
 	const [slug, setSlug] = useState("");
 
@@ -83,5 +83,3 @@ const TableOfContents = () => {
 		</section>
 	)
 }
-
-export default TableOfContents

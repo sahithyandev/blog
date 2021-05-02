@@ -94,15 +94,6 @@ async function getAllPosts() {
 	return posts;
 }
 
-
-// /**
-//  * Changes the slug name to the default state
-//  * That means, even if it is an not-finished post, it will change the slug name to normal 
-//  * 
-//  * @param {string} slug 
-//  */
-// const sss = slug => ;
-
 async function getAllSlugs() {
 	const postsDir = join(process.cwd(), "posts")
 	return (await fsAsync.readdir(postsDir))

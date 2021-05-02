@@ -24,7 +24,7 @@ const lastModifiedTimeFormat = (mtime) => {
 	const _pages = await globby([
 		"pages/*.jsx",
 		"!pages/api",
-		"posts/*.mdx"
+		"posts/!(-)*.mdx",
 	])
 
 	const urlTags = _pages.map(_path => {
