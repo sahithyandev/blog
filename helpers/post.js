@@ -10,8 +10,10 @@ const mdxPrism = require("mdx-prism")
 const { SITE_CONSTANTS } = require("../global")
 const { POSTS_DIR } = SITE_CONSTANTS
 const { MDXComponents } = require('components/MDXComponents')
+const AVERAGE_READING_SPEED = 200
 
 const isProduction = process.env.NODE_ENV === "production"
+
 /**
  * Checks if the post is finished and ready on production
  * 
@@ -40,7 +42,28 @@ async function loadPost(slug = "") {
 	}
 }
 
+/**
+ * @typedef PostMetaObject
+ * 
+ * @property {string} slug
+ * @property {string} title
+ * @property {string} description
+ * @property {number} dateCreated
+ * @property {string[]} tags
+ * @property {number} estReadTime
+ * 
+ */
+
+/**
+ * @param {object} meta
+ * @param {string} content
+ * 
+ * @returns {PostMetaObject} 
+ */
 function formatPostMeta(meta, content) {
+	/**
+	 * @type {PostMetaObject}
+	 */
 	const formattedMeta = meta;
 
 	if (formattedMeta.tags === undefined) {
@@ -52,26 +75,34 @@ function formatPostMeta(meta, content) {
 	formattedMeta.dateCreated = new Date(+formattedMeta.dateCreated).valueOf()
 
 	const wordCount = content.split(/\s+/gu).length
-	const AVERAGE_READING_SPEED = 200
+
 	formattedMeta.estReadTime = Math.ceil(wordCount / AVERAGE_READING_SPEED)
 
 	return formattedMeta;
 }
 
 /**
+ * @typedef PostObject
+ * 
+ * @property {PostMetaObject} meta
+ * @property {string} content 
+ */
+
+/**
  * @param {string} slug
+ * 
+ * @returns {PostObject}
  */
 function getPostBySlug(slug) {
 	// const realSlug = slug.replace(/\.mdx$/, "")
 	const fullPath = join(POSTS_DIR, slug + ".mdx")
 	const fileContent = fs.readFileSync(fullPath)
 	const { data, content } = matter(fileContent)
+	const meta = formatPostMeta(data, content)
+	meta.slug = slug;
 
 	return {
-		meta: {
-			slug,
-			...formatPostMeta(data, content)
-		},
+		meta,
 		content
 	}
 }

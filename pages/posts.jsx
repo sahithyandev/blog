@@ -19,34 +19,63 @@ const debounce = (func, timeout = 400) => {
 	}
 }
 
-const PostsPage = ({ posts }) => {
+/**
+ * @typedef PostsPageProps
+ * 
+ * @property {import("@/helpers/post").PostObject[]} posts
+ */
+
+/**
+ * @param {PostsPageProps} props
+ */
+const PostsPage = props => {
+	const { posts } = props
 	const [searchObj, setSearch] = useState({
-		tags: [],
+		searchTags: [],
 		searchString: ""
 	})
 
-	// My search logic
-	// hard to read and maintain
-	// TODO make it easy to read
-	// TODO make it maintainable 
+	/**
+	 * My search logic
+	 * TODO  make it easy to read 
+	 * TODO make it maintainable 
+	 * 
+	 * @param {import("@/helpers/post").PostObject[]} postsArr
+	 */
 	const filterPosts = (postsArr) => {
-		return postsArr.filter(post => {
-			const title = post.meta.title.toLowerCase()
-			const { searchString, tags } = searchObj
-			let result = true
+		const { searchTags, searchString } = searchObj
+		return postsArr
+			// filter by tags
+			.filter(post => {
+				return (searchTags.length < 1) ? true : (
+					// TODO add an explanation
+					post.meta.tags.some(postTag => {
+						return searchTags.some(searchTag => postTag.includes(searchTag))
+					}));
+			})
+			// filter by the searchString
+			.filter(post => {
+				const title = post.meta.title.toLowerCase()
+				// if the searchString is a substring of the title or vice versa
+				return searchString.includes(title) || title.includes(searchString)
+			})
+		// return postsArr.filter(post => {
+		// 	const title = post.meta.title.toLowerCase()
+		// 	const { searchString, tags } = searchObj
+		// 	let result = true
 
-			if (tags.length > 0) {
-				// check if a post's tags contain the searched tags
-				result = result && post.meta.tags.some(postTag => {
-					return tags.some(tag => postTag.includes(tag))
-				})
-			}
+		// 	if (tags.length > 0) {
+		// 		// check if a post's tags contain the searched tags
+		// 		result = result && post.meta.tags.some(postTag => {
+		// 			return tags.some(tag => postTag.includes(tag))
+		// 		})
+		// 	}
 
-			// check if the search is included in the title of a post
-			result = result && (searchString.includes(title) || title.includes(searchString))
+		// 	// check if the search is included in the title of a post
+		// 	result = result && (searchString.includes(title) || title.includes(searchString))
 
-			return result;
-		})
+		// 	return result;
+		// })
 	}
 
 	/**
@@ -76,7 +105,7 @@ const PostsPage = ({ posts }) => {
 		})
 
 		setSearch({
-			tags: findTags(searchInput),
+			searchTags: findTags(searchInput),
 			searchString: removeTags(searchInput)
 		})
 	})
