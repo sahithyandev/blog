@@ -13,11 +13,13 @@ export default class __Document extends Document {
 					<script
 						dangerouslySetInnerHTML={{
 							__html: `
-						window.dataLayer = window.dataLayer || [];
-						function gtag(){dataLayer.push(arguments);}
-						gtag('js', new Date());
-						
-						gtag('config', '${GA_MEASUREMENT_ID}');`
+								if (window.location.host !== "localhost") {
+									window.dataLayer = window.dataLayer || [];
+									function gtag(){dataLayer.push(arguments);}
+									gtag('js', new Date());
+									
+									gtag('config', '${GA_MEASUREMENT_ID}');
+								}`
 						}}
 					>
 					</script>

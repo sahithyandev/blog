@@ -16,6 +16,8 @@ const Note = props => {
 	return <div className={postStyles["note"]} {...props} />
 }
 
+// TODO add a component for <blockquote>
+
 export const MDXComponents = {
 	a: CustomLink,
 	h2: linkableHead("h2"),

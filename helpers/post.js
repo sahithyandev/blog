@@ -69,10 +69,18 @@ function formatPostMeta(meta, content) {
 	if (formattedMeta.tags === undefined) {
 		formattedMeta.tags = []
 	} else if (typeof formattedMeta.tags === "string") {
-		formattedMeta.tags = formattedMeta.tags.split(',')
+		formattedMeta.tags = formattedMeta.tags
+			.split(',')
+			.map(
+				/**
+				 * @param {string} tagString
+				 */
+				tagString => tagString.trim()
+			)
 	}
 
-	formattedMeta.dateCreated = new Date(+formattedMeta.dateCreated).valueOf()
+	formattedMeta.dateCreated = formattedMeta.dateCreated || new Date().valueOf()
+	// formattedMeta.dateCreated = new Date(formattedMeta.dateCreated).valueOf()
 
 	const wordCount = content.split(/\s+/gu).length
 

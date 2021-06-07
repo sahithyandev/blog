@@ -100,9 +100,11 @@ const PostsPage = props => {
 	const searchInputHandler = debounce((event) => {
 		const searchInput = event.target.value.toLowerCase()
 		// for GA
-		gtag("event", "search_posts", {
-			searchInput
-		})
+		if (gtag) {
+			gtag("event", "search_posts", {
+				searchInput
+			})
+		}
 
 		setSearch({
 			searchTags: findTags(searchInput),
