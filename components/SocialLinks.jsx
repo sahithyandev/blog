@@ -21,8 +21,7 @@ export const SocialLinks = (props) => {
 		["Twitter", "https://www.twitter.com/iamSahithyan"],
 		["Instagram", "https://www.instagram.com/sahithyan_"],
 		["GitHub", "https://www.github.com/sahithyandev"],
-		["Telegram", "https://www.t.me/sahithyan", "telegram-plane"],
-		["CodersRank", "https://profile.codersrank.io/user/sahithyandev", null, "CR"]
+		["Telegram", "https://www.t.me/sahithyan", "telegram-plane"]
 	].map(createSocialMediaLinkObj)
 
 	return (
