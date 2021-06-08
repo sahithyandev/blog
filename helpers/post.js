@@ -79,7 +79,7 @@ function formatPostMeta(meta, content) {
 			)
 	}
 
-	formattedMeta.dateCreated = formattedMeta.dateCreated || new Date().valueOf()
+	formattedMeta.dateCreated = (formattedMeta.dateCreated || new Date()).valueOf()
 	// formattedMeta.dateCreated = new Date(formattedMeta.dateCreated).valueOf()
 
 	const wordCount = content.split(/\s+/gu).length
