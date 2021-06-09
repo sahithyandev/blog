@@ -37,7 +37,7 @@ XCalc is also [open-sourced](http://github.com/sahithyandev/xcalc). If you find 
 
 ## How I built it
 
-### TypeScript
+### [TypeScript](https://typescriptlang.org)
 
 TypeScript is a strict syntactical superset of JavaScript and adds optional strict typing to the language. It compiles to JavaScript.
 
@@ -45,47 +45,54 @@ I decided to bring it into the codebase mainly for two reasons. The important on
 And the next one is, **reduced mind-overloading**. Which means, now, I don’t have to memorize the function parameter types and other stuff. My IDE takes care of that for me.
 
 ### UI Design
-Usually, I don’t design the whole UI for my projects before I start developing my app. Because
-1. In most cases, I just don’t know how to get started with a blank page.
-2. My strive for perfectionism would put me in an infinite-loop of constantly making small-changes to the design, and never finishing it.
 
-Hence, I chose to design a UI but only to get an idea of how it would look like. And I went with it. Here is my first design.
+It's highly recommended to design the UI before coding it. [Here's why](https://www.youtube.com/watch?v=ZyAsNw7XZ1c). 
+
+Hence, I decided to design the whole UI first (or at least try). I opened up [Figma](https://figma.com) and gave it a go. Here's what I designed.
+
 <img alt="XCalc Old UI design" src="/post__images/building-xcalc/xcalc-old-design.jpg" />
 
-I completed the app with the above crappy design. About 3 months of break, I came back to the project, and decided to give it a redesign. To be honest, it turned out to be pretty great.
+I know it's crappy. But I went with it anyways. Because, if I spend too much time on my UI design, trying to make it *perfect*, I will never finish it.  
+
+After about 3 months of break, I came back to the project, and decided to give it a redesign. To be honest, it turned out to be pretty great.
 
 <img alt="XCalc New UI design" src="/post__images/building-xcalc/xcalc-new-design.png" />
 
-### React
+### [React](https://reactjs.org)
 At first, in XCalc, I wasn't using any front-end libraries. The state of the app, the dynamic UI rendering were all done by the code I wrote. To be honest, it was crap. It wasn't performant or readable either. I thought it would be easier for me to rewrite all of it than fix it. 
 
 When I started rewriting it, I decided to go with a front-end library. So, I chose React, which is my favorite front-end library.
 
 I may have messed up the code again, but at least it is not like the previous code.
 
-### Sass
+### [Sass](https://sass-lang.com)
 Sass is a pre-compiler for CSS. It provides some additional functionalities which results in a better developer experience. That’s the one and only reason I chose Sass.
 
 ### Off-thread evaluations
-Web workers are a simple means for web content to run scripts on background threads. This will make sure the main thread is free from getting stuck.
+By default, the browser uses a single thread (main thread) to run every processes on a website. This is where the layout and paint are done. This is where the user events get processed. And also, all of the javascript runs here. Which means, long-running JavaScript can block the thread, leading to an unresponsive page (== bad user experience)
 
-XCalc's functions never took too much time on the main thread, but there is no proof that it won't happen in the future. To eliminate that possibility, I planned to move the evaluation of the input to a web worker.
+This is where web workers come into play. Web workers are a simple means for web content to run scripts on background threads. This will make sure the main thread is free from getting stuck. [Learn more about web workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers).
+
+When I tested it on a laptop and my phone, XCalc's main thread didn't get blocked. There were no performance issues. But, it might happen on the low-end phones. To eliminate that possibility, I planned to move the evaluation of XCalc to a web worker.
 Now, the input will be sent to the worker. It will be sent back to the UI thread after being evaluated and formatted.
 
 ### Offline support
-> Service workers are a special type of web workers. A service worker is essentially a JavaScript file that runs separately from the main browser thread (or UI thread), intercepting network requests, caching or retrieving resources from the cache, and delivering push messages. &mdash; <cite>MDN</cite>
+
+<BlockQuote citationText="Google Developers Blog" citationLink="https://developers.google.com/web/ilt/pwa/introduction-to-service-worker#what_is_a_service_worker">
+Service workers are a special type of web workers. A service worker is essentially a JavaScript file that runs separately from the main browser thread (or UI thread), intercepting network requests, caching or retrieving resources from the cache, and delivering push messages.
+</BlockQuote>
 
 With the use of service workers, web apps can now deliver a custom offline experience. For example, YouTube and Spotify have a custom offline page. While searching for more examples, I found this [awesome sudoku game](https://sudoku.jull.dev/), which provides the same experience when online and offline.
 
 Like that sudoku game, XCalc doesn’t need an active internet connection to work. So, as you may guess, I wanted to make XCalc completely offline just like that game. So, I added a service worker which pre-caches all the required resources. After that, the resources can be loaded from the cache instantly.
 
-### WebAssembly (AssemblyScript)
-WebAssembly (WASM, in short) is a new type of code that can be run inside web browsers. It is a low-level assembly-like language which runs with near-native performance. You can learn more about WebAssembly on the [official website](https://webassembly.org).
+### [WebAssembly](https://webassembly.org) ([AssemblyScript](https://www.assemblyscript.org))
+WebAssembly (WASM, in short) is a new type of code that can be run inside web browsers. It is a low-level assembly-like language which runs with near-native performance.
 But, **keep in mind that WASM is not intended to replace JS, and it won’t**.
 
 In recent times, WebAssembly has gotten a lot of focus. So, I decided to give it a try. Even though WebAssembly wasn't meant to be used on a calculator app like XCalc, I chose to use it just for the sake of learning.
 
-C, C++, Rust already offered a way to compile to WASM, but I didn't want to learn a whole new language just to try out a new technology. Hence, I continued searching. Luckily, I came across AssemblyScript. AssemblyScript had a typescript-like syntax, and it worked a lot like TypeScript. It seemed like the best choice for me, so I went with it.
+C, C++, Rust already offered a way to compile to WASM, but I didn't want to learn a whole new language just to try out a new technology. Hence, I continued searching. Luckily, I came across [AssemblyScript](https://www.assemblyscript.org). AssemblyScript had a typescript-like syntax, and it worked a lot like TypeScript. It seemed like the best choice for me, so I went with it.
 
 ## Conclusion
 
@@ -94,7 +101,7 @@ Overall, working on XCalc was a really great experience for me. It was better th
 Here are some of the things I learned while building XCalc.
 Note: These are only my opinions. It might not work for everyone and all the time. Keep that in mind while reading the below section.
 
-**Try to design the whole UI before starting developing the frontend**. It may seem useless and a waste of time. But, believe me, it’s not. Anyways, don’t try to design the Perfect UI Design. And remember, I didn’t say you “must” design the whole UI. Just try. Just make a crappy quick draft.
+**Try to design the whole UI before starting developing the frontend**. It may seem useless and a waste of time. But, believe me, it’s not. Anyways, don’t try to make it *perfect*. And remember, I didn’t say you “must” design the whole UI. Just try. Just make a crappy quick draft.
 But if you are just getting started with web development, then, don’t feel obligated to do so. Because, now, the important thing for you is to focus on your web development skills rather than your design skills.
 
 **Read the documentation clearly**. This is a bad habit of mine (I don’t know about others). I always miss to notice something in every documentation I read. This causes me to get frustrated about simple problems that are clearly described in the documentation. In addition to that, I waste a lot of time, which is a precious resource. So, if you are reading a documentation of something, make sure to read it through. Don’t skip anything in the documentation. When you get stuck with an error or bug, before starting searching it on google, make sure that it is not mentioned in the official documentation.

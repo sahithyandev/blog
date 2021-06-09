@@ -16,6 +16,21 @@ const Note = props => {
 	return <div className={postStyles["note"]} {...props} />
 }
 
+const BlockQuote = ({
+	children: quote,
+	citationLink = "",
+	citationText = ""
+}) => {
+	return <figure>
+		<blockquote cite={citationLink}>
+			{quote}
+		</blockquote>
+		<figcaption>
+			<cite>{citationText}</cite>
+		</figcaption>
+	</figure>
+}
+
 // TODO add a component for <blockquote>
 
 export const MDXComponents = {
@@ -24,5 +39,6 @@ export const MDXComponents = {
 	h3: linkableHead("h3"),
 	img: Image,
 	TableOfContents,
-	Note
+	Note,
+	BlockQuote,
 }

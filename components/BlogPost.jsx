@@ -76,7 +76,7 @@ export const BlogPost = (props) => {
 					</div>
 				</div>
 
-				<div className={styles["post--content"]} >
+				<div className={styles["post--content"]}>
 					<article>
 						{children}
 					</article>
