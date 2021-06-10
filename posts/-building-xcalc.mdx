@@ -4,21 +4,17 @@ description: "Sharing how I built XCalc, an extended calculator."
 tags: experience, project
 ---
 
-<!-- TODO Proofread -->
-<!-- TODO Add an introduction of what this article about  -->
-
-
 <TableOfContents />
 
 ## Why I built XCalc?
 
-We all have a pre-installed calculator app on our devices (except you are an iPad user). They provide us with basic and some advanced operations. For the majority of people, that is more than enough. It was enough for me at first too.
+We all have a pre-installed calculator app on our devices (except iPad users). They provide us with basic and some advanced operations. For the majority of people, in most cases, that is more than enough.
 
-But, as a Math lover, sometimes, I ran into some problems which required manual calculations even though they can be solved easily on a computer (or a calculator).
-For example, prime factorization. It requires a short amount of time to do it manually, but it can be done in seconds on a computer, but none of the calculators included that functionality. And this is only one example. This felt like a gap for me. That’s why I decided to develop a calculator app that has these extra functions. That’s what XCalc is.
+But, as a Math lover, sometimes, I ran into some problems which can be solved easily on a computer (or a calculator), but still not included in any of these existing calculator apps.
+For example, prime factorization. It's easy for a small set of numbers (like 500, 360). But on a computer, it can be done in seconds (or even milliseconds). But I have never seen that functionality included in a calculator. And this is only one example. This felt like a gap for me. That’s why I decided to develop a calculator app that has these extra functions. That’s what XCalc is.
 
 
-Note that I only added the functions that are not available in those existing calculator apps. And I intentionally left out the functions like log or sqrt, because they are already available on your pre-installed calculator app.
+Note that I only added the functions that are not available in those existing calculator apps. And I intentionally left out the functions like log or sqrt, because they are already available on the pre-installed calculator apps.
 
 So, what functions did I add? [Here](https://x-calc.vercel.app/help) is a list. 
  - is-prime: checks if a number is a prime number
@@ -27,13 +23,13 @@ So, what functions did I add? [Here](https://x-calc.vercel.app/help) is a list.
  - gcd: finds the greatest common divisor of a list a numbers
  - factorial: finds the n-th factorial
  - ratio: finds the minimum ratio in a list of numbers
- - nck: Finds the [binomial coefficient](https://en.wikipedia.org/wiki/Binomial_coefficient) denoted by (n k)
- - prime-factorize: Finds the prime factorization of the given number
+ - nck: finds the [binomial coefficient](https://en.wikipedia.org/wiki/Binomial_coefficient) denoted by (n k)
+ - prime-factorize: finds the prime factorization of the given number
 
 If you like the idea of XCalc, you can try it [here](https://bit.ly/xcalc-web). From the website, XCalc can be installed to your devices (I don’t know if it is supported on all operating systems and all browsers).
 And [XCalc is available on Google Play Store](https://bit.ly/xcalc-app) as well.
 
-XCalc is also [open-sourced](http://github.com/sahithyandev/xcalc). If you find it hard to understand the code, let me know about that.
+If you are interested to see how XCalc is coded, Good news, XCalc is [open-sourced](http://github.com/sahithyandev/xcalc). If you find it hard to understand the code, let me know about that.
 
 ## How I built it
 
@@ -42,68 +38,66 @@ XCalc is also [open-sourced](http://github.com/sahithyandev/xcalc). If you find 
 TypeScript is a strict syntactical superset of JavaScript and adds optional strict typing to the language. It compiles to JavaScript.
 
 I decided to bring it into the codebase mainly for two reasons. The important one is **prevention of many little bugs**. As TypeScript allows me to set types to everything, now I don’t have to be too concerned about the code now. I can be confident (in most cases) that I am not gonna run into any runtime errors.
-And the next one is, **reduced mind-overloading**. Which means, now, I don’t have to memorize the function parameter types and other stuff. My IDE takes care of that for me.
+And the next one is, **reduced mind-overloading**. Which means, now, I don’t have to memorize the function parameter types and object structures. My IDE's intellisense takes care of that.
 
 ### UI Design
 
 It's highly recommended to design the UI before coding it. [Here's why](https://www.youtube.com/watch?v=ZyAsNw7XZ1c). 
 
-Hence, I decided to design the whole UI first (or at least try). I opened up [Figma](https://figma.com) and gave it a go. Here's what I designed.
+Hence, I decided to design the whole UI first (or at least try). I opened up [Figma](https://figma.com) and gave it a try. Here's what I designed.
 
 <img alt="XCalc Old UI design" src="/post__images/building-xcalc/xcalc-old-design.jpg" />
 
-I know it's crappy. But I went with it anyways. Because, if I spend too much time on my UI design, trying to make it *perfect*, I will never finish it.  
+I went with it. Because, the important thing about XCalc is its functionality; not the UI.
 
-After about 3 months of break, I came back to the project, and decided to give it a redesign. To be honest, it turned out to be pretty great.
+
+When I made XCalc completely working, (as always) I stopped working on it. After about 3 months, I came back. I decided to rewrite the whole app with new (better) technologies. As a part of that, I redesigned the UI. It turned out to be pretty great.
 
 <img alt="XCalc New UI design" src="/post__images/building-xcalc/xcalc-new-design.png" />
 
 ### [React](https://reactjs.org)
-At first, in XCalc, I wasn't using any front-end libraries. The state of the app, the dynamic UI rendering were all done by the code I wrote. To be honest, it was crap. It wasn't performant or readable either. I thought it would be easier for me to rewrite all of it than fix it. 
+When I first started developing XCalc, I didn't use any front-end libraries. I wanted to write all the code by myself. The state of the app (the input), the dynamic UI rendering were all done by the code I wrote. At first, It worked without any problems.  But when I came back after 3 months, I understood none of it. That's when I realized that I should have used a front-end library.
 
-When I started rewriting it, I decided to go with a front-end library. So, I chose React, which is my favorite front-end library.
+When I started rewriting the app, I chose to go with React, which is my favorite front-end library.
 
-I may have messed up the code again, but at least it is not like the previous code.
+To be honest, the React code is not that good either. But it is a lot more readable than my code.
 
 ### [Sass](https://sass-lang.com)
-Sass is a pre-compiler for CSS. It provides some additional functionalities which results in a better developer experience. That’s the one and only reason I chose Sass.
+Sass is a pre-compiler for CSS. It provides some additional functionalities which results in a better developer experience. That’s the one and only reason I decided to use Sass.
 
 ### Off-thread evaluations
-By default, the browser uses a single thread (main thread) to run every processes on a website. This is where the layout and paint are done. This is where the user events get processed. And also, all of the javascript runs here. Which means, long-running JavaScript can block the thread, leading to an unresponsive page (== bad user experience)
+By default, the browser uses a single thread ("main thread") to run all the processes of a website. This is where the layout and paint are done. This is where the user events get processed. And also, this is where, the javascript runs. Which means, long-running JavaScript will block the thread, leading to an unresponsive page (== bad user experience)
 
-This is where web workers come into play. Web workers are a simple means for web content to run scripts on background threads. This will make sure the main thread is free from getting stuck. [Learn more about web workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers).
+This is where web workers come into play. Web workers are a simple means for web content to run scripts on background threads. This will make sure the main thread is free from getting stuck. [Learn more about web workers on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers).
 
-When I tested it on a laptop and my phone, XCalc's main thread didn't get blocked. There were no performance issues. But, it might happen on the low-end phones. To eliminate that possibility, I planned to move the evaluation of XCalc to a web worker.
-Now, the input will be sent to the worker. It will be sent back to the UI thread after being evaluated and formatted.
+XCalc never blocked the main thread (on my laptop and my phone), it worked without any problems. There were no performance issues at all. But, on the low-end phones, performance issues might rise.
+
+And, it's a good idea to use the main thread only for UI work. That's why the main thread is called "UI thread" on other platforms. So, I moved the evaluations of the input to a web worker. 
 
 ### Offline support
-
 <BlockQuote citationText="Google Developers Blog" citationLink="https://developers.google.com/web/ilt/pwa/introduction-to-service-worker#what_is_a_service_worker">
 Service workers are a special type of web workers. A service worker is essentially a JavaScript file that runs separately from the main browser thread (or UI thread), intercepting network requests, caching or retrieving resources from the cache, and delivering push messages.
 </BlockQuote>
 
-With the use of service workers, web apps can now deliver a custom offline experience. For example, YouTube and Spotify have a custom offline page. While searching for more examples, I found this [awesome sudoku game](https://sudoku.jull.dev/), which provides the same experience when online and offline.
+With the use of service workers, web apps can now deliver a custom offline experience. For example, YouTube and Spotify have a custom offline page. While searching for more examples, I found this [awesome sudoku game](https://sudoku.jull.dev/), which is completely available for offline use.
 
-Like that sudoku game, XCalc doesn’t need an active internet connection to work. So, as you may guess, I wanted to make XCalc completely offline just like that game. So, I added a service worker which pre-caches all the required resources. After that, the resources can be loaded from the cache instantly.
+Like that sudoku game, XCalc doesn’t need an active internet connection to work. So, as you may guess, I wanted to make XCalc completely offline, just like that game. So, I added a service worker to do that. It pre-caches all the required resources. After that, the resources will be loaded from the cache.
 
 ### [WebAssembly](https://webassembly.org) ([AssemblyScript](https://www.assemblyscript.org))
 WebAssembly (WASM, in short) is a new type of code that can be run inside web browsers. It is a low-level assembly-like language which runs with near-native performance.
 But, **keep in mind that WASM is not intended to replace JS, and it won’t**.
 
-In recent times, WebAssembly has gotten a lot of focus. So, I decided to give it a try. Even though WebAssembly wasn't meant to be used on a calculator app like XCalc, I chose to use it just for the sake of learning.
+WebAssembly first appeared in 2017, but I came to know about it recently. I decided to use it in XCalc. I know that WebAssembly wasn't meant to be used on a calculator app like XCalc, But I chose to use it just for the sake of learning.
 
-C, C++, Rust already offered a way to compile to WASM, but I didn't want to learn a whole new language just to try out a new technology. Hence, I continued searching. Luckily, I came across [AssemblyScript](https://www.assemblyscript.org). AssemblyScript had a typescript-like syntax, and it worked a lot like TypeScript. It seemed like the best choice for me, so I went with it.
+C, C++, Rust can be compiled to WASM. But I don't know any of them before. And I didn't want to learn them. Fortunately, I came to know about AssemblyScript. AssemblyScript is a typescript-based language which compiles to WASM. With the familiar syntax, AssemblyScript appeared to be the best option for me. So, I chose to use it.
+
+Getting started with AssemblyScript was a little hard for me. But, maybe, that would have been easy if I read the documentation clearly. (I am not good at reading documentation)
 
 ## Conclusion
+Overall, working on XCalc was a really great experience for me. There was a lot of fun and learning.
 
-Overall, working on XCalc was a really great experience for me. It was better than I expected. It was a lot of fun and learning.
+Here is the main thing I learnt while building XCalc.
 
-Here are some of the things I learned while building XCalc.
-Note: These are only my opinions. It might not work for everyone and all the time. Keep that in mind while reading the below section.
+**Read the documentation clearly**. This is one of my bad habits. I don't read the documentation completely. I always miss to notice something in every documentation I read. Because of that, I have even spent a significant amount of time, trying to understand what caused a specific bug. When you are reading a documentation for something, make sure to read it through. Don’t skip anything in the documentation. When you get stuck with an error or bug, before starting searching it on google, make sure to check the official documentation.
 
-**Try to design the whole UI before starting developing the frontend**. It may seem useless and a waste of time. But, believe me, it’s not. Anyways, don’t try to make it *perfect*. And remember, I didn’t say you “must” design the whole UI. Just try. Just make a crappy quick draft.
-But if you are just getting started with web development, then, don’t feel obligated to do so. Because, now, the important thing for you is to focus on your web development skills rather than your design skills.
-
-**Read the documentation clearly**. This is a bad habit of mine (I don’t know about others). I always miss to notice something in every documentation I read. This causes me to get frustrated about simple problems that are clearly described in the documentation. In addition to that, I waste a lot of time, which is a precious resource. So, if you are reading a documentation of something, make sure to read it through. Don’t skip anything in the documentation. When you get stuck with an error or bug, before starting searching it on google, make sure that it is not mentioned in the official documentation.
-
-If you have read this much, Thank you. If you have any questions? Feel free to reach me out on [twitter](https://twitter.com/iamSahithyan), or any other platforms.
+If you have read this much, Thank you for your time. Have any questions? Feel free to [reach me out on Twitter](https://twitter.com/iamSahithyan)
