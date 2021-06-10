@@ -5,6 +5,9 @@ const getHeadContent = (children) => {
 	if (typeof children === "string") {
 		return children
 	}
+	if (Array.isArray(children)) {
+		return children.map((child) => getHeadContent(child)).join("")
+	}
 	return getHeadContent(children.props.children)
 }
 
