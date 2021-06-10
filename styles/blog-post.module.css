@@ -39,11 +39,12 @@
 
 .post--content figure {
 	margin-left: 0;
+	margin-right: 6vw;
 	position: relative;
 }
 
 .post--content figure blockquote {
-	/* background-color: red; */
+	margin-right: 2vw;
 	margin-left: 20px;
 }
 
