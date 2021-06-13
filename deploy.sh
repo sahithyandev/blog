@@ -1,4 +1,7 @@
-# This script deploys the website on sahithyandev.github.io
+echo "==============================="
+echo "Deploying on sahithyandev.github.io"
+echo "==============================="
+echo ""
 
 FOLDER_NAME="../blog-deploy/"
 
@@ -32,9 +35,10 @@ echo "Copied the files from out/ to" $FOLDER_NAME
 cd $FOLDER_NAME
 
 touch .nojekyll
-
+git add .
 git commit -a -m "Automated deployment"
 
 git push origin main
 
+echo ""
 echo "Deployed successfully"
