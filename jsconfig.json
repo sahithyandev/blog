@@ -7,7 +7,8 @@
 			"@/helpers/*": ["helpers/*"],
 			"@/components/*": ["components/*"],
 			"@/components": ["components/index.js"],
-			"@/styles/*": ["styles/*"]
+			"@/styles/*": ["styles/*"],
+			"@/scripts/*": ["scripts/*"]
 		}
 	}
 }

@@ -4,6 +4,7 @@ import { HeadBase, Nav, Footer, PostCard } from "@/components/"
 import { getAllPosts } from "@/helpers/post"
 import { SITE_CONSTANTS } from "../global"
 import { isTag } from "@/helpers/other"
+import { generateRSS } from "@/scripts/generate-rss"
 
 import styles from "@/styles/posts.module.css"
 
@@ -140,9 +141,12 @@ const PostsPage = props => {
 }
 
 export async function getStaticProps(context) {
+	const posts = await getAllPosts();
+	await generateRSS(posts);
+
 	return {
 		props: {
-			posts: await getAllPosts()
+			posts
 		}
 	}
 }

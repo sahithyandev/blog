@@ -3,25 +3,40 @@ const fs = require('fs')
 const fsAsync = fs.promises
 const { join } = require("path")
 
-const renderToString = require("next-mdx-remote/render-to-string")
 const matter = require("gray-matter")
 const mdxPrism = require("mdx-prism")
 
 const { SITE_CONSTANTS } = require("../global")
 const { POSTS_DIR } = SITE_CONSTANTS
-const { MDXComponents } = require('components/MDXComponents')
 const AVERAGE_READING_SPEED = 200
 
-const isProduction = process.env.NODE_ENV === "production"
+const isProduction = process.env.NODE_ENV === "production";
 
 /**
  * Checks if the post is finished and ready on production
  * 
  * @param {string} slug
  */
-const isPostCompleted = slug => slug.charAt(0) !== "-"
+const isPostCompleted = slug => slug.charAt(0) !== "-";
+
+/**
+ * @param {Date} mtime
+ */
+const lastModifiedTimeFormat = (mtime) => {
+	const _ = new Intl.DateTimeFormat("en", {
+		day: "2-digit",
+		year: "numeric",
+		month: "2-digit"
+	})
+
+	const [month, date, year] = _.format(mtime).split("/");
+	return [year, month, date].join("-")
+}
 
 async function loadPost(slug = "") {
+	const { MDXComponents } = require('../components/MDXComponents.jsx')
+	const renderToString = require("next-mdx-remote/render-to-string")
+
 	const postDataObj = (await getAllPosts()).find(post => {
 		return post.meta.slug === slug
 	})
@@ -49,6 +64,7 @@ async function loadPost(slug = "") {
  * @property {string} title
  * @property {string} description
  * @property {number} dateCreated
+ * @property {number} lastModifiedTime
  * @property {string[]} tags
  * @property {number} estReadTime
  * 
@@ -80,7 +96,6 @@ function formatPostMeta(meta, content) {
 	}
 
 	formattedMeta.dateCreated = (formattedMeta.dateCreated || new Date()).valueOf()
-	// formattedMeta.dateCreated = new Date(formattedMeta.dateCreated).valueOf()
 
 	const wordCount = content.split(/\s+/gu).length
 
@@ -107,6 +122,8 @@ function getPostBySlug(slug) {
 	const fileContent = fs.readFileSync(fullPath)
 	const { data, content } = matter(fileContent)
 	const meta = formatPostMeta(data, content)
+
+	data.lastModifiedTime = fs.statSync(fullPath).mtime.valueOf()
 	meta.slug = slug;
 
 	return {
