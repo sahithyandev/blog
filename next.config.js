@@ -3,11 +3,10 @@
 // https://www.npmjs.com/package/filewatcher-webpack-plugin
 
 module.exports = {
-	webpack: (config, { defaultLoaders, isServer, dev }) => {
-		// generate the sitemap on server
+	webpack: (config, { defaultLoaders, isServer, dev, webpack }) => {
 		if (isServer || dev) {
 			require("./scripts/generate-sitemap")
-			// 
+			// RSS feed file is created from the /posts endpoint on build time.
 			// require("./scripts/generate-rss")
 		}
 

@@ -15,22 +15,19 @@ const lastModifiedTimeFormat = (mtime) => {
 		day: "2-digit",
 		year: "numeric",
 		month: "2-digit"
-	})
+	});
 
 	const [month, date, year] = _.format(mtime).split("/");
-	return [year, month, date].join("-")
+	return [year, month, date].join("-");
 }
 
-/**
- * @param { import("../helpers/post.js").PostObject[] } posts
- */
-export async function generateRSS(posts) {
+async function generateRSS() {
 	const feed = new RSS({
 		title: SITE_CONSTANTS.title,
 		site_url: SITE_CONSTANTS.website_url,
 		feed_url: SITE_CONSTANTS.rss_feed_url
-	})
-	posts = posts || (await getAllPosts())
+	});
+	const posts = await getAllPosts();
 
 	await Promise.all(
 		posts
@@ -44,7 +41,12 @@ export async function generateRSS(posts) {
 					date: meta.dateCreated
 				})
 			})
-	)
+	);
 
-	fs.writeFileSync(OUTPUT_FILE, feed.xml({ indent: true }))
+	fs.writeFileSync(OUTPUT_FILE, feed.xml({ indent: true }));
+	console.log("RSS feed have been created");
+}
+
+module.exports = {
+	generateRSS
 }
