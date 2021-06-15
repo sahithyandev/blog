@@ -90,6 +90,18 @@
 	font-size: .88em;
 }
 
+@media (max-width: 600px) {
+	.post--bottom-bar {
+		flex-direction: column;
+		gap: 8px;
+		/* background: red; */
+	}
+	.post--share-section {
+		justify-content: space-between;
+	}
+}
+
+
 .post--share-section {
 	display: flex;
 }

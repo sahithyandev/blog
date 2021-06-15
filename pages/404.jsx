@@ -11,7 +11,7 @@ const NotFoundPage = () => {
 			<Nav />
 
 			<div className={styles["page-container"]}>
-				<h1 className={styles["not-found-message"]}>{"!> pAgE__n0T_f0uNd"}</h1>
+				<h1 className={styles["not-found-message"]}>{"!> pAgE n0T_f0uNd"}</h1>
 
 			</div>
 
