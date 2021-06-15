@@ -27,7 +27,7 @@ const AboutPage = () => {
 			<Nav />
 
 			<main className={[styles["main"], postStyles["post--content"]].join(" ")}>
-				<h1>I am</h1>
+				<h1>About Me</h1>
 
 				<p>
 					Hello!, I am Sahithyan, a 17-year-old web developer, a student and a tech enthusiast. I am from Jaffna, Sri Lanka.

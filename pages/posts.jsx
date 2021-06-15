@@ -120,7 +120,7 @@ const PostsPage = props => {
 			<Nav />
 
 			<main>
-				<h2>Posts</h2>
+				<h1>Posts</h1>
 
 				<p>Here are the articles I wrote before. Use the search to filter by title and/or tag.</p>
 

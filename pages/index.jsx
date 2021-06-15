@@ -12,17 +12,17 @@ export default function Home({ latestPosts }) {
 
       <Head>
         <link
-          defer
           rel="stylesheet"
           href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
-          integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossOrigin="anonymous" />
+          integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
+          crossOrigin="anonymous" />
       </Head>
 
       <Nav showLogo={false} />
 
       <main>
         <div className={styles["me-banner"]}>
-          <div className={styles["banner--name"]}>Sahithyan</div>
+          <h1 className={styles["banner--name"]}>Sahithyan</h1>
           <div className={styles["small-intro"]}>student, web developer & tech enthusiast</div>
 
           <SocialLinks />
