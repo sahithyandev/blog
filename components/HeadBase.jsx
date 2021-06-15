@@ -12,6 +12,8 @@ export const HeadBase = ({ title, description }) => {
 			<Head>
 				<title key="browser-title">{title}</title>
 				<meta name="description" content={description} />
+				<link rel="alternate" href={SITE_CONSTANTS.rss_feed_url} type="application/rss+xml" title="RSS feed" />
+				<link rel="canonical" href={SITE_CONSTANTS.website_url} />
 
 				{/* For Twitter */}
 				<meta name="twitter:title" value={title} />

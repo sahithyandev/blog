@@ -4,6 +4,15 @@ import { useState, useEffect } from "react"
 // TODO optimise TOC
 import TOCStyle from "@/styles/table-of-contents.module.css"
 
+/**
+ * @param {HTMLElement} headingElement
+ */
+const getHeadingText = headingElement => {
+	return Array.from(headingElement.children).find(child => {
+		return child.classList.contains("linkable--heading-text")
+	}).innerText
+}
+
 const TOCItem = ({ linkable, slug }) => {
 	const linkText = linkable.headingText
 	const hash = linkText.replaceAll(" ", "-").toLowerCase()
@@ -46,13 +55,13 @@ export const TableOfContents = () => {
 			const tagName = heading.tagName.toLowerCase();
 			if (tagName === "h2") {
 				m.push({
-					headingText: heading.innerText.slice(1),
+					headingText: getHeadingText(heading),
 					innerHeadings: []
 				})
 			} else if (tagName === "h3") {
 				const lastHeading = m[m.length - 1]
 				lastHeading.innerHeadings.push({
-					headingText: heading.innerText.slice(1),
+					headingText: getHeadingText(heading),
 					innerHeadings: []
 				})
 			}

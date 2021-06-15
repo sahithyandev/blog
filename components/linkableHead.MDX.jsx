@@ -19,24 +19,33 @@ import linkableHeadStyle from "@/styles/linkable-head.module.css"
 const linkableHead = (HeadElement) => {
 	return ({ children }) => {
 		const [elementId, setElementId] = useState("");
-		const [slug, setSlug] = useState("");
+		const [slug, setSlug] = useState(undefined);
 
 		useEffect(() => {
 			setElementId(getHeadContent(children).replace(/\s/g, "-").toLowerCase())
-			setSlug(window.location.pathname.split("/").reverse()[0])
+			try {
+				setSlug(window.location.pathname.split("/").reverse()[0])
+			} catch (err) {
+				console.warn(err)
+				setSlug("___err___")
+			}
 		}, [])
 
 		return (
 			// data-is-linkable is used when creating the TableOfContents
 			<HeadElement className={linkableHeadStyle["linkable"]} id={elementId} data-is-linkable>
-				<Link href={{
-					pathname: `/post/[slug]`,
-					hash: elementId,
-					query: { slug }
-				}}>
-					<a className={["reset", linkableHeadStyle["link-hashtag"]].join(" ")}>#</a>
-				</Link>
-				{children}
+				{slug === undefined ? null :
+					<Link href={{
+						pathname: `/post/[slug]`,
+						hash: elementId,
+						query: { slug }
+					}}>
+						<a className={["reset", linkableHeadStyle["link-hashtag"]].join(" ")}>#</a>
+					</Link>
+				}
+				<span className="linkable--heading-text">
+					{children}
+				</span>
 			</HeadElement>
 		)
 	}
