@@ -16,8 +16,6 @@ if [ ! -d $FOLDER_NAME/.git ]; then
 	exit
 fi
 
-node scripts/generate-sitemap.js
-
 ## These commands will export the site into a folder named "out"
 
 yarn run build
@@ -35,6 +33,7 @@ echo "Copied the files from out/ to" $FOLDER_NAME
 cd $FOLDER_NAME
 
 touch .nojekyll
+
 git add .
 git commit -a -m "Automated deployment"
 
