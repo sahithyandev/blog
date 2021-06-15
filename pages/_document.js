@@ -24,7 +24,7 @@ export default class __Document extends Document {
 					>
 					</script>
 
-					<link rel="shortcut icon" href="/fav-me.png" />
+					<link rel="shortcut icon" type="image/png" href="/fav-me.png" />
 
 					<meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
 
