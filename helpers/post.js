@@ -35,7 +35,7 @@ const lastModifiedTimeFormat = (mtime) => {
 
 async function loadPost(slug = "") {
 	const { MDXComponents } = require('../components/MDXComponents.jsx')
-	const renderToString = require("next-mdx-remote/render-to-string")
+	const { serialize } = require("next-mdx-remote/serialize")
 
 	const postDataObj = (await getAllPosts()).find(post => {
 		return post.meta.slug === slug
@@ -44,8 +44,7 @@ async function loadPost(slug = "") {
 		throw new Error("post not found")
 	}
 
-	const mdxSource = await renderToString(postDataObj.content, {
-		components: MDXComponents,
+	const mdxSource = await serialize(postDataObj.content, {
 		mdxOptions: {
 			rehypePlugins: [mdxPrism]
 		}
