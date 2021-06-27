@@ -4,18 +4,9 @@ import { useState, useEffect } from "react"
 // TODO optimise TOC
 import TOCStyle from "@/styles/table-of-contents.module.css"
 
-/**
- * @param {HTMLElement} headingElement
- */
-const getHeadingText = headingElement => {
-	return Array.from(headingElement.children).find(child => {
-		return child.classList.contains("linkable--heading-text")
-	}).innerText
-}
-
 const TOCItem = ({ linkable, slug }) => {
 	const linkText = linkable.headingText
-	const hash = linkText.replaceAll(" ", "-").toLowerCase()
+	const hash = linkText.replace(/\s/g, "-").toLowerCase()
 
 	return <li>
 		<Link href={{
@@ -40,52 +31,65 @@ const TOCItem = ({ linkable, slug }) => {
 	</li>
 }
 
-export const TableOfContents = () => {
-	const [linkableElements, setLinkableElements] = useState([]);
-	const [slug, setSlug] = useState("");
+export const TableOfContents = ({ source }) => {
+	const headingLines = source
+		.split("\n")
+		.filter(line => {
+			return ["##", "###"].includes(line.split(" ")[0]);
+		});
 
-	// TODO rewrite the createHeadingMap function in a optimal way
-	/**
-	 * @param {HTMLElement[]} headings 
-	 */
-	const createHeadingMap = (headings) => {
-		let m = [];
+	const headingMap = ((lines) => {
+		const map = [];
+
+		/**
+		 * @param {string} headingTextSource
+		 */
+		const removeLinks = headingTextSource => {
+			const linkMatcher = /\[(\w+)\]\([\w\-\/\.:]+\)/g;
+
+			return headingTextSource.replace(linkMatcher, (match, headingText) => headingText);
+		}
+
+		const headings = lines.map(line => {
+			const [hashtags, ...content] = line.split(" ");
+			const headingLevel = hashtags.length;
+			const headingText = removeLinks(content.join(" "));
+
+			return [headingLevel, headingText];
+		});
 
 		for (let heading of headings) {
-			const tagName = heading.tagName.toLowerCase();
-			if (tagName === "h2") {
-				m.push({
-					headingText: getHeadingText(heading),
+			const [headingLevel, headingText] = heading;
+
+			if (headingLevel === 2) {
+				map.push({
+					headingText,
 					innerHeadings: []
-				})
-			} else if (tagName === "h3") {
-				const lastHeading = m[m.length - 1]
+				});
+			} else if (headingLevel === 3) {
+				const lastHeading = map[map.length - 1];
 				lastHeading.innerHeadings.push({
-					headingText: getHeadingText(heading),
+					headingText,
 					innerHeadings: []
-				})
+				});
 			}
 		}
 
-		return m;
-	}
+		return map;
+	})(headingLines)
+
+	const [slug, setSlug] = useState("");
 
 	useEffect(() => {
-		// data-is-linkable=true elements will be shown in the TableOfContents
-		const headingMap = createHeadingMap(Array.from(document.querySelectorAll("*[data-is-linkable=true]")));
-		setLinkableElements(headingMap)
-
 		setSlug(window.location.pathname.split("/").reverse()[0])
 	}, [])
-
-	if (linkableElements.length === 0) return <div style={{ height: 80 }}></div>
 
 	return (
 		<section className={TOCStyle["parent-section"]}>
 			<h3 className={TOCStyle["toc-heading"]}>Table Of Contents</h3>
 
 			<ol className={TOCStyle["links-container"]}>
-				{linkableElements.map(linkable => {
+				{headingMap.map(linkable => {
 					return <TOCItem linkable={linkable} slug={slug} key={linkable.headingText} />
 				})}
 			</ol>

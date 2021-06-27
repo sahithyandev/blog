@@ -3,9 +3,9 @@ import { MDXRemote } from "next-mdx-remote"
 import { loadPost, getAllSlugs } from "@/helpers/post"
 import { BlogPost, MDXComponents } from "@/components"
 
-const PostPage = ({ meta, mdxSource }) => {
+const PostPage = ({ meta, mdxSource, sourceContent }) => {
 	return <BlogPost meta={meta}>
-		<MDXRemote {...mdxSource} components={MDXComponents} />
+		<MDXRemote {...mdxSource} components={MDXComponents} scope={{ sourceContent }} />
 	</BlogPost>
 }
 

@@ -52,6 +52,7 @@ async function loadPost(slug = "") {
 
 	return {
 		meta: postDataObj.meta,
+		sourceContent: postDataObj.content,
 		mdxSource
 	}
 }
