@@ -34,7 +34,6 @@ const lastModifiedTimeFormat = (mtime) => {
 }
 
 async function loadPost(slug = "") {
-	const { MDXComponents } = require('../components/MDXComponents.jsx')
 	const { serialize } = require("next-mdx-remote/serialize")
 
 	const postDataObj = (await getAllPosts()).find(post => {
