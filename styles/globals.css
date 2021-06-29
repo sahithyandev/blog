@@ -1,8 +1,7 @@
 :root {
   font-size: 18px;
+  color-scheme: dark;
   
-  /* TODO change the colors, reason: hard to read */
-  /* --dark: #25262d; */
   --dark: #131315;
   --light: #FFFBFE;
   --main: #FAF33E;
@@ -24,15 +23,9 @@ body {
   max-width: 900px;
   width: 72vw;
   font-family: Inter, ui-sans-serif, sans-serif;
-  /* font-family: Inter,-apple-system,BlinkMacSystemFont,Oxygen,Roboto,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif; */
   background: var(--dark);
   color: var(--light);
   scroll-behavior: smooth;
-}
-
-body {
-  overflow-x: hidden;
-  scroll-margin-top: 24px;
 }
 
 @media (max-width: 600px) {
@@ -40,12 +33,6 @@ body {
     max-width: 90vw;
     width: auto; 
   }
-}
-
-a.reset {
-	text-decoration: none !important;
-	color: inherit !important;	
-	border-bottom: none;
 }
 
 .name {  
@@ -80,20 +67,3 @@ a.reset {
   flex-direction: column;
   gap: 20px;
  }
- 
-button {
-  border: none;
-  border-radius: 4px;
-  color: white;
-  padding: 6px 10px;
-  cursor: pointer;
-  transition: filter .1s;
-}
-
-button.twitter-tweet {
-  background: var(--social-twitter);
-}
-
-button:hover {
-  filter: brightness(92%);
-}

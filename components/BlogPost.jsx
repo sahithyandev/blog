@@ -44,19 +44,13 @@ export const BlogPost = (props) => {
 			<HeadBase title={`${title} - ${SITE_CONSTANTS.title}`} description={description} />
 
 			<Head>
-				{/* For icons */}
-				<link defer
-					rel="stylesheet"
-					href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
-					integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossOrigin="anonymous" />
-
 				{/* Fpr syntax highlighting */}
 				<link rel="stylesheet" href={PRISM_THEME_URL} />
 			</Head>
 
 			<Nav />
 			<main className="post-container">
-				<h2 className={styles["post--title"]}>{title}</h2>
+				<h1 className={styles["post--title"]}>{title}</h1>
 
 				<div className={styles["post--head"]}>
 
@@ -83,7 +77,7 @@ export const BlogPost = (props) => {
 
 			<div className={styles["post--bottom-bar"]}>
 				<div>
-					<CustomLink href={encodeURI(`https://twitter.com/search?q=${postLink}`)} className={styles["post--content-a"]}>
+					<CustomLink href={encodeURI(`https://twitter.com/search?q=${postLink}`)}>
 						Discuss On Twitter
 					</CustomLink>
 				</div>

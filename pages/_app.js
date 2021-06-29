@@ -1,5 +1,7 @@
 import Head from "next/head"
 
+import { Page } from "@/components"
+
 import '@/styles/fonts.css';
 import '@/styles/globals.css';
 import "@/styles/nav.component.css";
@@ -11,7 +13,9 @@ function MyApp({ Component, pageProps }) {
       <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     </Head>
-    <Component {...pageProps} />
+    <Page>
+      <Component {...pageProps} />
+    </Page>
   </>
 }
 

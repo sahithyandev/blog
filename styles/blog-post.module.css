@@ -18,7 +18,7 @@
 	line-height: 25px;
 }
 
-.post--content-a,
+.post--bottom-bar a,
 .post--content a {
 	--color: #60a5fa;
 	--hover-color: #2563eb;
@@ -27,7 +27,7 @@
 	transition: color .1s;
 }
 
-.post--content-a:hover,
+.post--bottom-bar a:hover,
 .post--content a:hover {
 	color: var(--hover-color);
 }
@@ -74,6 +74,10 @@
 	text-align: center;
 	border-spacing: 40px 4px;
 	font-size: 1.1em;
+}
+
+.post--content *[data-is-linkable] {
+	scroll-margin-top: 20px;
 }
 
 .note {
