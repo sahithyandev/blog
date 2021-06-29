@@ -16,14 +16,6 @@ const AboutPage = () => {
 				description="Sahithyan, a teen web developer, and a tech enthusiast"
 			/>
 
-			<Head>
-				<link
-					defer
-					rel="stylesheet"
-					href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
-					integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossOrigin="anonymous" />
-			</Head>
-
 			<Nav />
 
 			<main className={[styles["main"], postStyles["post--content"]].join(" ")}>
