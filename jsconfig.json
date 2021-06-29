@@ -8,7 +8,8 @@
 			"@/components/*": ["components/*"],
 			"@/components": ["components/index.js"],
 			"@/styles/*": ["styles/*"],
-			"@/scripts/*": ["scripts/*"]
+			"@/scripts/*": ["scripts/*"],
+			"@/assets/*": ["assets/*"]
 		}
 	}
 }

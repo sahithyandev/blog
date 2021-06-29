@@ -10,6 +10,7 @@ import { SITE_CONSTANTS } from "../global"
 import { NormalDateFormat } from "@/helpers/other"
 
 import styles from "@/styles/blog-post.module.css"
+import { TwitterIcon } from "@/assets/icons"
 
 const PRISM_THEME_URL = "https://unpkg.com/prismjs@1.23.0/themes/prism-twilight.css"
 
@@ -18,24 +19,21 @@ export const BlogPost = (props) => {
 	const { title, description, slug, tags, estReadTime, dateCreated } = meta;
 	const [postLink, setPostLink] = useState("")
 
-	const generateShareLinks = () => {
+	const shareLinks = (() => {
 		const author = SITE_CONSTANTS.author
 
 		return [
 			{
 				name: "Twitter",
-				url: `https://www.twitter.com/share?text=${title} by ${author}&url=${postLink}}`
-			},
-			{
-				name: "WhatsApp",
-				url: `https://wa.me/?text=${title} by ${author}. Read at ${postLink}`
+				url: `https://www.twitter.com/share?text=${title} by ${author}&url=${postLink}}`,
+				icon: TwitterIcon
 			}
 		].map(_ => {
 			_.url = encodeURI(_.url)
 
 			return _
 		})
-	}
+	})()
 
 	useEffect(() => {
 		setPostLink(window.location.href)
@@ -94,9 +92,9 @@ export const BlogPost = (props) => {
 					<span>Share this article on</span>
 
 					<div>
-						{generateShareLinks().map(link => {
+						{shareLinks.map(link => {
 							return <CustomLink href={link.url} key={link.name} title={link.name} className="reset">
-								<i className={`fab fa-${link.name.toLowerCase()}`}></i>
+								<link.icon width="20" height="20" />
 							</CustomLink>
 						})}
 					</div>

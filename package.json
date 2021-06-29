@@ -24,6 +24,7 @@
     "swr": "^0.5.5"
   },
   "devDependencies": {
+    "@svgr/webpack": "^5.5.0",
     "globby": "^11.0.3",
     "prettier": "^2.2.1",
     "rss": "^1.2.2"

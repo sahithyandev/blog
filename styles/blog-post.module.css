@@ -104,6 +104,7 @@
 
 .post--share-section {
 	display: flex;
+	align-items: center;
 }
 
 .post--share-section span {

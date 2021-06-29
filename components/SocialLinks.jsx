@@ -1,15 +1,16 @@
 import { CustomLink } from "./CustomLink"
 
-import styles from "@/styles/social-links.module.css"
+import { GithubIcon, InstagramIcon, RSSIcon, TelegramIcon, TwitterIcon } from "@/assets/icons"
 import { SITE_CONSTANTS } from "global";
+import styles from "@/styles/social-links.module.css"
+
 export const SocialLinks = (props) => {
 	/**
 	 * @typedef SocialMediaLinkObj
 	 * @property {string} link
 	 * @property {string} providerName
 	 * @property {string} id
-	 * @property {string} icon
-	 * @property {"fab" | "fas"} iconType
+	 * @property {any} svgIcon
 	 */
 
 	/**
@@ -18,24 +19,25 @@ export const SocialLinks = (props) => {
 	const SocialMediaLinks = [
 		{
 			providerName: "Twitter",
-			link: "https://www.twitter.com/iamSahithyan"
+			link: "https://www.twitter.com/iamSahithyan",
+			icon: TwitterIcon
 		}, {
 			providerName: "Instagram",
-			link: "https://www.instagram.com/sahithyan_"
+			link: "https://www.instagram.com/sahithyan_",
+			icon: InstagramIcon
 		}, {
 			providerName: "GitHub",
-			link: "https://www.github.com/sahithyandev"
+			link: "https://www.github.com/sahithyandev",
+			icon: GithubIcon
 		}, {
 			providerName: "Telegram",
 			link: "https://www.t.me/sahithyan",
-			icon: "telegram-plane"
+			icon: TelegramIcon
 		}, {
 			providerName: "RSS",
 			link: SITE_CONSTANTS.rss_feed_url,
-			iconType: "fas"
+			icon: RSSIcon
 		}].map(socialLinkObj => ({
-			icon: socialLinkObj.providerName.toLowerCase(),
-			iconType: "fab",
 			id: socialLinkObj.link.split("/").reverse()[0],
 			...socialLinkObj
 		}))
@@ -45,10 +47,8 @@ export const SocialLinks = (props) => {
 			{SocialMediaLinks.map(s => {
 				return (
 					<CustomLink className="reset" href={s.link} key={s.providerName} title={`${s.providerName} (${s.id})`}>
-						{s.icon ?
-							<i className={`${s.iconType} fa-${s.icon}`}></i> :
-							<span className={styles["sm-icon"]}>{s.shortName}</span>
-						}
+
+						{s.icon ? <s.icon /> : (console.error(`provider ${s.providerName} doesn't have an icon`), null)}
 					</CustomLink>
 				)
 			})}

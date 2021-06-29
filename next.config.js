@@ -10,6 +10,20 @@ module.exports = {
 			// require("./scripts/generate-rss")
 		}
 
+		config.module.rules.push({
+			test: /\.svg$/,
+			use: [{
+				loader: "@svgr/webpack",
+				options: {
+					svgoConfig: {
+						plugins: {
+							removeViewBox: false
+						}
+					}
+				}
+			}]
+		})
+
 		return config
 	}
 }
