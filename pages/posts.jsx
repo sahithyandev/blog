@@ -60,23 +60,6 @@ const PostsPage = props => {
 				// if the searchString is a substring of the title or vice versa
 				return searchString.includes(title) || title.includes(searchString)
 			})
-		// return postsArr.filter(post => {
-		// 	const title = post.meta.title.toLowerCase()
-		// 	const { searchString, tags } = searchObj
-		// 	let result = true
-
-		// 	if (tags.length > 0) {
-		// 		// check if a post's tags contain the searched tags
-		// 		result = result && post.meta.tags.some(postTag => {
-		// 			return tags.some(tag => postTag.includes(tag))
-		// 		})
-		// 	}
-
-		// 	// check if the search is included in the title of a post
-		// 	result = result && (searchString.includes(title) || title.includes(searchString))
-
-		// 	return result;
-		// })
 	}
 
 	/**

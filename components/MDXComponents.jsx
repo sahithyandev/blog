@@ -31,8 +31,6 @@ const BlockQuote = ({
 	</figure>
 }
 
-// TODO add a component for <blockquote>
-
 export const MDXComponents = {
 	a: CustomLink,
 	h2: linkableHead("h2"),
