@@ -41,7 +41,7 @@ const AboutPage = () => {
 
 				<h3>Contact me</h3>
 				<p>
-					The fastest and the easiest way would be direct messaging me on Twitter <CustomLink href="https://www.twitter.com/iamSahithyan">@iamSahithyan</CustomLink>. You can also use the below-listed social media accounts too. And you can also email me at <CustomLink href="mailto:sahithyan2701@gmail.com">sahithyan2701@gmail.com</CustomLink>.
+					The fastest and the easiest way would be direct messaging me on Twitter <CustomLink href="https://www.twitter.com/sahithyandev">@sahithyandev</CustomLink>. You can also use the below-listed social media accounts too. And you can also email me at <CustomLink href="mailto:sahithyan2701@gmail.com">sahithyan2701@gmail.com</CustomLink>.
 				</p>
 
 				<div style={{ margin: 'auto', width: "fit-content" }}>

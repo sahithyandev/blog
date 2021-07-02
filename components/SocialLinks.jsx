@@ -19,7 +19,7 @@ export const SocialLinks = (props) => {
 	const SocialMediaLinks = [
 		{
 			providerName: "Twitter",
-			link: "https://www.twitter.com/iamSahithyan",
+			link: "https://www.twitter.com/sahithyandev",
 			icon: TwitterIcon
 		}, {
 			providerName: "Instagram",
