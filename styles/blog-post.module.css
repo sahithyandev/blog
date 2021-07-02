@@ -60,7 +60,8 @@
 .post--content img {
 	display: block;
 	margin: 0 auto;
-	width: 100%;
+	max-width: 100%;
+	width: auto;
 	max-height: 600px;
 }
 
@@ -85,12 +86,6 @@
 	padding: 4px 6px;
 	border-radius: 8px;
 	border: 3px dashed rgb(199, 199, 32);
-}
-
-.img-container {
-	margin: 0 auto;
-	display: flex;
-	justify-content: center;
 }
 
 .post--bottom-bar {
