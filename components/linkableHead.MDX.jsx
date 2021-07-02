@@ -17,6 +17,7 @@ import linkableHeadStyle from "@/styles/linkable-head.module.css"
  * @param {"h2" | "h3"} HeadElement
  */
 const linkableHead = (HeadElement) => {
+	// eslint-disable-next-line react/display-name
 	return ({ children }) => {
 		const [elementId, setElementId] = useState("");
 		const [slug, setSlug] = useState(undefined);
