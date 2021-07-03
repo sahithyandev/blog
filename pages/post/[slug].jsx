@@ -5,7 +5,7 @@ import { BlogPost, MDXComponents } from "@/components"
 
 const PostPage = ({ meta, mdxSource, sourceContent }) => {
 	return <BlogPost meta={meta}>
-		<MDXRemote {...mdxSource} components={MDXComponents} scope={{ sourceContent }} />
+		<MDXRemote {...mdxSource} components={MDXComponents} scope={{ sourceContent, slug: meta.slug }} />
 	</BlogPost>
 }
 

@@ -1,5 +1,4 @@
-import Link from "next/link"
-import { useState, useEffect } from "react"
+import Link from "next/link";
 
 // TODO optimise TOC
 import TOCStyle from "@/styles/table-of-contents.module.css"
@@ -31,35 +30,38 @@ const TOCItem = ({ linkable, slug }) => {
 	</li>
 }
 
-export const TableOfContents = ({ source }) => {
-	const headingLines = source
-		.split("\n")
-		.filter(line => {
-			return ["##", "###"].includes(line.split(" ")[0]);
-		});
+export const TableOfContents = ({ source, slug }) => {
+	const actualHeadingContent = (_content) => {
+		return _content
+			// remove spaces and line breaks
+			.replace(/[\n\t]/g, "")
+			// remove attributes	
+			.replace(/\s\w+=\".*?\"/g, "")
+			// remove tags
+			.replace(/<(\w+)>(.*?)<\/\1>/g, "$2")
+			// change jsx spaces to normal
+			.replace(/\{\" \"\}/g, " ")
+			// remove extra spaces
+			.split(" ")
+			.filter(word => word !== "")
+			.join(" ")
+	}
 
-	const headingMap = ((lines) => {
-		const map = [];
+	const headingObjArr = [...source.matchAll(/<(linkableH(?<headingLevel>\d))[^>]*>(?<_content>.*?)<\/\1>/gs)]
+		.map(headingMatch => {
+			const { headingLevel, _content } = headingMatch.groups
 
-		/**
-		 * @param {string} headingTextSource
-		 */
-		const removeLinks = headingTextSource => {
-			const linkMatcher = /\[(\w+)\]\([\w\-\/\.:]+\)/g;
+			return {
+				headingLevel: parseInt(headingLevel),
+				headingText: actualHeadingContent(_content)
+			}
+		})
 
-			return headingTextSource.replace(linkMatcher, (match, headingText) => headingText);
-		}
+	const headingMap = ((headingObjArr) => {
+		const map = []
 
-		const headings = lines.map(line => {
-			const [hashtags, ...content] = line.split(" ");
-			const headingLevel = hashtags.length;
-			const headingText = removeLinks(content.join(" "));
-
-			return [headingLevel, headingText];
-		});
-
-		for (let heading of headings) {
-			const [headingLevel, headingText] = heading;
+		for (let headingObj of headingObjArr) {
+			const { headingLevel, headingText } = headingObj;
 
 			if (headingLevel === 2) {
 				map.push({
@@ -75,14 +77,8 @@ export const TableOfContents = ({ source }) => {
 			}
 		}
 
-		return map;
-	})(headingLines)
-
-	const [slug, setSlug] = useState("");
-
-	useEffect(() => {
-		setSlug(window.location.pathname.split("/").reverse()[0])
-	}, [])
+		return map
+	})(headingObjArr)
 
 	return (
 		<section className={TOCStyle["parent-section"]}>

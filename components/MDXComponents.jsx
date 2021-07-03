@@ -33,10 +33,11 @@ const BlockQuote = ({
 
 export const MDXComponents = {
 	a: CustomLink,
-	h2: linkableHead("h2"),
-	h3: linkableHead("h3"),
 	img: Image,
 	TableOfContents,
+	linkableH2: linkableHead("h2"),
+	linkableH3: linkableHead("h3"),
+	CustomLink,
 	Note,
 	BlockQuote,
 }

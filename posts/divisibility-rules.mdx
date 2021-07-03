@@ -7,13 +7,13 @@ tags: mathematics
 
 How much time would you need to check if a given number is divisible by 2 –15 without a computer? Well, for the first few numbers, you would be so fast. But you will get stuck at 7 or 13 right? Don’t worry. After reading this article, you won’t. Give it a try.
 
-<TableOfContents source={sourceContent} />
+<TableOfContents source={sourceContent} slug={slug} />
 
 First of all, for those who don't know,   
 A divisibility rule is a shorthand way of determining whether a given integer is divisible by a fixed divisor without performing the division, usually by examining its digits. — [Wikipedia](https://en.wikipedia.org/wiki/Divisibility_rule)   
 That being said, we are good to go.
 
-## "The Obvious Technique"
+<linkableH2 slug={slug}>"The Obvious Technique"</linkableH2>
 
 Before diving into the number-specific rules, I would like to explain to you an obvious technique, that can be done for any number. (I am almost sure that you know about this technique. But I am going to explain it anyway.)
 
@@ -31,15 +31,15 @@ Note: **iff** means if and only if, for example, _A iff B_ means, A is true if a
 
 Also, note that I am talking about divisibility rules in the “Decimal Number System”. You can find divisibility rules in other number systems with the ideas gathered from here. _If you think of yourself as a nerd, try to find divisibility rules in binary and octal number systems_.
 
-## Elementary Rules
+<linkableH2 slug={slug}>Elementary Rules</linkableH2>
 
 Before we dive into the main rules, I want to explain some of the elementary rules that everyone knows. _These are sorted from easy to hard_.
 
-### 10
+<linkableH3 slug={slug}>10</linkableH3>
 
 **Check if the last number is 0**. I know that I shouldn’t include it here. But whatever. And as it is so obvious, let’s move on.
 
-### 2, 5 (n)
+<linkableH3 slug={slug}>2, 5 (n)</linkableH3>
 
 **Check if the last digit is divisible by n**. I would like to explain why. You can skip the next paragraph if you want.
 
@@ -49,27 +49,27 @@ Everyone knows that _ABC_ can be written as _AB0 + 00C_. We know that _AB0_ is d
 
 I also want to say that 2, 5, 10 are the only numbers that have the “_check the last digit_” divisibility-rule type.
 
-### 3, 9 (n)
+<linkableH3 slug={slug}>3, 9 (n)</linkableH3>
 
 These two are also easy, but you can’t tell it instantly like 2 or 5. **Add up the digits of the number, and see if it is divisible by n**. By the way, I want to note that these are the only numbers that have the “_Add up the digits_” divisibility-rule type.
 
 For example, 12049’s digits add up to 16. So 12049 is not divisible by both 3 and 9 as 16 is not divisible by both 3 and 9.
 
-### 4, 8
+<linkableH3 slug={slug}>4, 8</linkableH3>
 
 4 and 8’s divisibility rules are like 2's. But instead of checking the last digit, you have to **check the last 2 digits for 4 and check the last 3 digits for 8**.
 
-### 6
+<linkableH3 slug={slug}>6</linkableH3>
 
 **A number is divisible by 6 iff the number is divisible by both 2 and 3**. So do the rules for 2 and 3 on the number, and if both ended up true, then the number is divisible by 6.
 
-## The Unknown Rules
+<linkableH2 slug={slug}>The Unknown Rules</linkableH2>
 
 As you are clear about the basic rules for divisibility testing, we can start looking at some lesser known rules.
 
 I am not going to explain the general cases anymore. Because it would be so hard for both you and me. I will just explain with an example.
 
-### 7, 11, 13, 17 (n)
+<linkableH3 slug={slug}>7, 11, 13, 17 (n)</linkableH3>
 
 These numbers share the same kind of pattern in their divisibility rules, so I grouped them.
 
@@ -95,7 +95,7 @@ To check if a number is divisible by 11 or 13 or 17, you have to follow the same
 
 If you want to know about the relation between these numbers, just keep reading.
 
-### For all the other numbers
+<linkableH3 slug={slug}>For all the other numbers</linkableH3>
 
 This may sound stupid to you. But wait, I am not saying that every other number has ONE divisibility rule. I am just saying that there are some techniques that you can use to find a number’s divisibility rule.
 

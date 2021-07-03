@@ -7,7 +7,7 @@ export const CustomLink = (props) => {
 
 	/** @type {string} */
 	let href = props.href;
-	const isInternal = href && (href.startsWith('/')) || href.startsWith("#")
+	const isInternal = href && (href.startsWith('/') || href.startsWith("#"))
 
 	if (!href) console.info(`A link without 'href' is found\nDEBUG_NOTE ${props.children}`)
 

@@ -5,9 +5,9 @@ tags: experience, project
 dateCreated: 2021-06-10T10:00:00.000Z
 ---
 
-<TableOfContents source={sourceContent} />
+<TableOfContents source={sourceContent} slug={slug} />
 
-## Why I built XCalc?
+<linkableH2 slug={slug}>Why I built XCalc?</linkableH2>
 
 We all have a pre-installed calculator app on our devices (except iPad users). They provide us with basic and some advanced operations. For the majority of people, in most cases, that is more than enough.
 
@@ -32,16 +32,18 @@ And [XCalc is available on Google Play Store](https://bit.ly/xcalc-app) as well.
 
 If you are interested to see how XCalc is coded, Good news, XCalc is [open-sourced](http://github.com/sahithyandev/xcalc). If you find it hard to understand the code, let me know about that.
 
-## How I built it
+<linkableH2 slug={slug}>How I built it</linkableH2>
 
-### [TypeScript](https://typescriptlang.org)
+<linkableH3 slug={slug}>
+	<CustomLink href="https://typescriptlang.org">TypeScript</CustomLink>
+</linkableH3>
 
 TypeScript is a strict syntactical superset of JavaScript and adds optional strict typing to the language. It compiles to JavaScript.
 
 I decided to bring it into the code base mainly for two reasons. The important one is **prevention of many little bugs**. As TypeScript allows me to set types to everything, now I don’t have to be too concerned about the code now. I can be confident (in most cases) that I am not gonna run into any runtime errors.
 And the next one is, **reduced mind-overloading**. Which means, now, I don’t have to memorize the function parameter types and object structures. My IDE's intellisense takes care of that.
 
-### UI Design
+<linkableH3 slug={slug}>UI Design</linkableH3>
 
 It's highly recommended to design the UI before coding it. [Here's why](https://www.youtube.com/watch?v=ZyAsNw7XZ1c). 
 
@@ -56,17 +58,17 @@ When I made XCalc completely working, (as always) I stopped working on it. After
 
 <img alt="XCalc New UI design" src="/post__images/building-xcalc/xcalc-new-design.png" />
 
-### [React](https://reactjs.org)
+<linkableH3 slug={slug}><CustomLink href="https://reactjs.org">React</CustomLink></linkableH3>
 When I first started developing XCalc, I didn't use any front-end libraries. I wanted to write all the code by myself. The state of the app (the input), the dynamic UI rendering were all done by the code I wrote. At first, It worked without any problems.  But when I came back after 3 months, I understood none of it. That's when I realized that I should have used a front-end library.
 
 When I started rewriting the app, I chose to go with React, which is my favorite front-end library.
 
 To be honest, the React code is not that good either. But it is a lot more readable than my code.
 
-### [Sass](https://sass-lang.com)
+<linkableH3 slug={slug}><CustomLink href="https://sass-lang.com">Sass</CustomLink></linkableH3>
 Sass is a pre-compiler for CSS. It provides some additional functionalities which results in a better developer experience. That’s the one and only reason I decided to use Sass.
 
-### Off-thread evaluations
+<linkableH3 slug={slug}>Off-thread evaluations</linkableH3>
 By default, the browser uses a single thread ("main thread") to run all the processes of a website. This is where the layout and paint are done. This is where the user events get processed. And also, this is where, the javascript runs. Which means, long-running JavaScript will block the thread, leading to an unresponsive page (== bad user experience)
 
 This is where web workers come into play. Web workers are a simple means for web content to run scripts on background threads. This will make sure the main thread is free from getting stuck. [Learn more about web workers on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers).
@@ -75,7 +77,7 @@ XCalc never blocked the main thread (on my laptop and my phone), it worked witho
 
 And, it's a good idea to use the main thread only for UI work. That's why the main thread is called "UI thread" on other platforms. So, I moved the evaluations of the input to a web worker. 
 
-### Offline support
+<linkableH3 slug={slug}>Offline support</linkableH3>
 <BlockQuote citationText="Google Developers Blog" citationLink="https://developers.google.com/web/ilt/pwa/introduction-to-service-worker#what_is_a_service_worker">
 Service workers are a special type of web workers. A service worker is essentially a JavaScript file that runs separately from the main browser thread (or UI thread), intercepting network requests, caching or retrieving resources from the cache, and delivering push messages.
 </BlockQuote>
@@ -84,7 +86,13 @@ With the use of service workers, web apps can now deliver a custom offline exper
 
 Like that sudoku game, XCalc doesn’t need an active internet connection to work. So, as you may guess, I wanted to make XCalc completely offline, just like that game. So, I added a service worker to do that. It pre-caches all the required resources. After that, the resources will be loaded from the cache.
 
-### [WebAssembly](https://webassembly.org) ([AssemblyScript](https://www.assemblyscript.org))
+<linkableH3 slug={slug}>
+<CustomLink href="https://webassembly.org">
+		WebAssembly
+	 </CustomLink>{" "}
+	(<CustomLink href="https://www.assemblyscript.org">AssemblyScript</CustomLink>)
+</linkableH3>
+
 WebAssembly (WASM, in short) is a new type of code that can be run inside web browsers. It is a low-level assembly-like language which runs with near-native performance.
 But, **keep in mind that WASM is not intended to replace JS, and it won’t**.
 
@@ -94,7 +102,7 @@ C, C++, Rust can be compiled to WASM. But I don't know any of them before. And I
 
 Getting started with AssemblyScript was a little hard for me. But, maybe, that would have been easy if I read the documentation clearly.
 
-## Conclusion
+<linkableH2 slug={slug}>Conclusion</linkableH2>
 Overall, working on XCalc was a really great experience for me. There was a lot of fun and learning.
 
 Here is the main thing I learnt while building XCalc.
