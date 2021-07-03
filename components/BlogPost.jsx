@@ -1,5 +1,4 @@
 import Head from "next/head"
-import { useEffect, useState } from "react"
 
 import { Nav } from "./Nav"
 import { HeadBase } from "./HeadBase"
@@ -17,7 +16,7 @@ const PRISM_THEME_URL = "https://unpkg.com/prismjs@1.23.0/themes/prism-twilight.
 export const BlogPost = (props) => {
 	const { meta, children } = props;
 	const { title, description, slug, tags, estReadTime, dateCreated } = meta;
-	const [postLink, setPostLink] = useState("")
+	const postLink = `https://sahithyandev.github.io/post/${slug}`;
 
 	const shareLinks = (() => {
 		const author = SITE_CONSTANTS.author
@@ -34,10 +33,6 @@ export const BlogPost = (props) => {
 			return _
 		})
 	})()
-
-	useEffect(() => {
-		setPostLink(window.location.href)
-	})
 
 	return (
 		<>
