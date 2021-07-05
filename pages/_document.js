@@ -1,9 +1,28 @@
 import Document, { Html, Head, Main, NextScript } from "next/document"
 
-export default class __Document extends Document {
 
+// TODO make it ready to use
+// Not ready to use yet
+// REASON: CSS files are loaded using client-side javascript
+// POSSIBLE_FIX: Inline css
+class HeadProduction extends Head {
+	render() {
+		const { head } = this.context;
+		const children = this.props.children;
+
+		return (
+			<head {...this.props}>
+				{children}
+				{head}
+			</head>
+		)
+	}
+}
+
+export default class __Document extends Document {
 	render() {
 		const GA_MEASUREMENT_ID = "G-J8WK9DFKY6"
+		const isDev = process.env.NODE_ENV === "development"
 
 		return (
 			<Html lang="en">
@@ -13,13 +32,13 @@ export default class __Document extends Document {
 					<script
 						dangerouslySetInnerHTML={{
 							__html: `
-								if (window.location.host !== "localhost") {
-									window.dataLayer = window.dataLayer || [];
-									function gtag(){dataLayer.push(arguments);}
-									gtag('js', new Date());
-									
-									gtag('config', '${GA_MEASUREMENT_ID}');
-								}`
+							if (window.location.host !== "localhost") {
+								window.dataLayer = window.dataLayer || [];
+								function gtag(){dataLayer.push(arguments);}
+								gtag('js', new Date());
+								
+								gtag('config', '${GA_MEASUREMENT_ID}');
+							}`
 						}}
 					>
 					</script>
@@ -34,6 +53,7 @@ export default class __Document extends Document {
 				<body>
 					<Main />
 					<NextScript />
+					{/* {isDev ? <NextScript /> : null} */}
 				</body>
 			</Html>
 		)
