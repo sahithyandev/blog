@@ -1,10 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
 :root {
   font-size: 18px;
+  color-scheme: dark;
   
-  /* TODO change the colors, reason: hard to read */
-  --dark: #25262d;
+  --dark: #131315;
   --light: #FFFBFE;
   --main: #FAF33E;
   --main-half-opacity: #faf33e70;
@@ -24,15 +22,10 @@ body {
   margin: auto;
   max-width: 900px;
   width: 72vw;
-  font-family: Inter;
-  /* font-family: Inter,-apple-system,BlinkMacSystemFont,Oxygen,Roboto,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif; */
+  font-family: Inter, ui-sans-serif, sans-serif;
   background: var(--dark);
   color: var(--light);
   scroll-behavior: smooth;
-}
-
-body {
-  overflow-x: hidden;
 }
 
 @media (max-width: 600px) {
@@ -40,12 +33,6 @@ body {
     max-width: 90vw;
     width: auto; 
   }
-}
-
-a {
-	text-decoration: none !important;
-	color: inherit !important;	
-	border-bottom: none;
 }
 
 .name {  
@@ -58,6 +45,7 @@ a {
 .tags-container {
   display: flex;
   gap: 6px;
+  /* margin-top: 4px; */
   /* background: red; */
 }
 
@@ -79,20 +67,3 @@ a {
   flex-direction: column;
   gap: 20px;
  }
- 
-button {
-  border: none;
-  border-radius: 4px;
-  color: white;
-  padding: 6px 10px;
-  cursor: pointer;
-  transition: filter .1s;
-}
-
-button.twitter-tweet {
-  background: var(--social-twitter);
-}
-
-button:hover {
-  filter: brightness(92%);
-}

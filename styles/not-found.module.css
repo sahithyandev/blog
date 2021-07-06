@@ -1,34 +1,24 @@
 .page {
-	height: 100vh;
 	display: flex;
-	align-items: center;
-	justify-content: center;
+	flex-direction: column;
+	height: 100vh;
 }
 
 .page-container {
-	text-align: center;
-	height:fit-content;
-	position: fixed;
+	flex: 1;
+	display: flex;
+
 	padding: 10px;
 	color: var(--main-half-opacity);
 }
-
-.error-404 {
-	width: 100%;
-	font-size: 6rem;
-	font-weight: bold;
-}
-
-.error-404-special, .not-found-message {
-	color: var(--light);
-}
-
 .not-found-message {
-	margin-top: 0;
+	color: var(--light);
+	width: fit-content;	
+	margin: auto;
 }
 
-.footer {
-	position: absolute;
-	bottom: 0;
-	margin: 0;
+@media (max-width: 600px) {
+	.page-container{
+		text-align: center;
+	}
 }

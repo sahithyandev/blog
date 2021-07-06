@@ -1,12 +1,11 @@
 import Link from "next/link"
 
-import { NormalDateFormat } from "../helpers/other"
+import { NormalDateFormat } from "@/helpers/other"
 
-import styles from "../styles/post-card.module.css"
+import styles from "@/styles/post-card.module.css"
 
 export const PostCard = (postMeta) => {
 	const { slug, title, description, dateCreated, tags } = postMeta
-
 
 	return (
 		<Link href={`/post/${slug}`}>

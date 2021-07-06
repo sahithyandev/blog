@@ -1,7 +1,7 @@
 export const Footer = () => {
 	return (
 		<footer>
-			© 2021 Sahithyan
+			© Sahithyan 2021
 		</footer>
 	)
 }

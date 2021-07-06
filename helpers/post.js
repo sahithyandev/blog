@@ -1,34 +1,49 @@
 const fs = require('fs')
+// TODO try to move to fsAsync
+const fsAsync = fs.promises
 const { join } = require("path")
 
-const renderToString = require("next-mdx-remote/render-to-string")
 const matter = require("gray-matter")
 const mdxPrism = require("mdx-prism")
 
 const { SITE_CONSTANTS } = require("../global")
 const { POSTS_DIR } = SITE_CONSTANTS
-const { MDXComponents } = require('components/MDXComponents')
+const AVERAGE_READING_SPEED = 200
+
+const isProduction = process.env.NODE_ENV === "production";
 
 /**
- * @deprecated @REMOVE_IT_IN_FUTURE
- * Used externally only
+ * Checks if the post is finished and ready on production
+ * 
+ * @param {string} slug
  */
-function getPostRaw(slug = "") {
-	return fs.readFileSync(POSTS_DIR + slug + ".mdx")
+const isPostCompleted = slug => slug.charAt(0) !== "-";
+
+/**
+ * @param {Date} mtime
+ */
+const lastModifiedTimeFormat = (mtime) => {
+	const _ = new Intl.DateTimeFormat("en", {
+		day: "2-digit",
+		year: "numeric",
+		month: "2-digit"
+	})
+
+	const [month, date, year] = _.format(mtime).split("/");
+	return [year, month, date].join("-")
 }
 
-async function loadPost(slug = "", wantContent = true) {
-	if (wantContent === undefined) wantContent = true
+async function loadPost(slug = "") {
+	const { serialize } = require("next-mdx-remote/serialize")
 
-	const postDataObj = getAllPosts().find(post => {
+	const postDataObj = (await getAllPosts()).find(post => {
 		return post.meta.slug === slug
 	})
 	if (postDataObj === undefined) {
 		throw new Error("post not found")
 	}
 
-	const mdxSource = await renderToString(postDataObj.content, {
-		components: MDXComponents,
+	const mdxSource = await serialize(postDataObj.content, {
 		mdxOptions: {
 			rehypePlugins: [mdxPrism]
 		}
@@ -36,55 +51,95 @@ async function loadPost(slug = "", wantContent = true) {
 
 	return {
 		meta: postDataObj.meta,
+		sourceContent: postDataObj.content,
 		mdxSource
 	}
 }
 
+/**
+ * @typedef PostMetaObject
+ * 
+ * @property {string} slug
+ * @property {string} title
+ * @property {string} description
+ * @property {number} dateCreated
+ * @property {number} lastModifiedTime
+ * @property {string[]} tags
+ * @property {number} estReadTime
+ * 
+ */
+
+/**
+ * @param {object} meta
+ * @param {string} content
+ * 
+ * @returns {PostMetaObject} 
+ */
 function formatPostMeta(meta, content) {
+	/**
+	 * @type {PostMetaObject}
+	 */
 	const formattedMeta = meta;
 
 	if (formattedMeta.tags === undefined) {
 		formattedMeta.tags = []
 	} else if (typeof formattedMeta.tags === "string") {
-		formattedMeta.tags = formattedMeta.tags.split(',')
+		formattedMeta.tags = formattedMeta.tags
+			.split(',')
+			.map(
+				/**
+				 * @param {string} tagString
+				 */
+				tagString => tagString.trim()
+			)
 	}
 
-	formattedMeta.dateCreated = new Date(+formattedMeta.dateCreated).valueOf()
+	formattedMeta.dateCreated = (formattedMeta.dateCreated || new Date()).valueOf()
 
 	const wordCount = content.split(/\s+/gu).length
-	const AVERAGE_READING_SPEED = 200
+
 	formattedMeta.estReadTime = Math.ceil(wordCount / AVERAGE_READING_SPEED)
 
 	return formattedMeta;
 }
 
 /**
+ * @typedef PostObject
+ * 
+ * @property {PostMetaObject} meta
+ * @property {string} content 
+ */
+
+/**
  * @param {string} slug
+ * 
+ * @returns {PostObject}
  */
 function getPostBySlug(slug) {
-	const realSlug = slug.replace(/\.mdx$/, "")
-	const fullPath = join(POSTS_DIR, slug)
+	// const realSlug = slug.replace(/\.mdx$/, "")
+	const fullPath = join(POSTS_DIR, slug + ".mdx")
 	const fileContent = fs.readFileSync(fullPath)
 	const { data, content } = matter(fileContent)
+	const meta = formatPostMeta(data, content)
+
+	data.lastModifiedTime = fs.statSync(fullPath).mtime.valueOf()
+	meta.slug = slug;
 
 	return {
-		meta: {
-			slug: realSlug,
-			...formatPostMeta(data, content)
-		},
+		meta,
 		content
 	}
 }
 
-function doesPostExist(slug) {
-	const allPosts = getAllPosts()
+async function doesPostExist(slug) {
+	const allPosts = await getAllPosts()
 	const post = allPosts.find(post => post.meta.slug === slug)
 
 	return post !== undefined
 }
 
-function getAllPosts() {
-	const slugs = fs.readdirSync(POSTS_DIR)
+async function getAllPosts() {
+	const slugs = await getAllSlugs()
 	const posts = slugs.map(slug => getPostBySlug(slug))
 	posts.sort((postA, postB) => {
 		// recent posts first
@@ -94,6 +149,14 @@ function getAllPosts() {
 	return posts;
 }
 
+async function getAllSlugs() {
+	const postsDir = join(process.cwd(), "posts")
+	return (await fsAsync.readdir(postsDir))
+		.map(slug => slug.replace(/\.mdx$/i, ""))
+		// filter the not-finished blog posts on production
+		.filter(slug => isProduction ? isPostCompleted(slug) : true)
+}
+
 module.exports = {
-	getPostRaw, loadPost, getAllPosts, doesPostExist
+	loadPost, getAllPosts, doesPostExist, getAllSlugs, isPostCompleted
 }

@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 50px 0;
+  margin: 50px 0 80px;
   font-size: 1.1em;
   
   height: 120px;
@@ -23,25 +23,4 @@
 
 .latest-posts-heading {
   font-size: 1.34em;
-}
-
-.social-media-icons-container {
-  margin-top: 10px;
-  display: flex;
-  gap: 10px;
-  
-}
-
-.social-media-icons-container a {
-  opacity: .8;
-  transition: opacity .2s;
-}
-
-.social-media-icons-container a:hover {
-  opacity: 1;
-  
-}
-
-.social-media-icons-container i {
-  font-size: 24px;
 }

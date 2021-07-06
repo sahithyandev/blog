@@ -1,0 +1,112 @@
+---
+title: Story of Building XCalc
+description: "Sharing how I built XCalc, an extended calculator."
+tags: experience, project
+dateCreated: 2021-06-10T10:00:00.000Z
+---
+
+<TableOfContents source={sourceContent} slug={slug} />
+
+<linkableH2 slug={slug}>Why I built XCalc?</linkableH2>
+
+We all have a pre-installed calculator app on our devices (except iPad users). They provide us with basic and some advanced operations. For the majority of people, in most cases, that is more than enough.
+
+But, as a Math lover, sometimes, I ran into some problems which can be solved easily on a computer (or a calculator), but still not included in any of these existing calculator apps.
+For example, prime factorization. It's easy for a small set of numbers (like 500, 360). But on a computer, it can be done in seconds (or even milliseconds). But I have never seen that functionality included in a calculator. And this is only one example. This felt like a gap for me. That’s why I decided to develop a calculator app that has these extra functions. That’s what XCalc is.
+
+
+Note that I only added the functions that are not available in those existing calculator apps. And I intentionally left out the functions like log or sqrt, because they are already available on the pre-installed calculator apps.
+
+So, what functions did I add? [Here](https://x-calc.vercel.app/help) is a list. 
+ - is-prime: checks if a number is a prime number
+ - factors: finds all the factors of a number
+ - lcm: finds the least common multiple of a list a numbers
+ - gcd: finds the greatest common divisor of a list a numbers
+ - factorial: finds the n-th factorial
+ - ratio: finds the minimum ratio in a list of numbers
+ - nck: finds the [binomial coefficient](https://en.wikipedia.org/wiki/Binomial_coefficient) denoted by (n k)
+ - prime-factorize: finds the prime factorization of the given number
+
+If you like the idea of XCalc, you can try it [here](https://bit.ly/xcalc-web). From the website, XCalc can be installed to your devices (I don’t know if it is supported on all operating systems and all browsers).
+And [XCalc is available on Google Play Store](https://bit.ly/xcalc-app) as well.
+
+If you are interested to see how XCalc is coded, Good news, XCalc is [open-sourced](http://github.com/sahithyandev/xcalc). If you find it hard to understand the code, let me know about that.
+
+<linkableH2 slug={slug}>How I built it</linkableH2>
+
+<linkableH3 slug={slug}>
+	<CustomLink href="https://typescriptlang.org">TypeScript</CustomLink>
+</linkableH3>
+
+TypeScript is a strict syntactical superset of JavaScript and adds optional strict typing to the language. It compiles to JavaScript.
+
+I decided to bring it into the code base mainly for two reasons. The important one is **prevention of many little bugs**. As TypeScript allows me to set types to everything, now I don’t have to be too concerned about the code now. I can be confident (in most cases) that I am not gonna run into any runtime errors.
+And the next one is, **reduced mind-overloading**. Which means, now, I don’t have to memorize the function parameter types and object structures. My IDE's intellisense takes care of that.
+
+<linkableH3 slug={slug}>UI Design</linkableH3>
+
+It's highly recommended to design the UI before coding it. [Here's why](https://www.youtube.com/watch?v=ZyAsNw7XZ1c). 
+
+Hence, I decided to design the whole UI first (or at least try). I opened up [Figma](https://figma.com) and gave it a try. Here's what I designed.
+
+<img alt="XCalc Old UI design" src="/post__images/building-xcalc/xcalc-old-design.jpg" />
+
+I went with it. Because, the important thing about XCalc is its functionality; not the UI.
+
+
+When I made XCalc completely working, (as always) I stopped working on it. After about 3 months, I came back. I decided to rewrite the whole app with new (better) technologies. As a part of that, I redesigned the UI. It turned out to be pretty great.
+
+<img alt="XCalc New UI design" src="/post__images/building-xcalc/xcalc-new-design.png" />
+
+<linkableH3 slug={slug}><CustomLink href="https://reactjs.org">React</CustomLink></linkableH3>
+When I first started developing XCalc, I didn't use any front-end libraries. I wanted to write all the code by myself. The state of the app (the input), the dynamic UI rendering were all done by the code I wrote. At first, It worked without any problems.  But when I came back after 3 months, I understood none of it. That's when I realized that I should have used a front-end library.
+
+When I started rewriting the app, I chose to go with React, which is my favorite front-end library.
+
+To be honest, the React code is not that good either. But it is a lot more readable than my code.
+
+<linkableH3 slug={slug}><CustomLink href="https://sass-lang.com">Sass</CustomLink></linkableH3>
+Sass is a pre-compiler for CSS. It provides some additional functionalities which results in a better developer experience. That’s the one and only reason I decided to use Sass.
+
+<linkableH3 slug={slug}>Off-thread evaluations</linkableH3>
+By default, the browser uses a single thread ("main thread") to run all the processes of a website. This is where the layout and paint are done. This is where the user events get processed. And also, this is where, the javascript runs. Which means, long-running JavaScript will block the thread, leading to an unresponsive page (== bad user experience)
+
+This is where web workers come into play. Web workers are a simple means for web content to run scripts on background threads. This will make sure the main thread is free from getting stuck. [Learn more about web workers on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers).
+
+XCalc never blocked the main thread (on my laptop and my phone), it worked without any problems. There were no performance issues at all. But, on the low-end phones, performance issues might rise.
+
+And, it's a good idea to use the main thread only for UI work. That's why the main thread is called "UI thread" on other platforms. So, I moved the evaluations of the input to a web worker. 
+
+<linkableH3 slug={slug}>Offline support</linkableH3>
+<BlockQuote citationText="Google Developers Blog" citationLink="https://developers.google.com/web/ilt/pwa/introduction-to-service-worker#what_is_a_service_worker">
+Service workers are a special type of web workers. A service worker is essentially a JavaScript file that runs separately from the main browser thread (or UI thread), intercepting network requests, caching or retrieving resources from the cache, and delivering push messages.
+</BlockQuote>
+
+With the use of service workers, web apps can now deliver a custom offline experience. For example, YouTube and Spotify have a custom offline page. While searching for more examples, I found this [awesome sudoku game](https://sudoku.jull.dev/), which is completely available for offline use.
+
+Like that sudoku game, XCalc doesn’t need an active internet connection to work. So, as you may guess, I wanted to make XCalc completely offline, just like that game. So, I added a service worker to do that. It pre-caches all the required resources. After that, the resources will be loaded from the cache.
+
+<linkableH3 slug={slug}>
+<CustomLink href="https://webassembly.org">
+		WebAssembly
+	 </CustomLink>{" "}
+	(<CustomLink href="https://www.assemblyscript.org">AssemblyScript</CustomLink>)
+</linkableH3>
+
+WebAssembly (WASM, in short) is a new type of code that can be run inside web browsers. It is a low-level assembly-like language which runs with near-native performance.
+But, **keep in mind that WASM is not intended to replace JS, and it won’t**.
+
+WebAssembly first appeared in 2017, but I came to know about it recently. I decided to use it in XCalc. I know that WebAssembly wasn't meant to be used on a calculator app like XCalc, But I chose to use it just for the sake of learning.
+
+C, C++, Rust can be compiled to WASM. But I don't know any of them before. And I didn't want to learn them. Fortunately, I came to know about AssemblyScript. AssemblyScript is a typescript-based language which compiles to WASM. With the familiar syntax, AssemblyScript appeared to be the best option for me. So, I chose to use it.
+
+Getting started with AssemblyScript was a little hard for me. But, maybe, that would have been easy if I read the documentation clearly.
+
+<linkableH2 slug={slug}>Conclusion</linkableH2>
+Overall, working on XCalc was a really great experience for me. There was a lot of fun and learning.
+
+Here is the main thing I learnt while building XCalc.
+
+**Read the documentation clearly**. This is one of my bad habits. I don't read the documentation completely. I always miss to notice something in every documentation I read. Because of that, I have even spent a significant amount of time, trying to find how to do a specific thing (which is already explained in the documentation). So, when you are reading a documentation for something, make sure to read it through. Don’t skip anything. When you get stuck with an error or bug, before starting searching it on google, make sure to check the official documentation.
+
+If you have read this much, Thank you for your time. Have any questions? Feel free to [reach me out on Twitter](https://twitter.com/sahithyandev)

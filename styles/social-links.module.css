@@ -1,0 +1,27 @@
+.social-media-icons-container {
+  margin-top: 10px;
+  display: flex;
+  gap: 12px;
+	align-items: center;
+  
+}
+
+.social-media-icons-container a {
+  opacity: .8;
+  transition: opacity .2s;
+}
+
+.social-media-icons-container a:hover {
+  opacity: 1;
+  
+}
+
+.social-media-icons-container i {
+  font-size: 22px;
+}
+
+.sm-icon {
+	font-size: 18px !important;
+	font-weight: bold;
+  font-family: monospace;
+}

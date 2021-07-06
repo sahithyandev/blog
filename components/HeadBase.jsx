@@ -1,34 +1,33 @@
-import Head from 'next/head'
+import Head from "next/head"
 
 import { SITE_CONSTANTS } from "../global"
 
 export const HeadBase = ({ title, description }) => {
 	title = title || SITE_CONSTANTS.title
 	description = description || SITE_CONSTANTS.description
+	const siteName = "Sahithyan's Blog"
 
 	return (
 		<>
 			<Head>
 				<title key="browser-title">{title}</title>
 				<meta name="description" content={description} />
-				<link rel="icon" href="/fav-me.png" />
+				<link rel="alternate" href={SITE_CONSTANTS.rss_feed_url} type="application/rss+xml" title="RSS feed" />
+				<link rel="canonical" href={SITE_CONSTANTS.website_url} />
 
-				<meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-				<meta name="viewport" content="width=device-width, initial-scale=1" />
-
+				{/* For Twitter */}
 				<meta name="twitter:title" value={title} />
 				<meta name="twitter:card" value="summary" />
 				<meta name="twitter:description" value={description} />
-				<meta name="twitter:site" value={SITE_CONSTANTS.author} />
 				<meta name="twitter:creator" value={SITE_CONSTANTS.author} />
 
-				{/* TODO */}
+				{/* For Open Graph */}
 				<meta key="og-description" property="og:description" content={description} />
 				<meta key="og-title" property="og:title" content={title} />
-				<meta key="og-url" property="og:url" content="sahithyan.com" />
-				{/*  */}
-
-				{/* TODO add the required fonts from google fonts */}
+				<meta key="og-url" property="og:url" content="sahithyandev.github.io" />
+				<meta key="og-site-name" property="og:site_name" content={siteName} />
+				<meta key="og-image" property="og:image" content="https://sahithyandev.github.io/fav-me.png" />
+				<meta key="og-image--alt" property="og:image:alt" content="Sahithyan's official profile picture" />
 			</Head>
 		</>
 	)

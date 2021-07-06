@@ -4,7 +4,12 @@
 		"paths": {
 			"@/lib/*": ["lib/*"],
 			"@/public/*": ["public/*"],
-			"@/helpers/*": ["helpers/*"]
+			"@/helpers/*": ["helpers/*"],
+			"@/components/*": ["components/*"],
+			"@/components": ["components/index.js"],
+			"@/styles/*": ["styles/*"],
+			"@/scripts/*": ["scripts/*"],
+			"@/assets/*": ["assets/*"]
 		}
 	}
 }

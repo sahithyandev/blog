@@ -1,0 +1,33 @@
+.toc-heading {
+	margin-bottom: 10px;
+}
+
+.links-container {
+	list-style: none;
+	padding-left: 20px;
+	
+	counter-reset: list-item;
+}
+
+.links-container > li {
+	position: relative;
+	padding-left: 1.5em;
+	
+	margin: 6px 0;
+}
+
+.links-container > li::before {
+	content: counter(list-item,var(--list-counter-style,decimal)) ".";
+	position: absolute;
+	left: 0;
+	font-size: 1em;
+}
+
+.links-container ul {
+	padding-left: 1.4em;
+	list-style-type: disc;
+}
+
+.links-container ul li {
+	margin: 4px 0;
+}

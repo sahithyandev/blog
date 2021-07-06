@@ -8,8 +8,18 @@ const fetcher = (...args) => fetch(...args).then(res => res.json())
  */
 const commaFormat = (n) => (new Intl.NumberFormat()).format(n)
 
+
 export const ViewCounter = ({ slug }) => {
-	const { data } = useSWR(`/api/views/${slug}`, fetcher);
+	const { data, error } = useSWR(`/api/views/${slug}`, fetcher);
+
+	if (error) {
+		console.warn(
+			`ViewCounter (view count for posts) will not work once exported as the static website. It will be fixed soon. Until then
+			KEEP IT DISABLED`,
+		)
+	}
+
+
 	const views = data?.viewCount
 
 	useEffect(() => {
