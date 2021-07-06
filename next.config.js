@@ -6,6 +6,14 @@ module.exports = {
 			// require("./scripts/generate-rss")
 		}
 
+		if (!isServer) {
+			config.resolve.fallback = {
+				...config.resolve.fallback,
+				fs: false,
+				module: false
+			}
+		}
+
 		config.module.rules.push({
 			test: /\.svg$/,
 			use: [{

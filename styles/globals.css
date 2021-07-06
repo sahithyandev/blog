@@ -13,21 +13,6 @@
   --social-twitter: hsl(203, 89%, 42%);
 }
 
-* {
-  box-sizing: border-box;
-}
-
-html,
-body {
-  margin: auto;
-  max-width: 900px;
-  width: 72vw;
-  font-family: Inter, ui-sans-serif, sans-serif;
-  background: var(--dark);
-  color: var(--light);
-  scroll-behavior: smooth;
-}
-
 @media (max-width: 600px) {
   html, body {
     max-width: 90vw;
