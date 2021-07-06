@@ -3,10 +3,7 @@ import Head from "next/head"
 import { Page } from "@/components"
 import { GlobalStyles } from "@/components/GlobalStyles";
 
-import '@/styles/fonts.css';
 import '@/styles/globals.css';
-import "@/styles/nav.component.css";
-import "@/styles/footer.component.css";
 
 function MyApp({ Component, pageProps }) {
   return <>

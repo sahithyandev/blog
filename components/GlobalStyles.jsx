@@ -3,6 +3,38 @@ import { createGlobalStyle } from "styled-components";
 import tw, { theme, GlobalStyles as BaseStyles } from "twin.macro";
 
 const CustomStyles = createGlobalStyle`
+	@font-face {
+		font-family: 'Inter';
+		font-style: normal;
+		font-weight: 400;
+		font-display: swap;
+		src: url("/fonts/Inter-Regular.ttf");
+	}
+
+	@font-face {
+		font-family: 'Inter';
+		font-style: normal;
+		font-weight: 500;
+		font-display: swap;
+		src: url("/fonts/Inter-Medium.ttf");
+	}
+
+	@font-face {
+		font-family: 'Inter';
+		font-style: normal;
+		font-weight: 600;
+		font-display: swap;
+		src: url("/fonts/Inter-SemiBold.ttf");
+	}
+
+	@font-face {
+		font-family: 'Inter';
+		font-style: normal;
+		font-weight: 700;
+		font-display: swap;
+		src: url("/fonts/Inter-Bold.ttf");
+	}
+
 	:root {
 		font-size: 18px;
 		color-scheme: dark;
@@ -38,7 +70,46 @@ const CustomStyles = createGlobalStyle`
 			max-width: 90vw;
 			width: auto; 
 		}
-	}	
+	}
+	
+	nav {
+		margin-top: 10px;
+		margin-bottom: 20px;
+		align-items: center;
+		justify-content: space-between;
+		display: flex;
+	}
+	
+	.nav--logo {
+		text-transform: uppercase;
+	}
+	
+	.nav--links-container {
+		display: flex;
+		width: fit-content;
+		gap: 20px;
+		
+		list-style: none;
+		padding: 0;
+	}
+	
+	.nav--link {
+		padding: none;
+		opacity: 0.6;
+		transition: opacity .2s;
+	}
+	
+	.nav--link:hover {
+		opacity: 1;
+	}
+	
+	.footer {
+		
+		font-size: .72rem;
+		opacity: .4;
+		
+		margin: 40px 0 30px;
+	}
 `;
 
 export const GlobalStyles = () => {
