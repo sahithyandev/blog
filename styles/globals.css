@@ -1,24 +1,3 @@
-:root {
-  font-size: 18px;
-  color-scheme: dark;
-  
-  --dark: #131315;
-  --light: #FFFBFE;
-  --main: #FAF33E;
-  --main-half-opacity: #faf33e70;
-  --secondary: #087F8C;
-  --post-card-bg: hsl(236, 10%, 25%);
-  --post-card-bg-hover: hsl(220, 12%, 35%);
-  
-  --social-twitter: hsl(203, 89%, 42%);
-}
-
-@media (max-width: 600px) {
-  html, body {
-    max-width: 90vw;
-    width: auto; 
-  }
-}
 
 .name {  
   width: fit-content;
