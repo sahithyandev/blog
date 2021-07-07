@@ -5,6 +5,7 @@ import { HeadBase } from "./HeadBase"
 import { ViewCounter } from "./ViewCounter"
 import { Footer } from "./Footer"
 import { CustomLink } from "./CustomLink"
+import { TagsContainer } from "./TagsContainer"
 import { SITE_CONSTANTS } from "../global"
 import { NormalDateFormat } from "@/helpers/other"
 
@@ -56,9 +57,7 @@ export const BlogPost = (props) => {
 					<div style={{ display: 'flex', gap: 4, flexDirection: 'column', alignItems: 'flex-end' }}>
 						<span>{estReadTime} min read</span>
 
-						<div className="tags-container">
-							{tags.map(tag => <span key={tag} className="tag">{tag}</span>)}
-						</div>
+						<TagsContainer tags={tags} />
 						{/* <ViewCounter slug={slug} /> */}
 					</div>
 				</div>

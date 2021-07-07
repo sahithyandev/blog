@@ -1,5 +1,6 @@
 import Link from "next/link"
 
+import { TagsContainer } from "./TagsContainer"
 import { NormalDateFormat } from "@/helpers/other"
 
 import styles from "@/styles/post-card.module.css"
@@ -16,9 +17,7 @@ export const PostCard = (postMeta) => {
 
 					<div className={styles["meta"]}>
 						<span className={styles["post-created-time"]}>{NormalDateFormat.format(dateCreated)}</span>
-						<div className="tags-container">
-							{tags.map(tag => <span key={tag} className="tag">{tag}</span>)}
-						</div>
+						<TagsContainer tags={tags} />
 					</div>
 				</div>
 			</a>
