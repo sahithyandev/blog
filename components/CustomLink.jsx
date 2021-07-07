@@ -5,15 +5,22 @@ export const CustomLink = (props) => {
 		__YOUTUBE_CHANNEL__: "https://www.youtube.com/channel"
 	})
 
-	/** @type {string} */
 	let href = props.href;
-	const isInternal = href && (href.startsWith('/') || href.startsWith("#"))
 
 	if (!href) console.info(`A link without 'href' is found\nDEBUG_NOTE ${props.children}`)
 
-	HREF_PLACEHOLDERS.map(([placeholder, value]) => {
-		href = href.replace(placeholder, value)
-	})
+	let isInternal = false;
+
+	if (typeof href === "string") {
+		isInternal = href.startsWith('/') || href.startsWith("#")
+
+		HREF_PLACEHOLDERS.map(([placeholder, value]) => {
+			href = href.replace(placeholder, value)
+		})
+
+	} else if (typeof href === "object") {
+		isInternal = true
+	}
 
 	if (isInternal) {
 		return (
