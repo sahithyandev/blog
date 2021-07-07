@@ -1,10 +1,8 @@
-import { SocialLinks } from "components/SocialLinks"
-import Head from "next/head"
+import tw from "twin.macro";
 
-import { HeadBase, Footer, Nav, CustomLink } from "@/components"
+import { HeadBase, Footer, Nav, CustomLink, SocialLinks } from "@/components"
 import { SITE_CONSTANTS } from "../global"
 
-import styles from "@/styles/about.module.css"
 import postStyles from "@/styles/blog-post.module.css"
 
 const AboutPage = () => {
@@ -18,7 +16,7 @@ const AboutPage = () => {
 
 			<Nav />
 
-			<main className={[styles["main"], postStyles["post--content"]].join(" ")}>
+			<main className={postStyles["post--content"]}>
 				<h1>About Me</h1>
 
 				<p>
@@ -44,7 +42,7 @@ const AboutPage = () => {
 					The fastest and the easiest way would be direct messaging me on Twitter <CustomLink href="https://www.twitter.com/sahithyandev">@sahithyandev</CustomLink>. You can also use the below-listed social media accounts too. And you can also email me at <CustomLink href="mailto:sahithyan2701@gmail.com">sahithyan2701@gmail.com</CustomLink>.
 				</p>
 
-				<div style={{ margin: 'auto', width: "fit-content" }}>
+				<div css={tw`m-auto w-min`}>
 					<SocialLinks />
 				</div>
 			</main >

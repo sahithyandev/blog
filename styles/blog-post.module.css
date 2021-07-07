@@ -15,7 +15,7 @@
 
 .post--content {
 	margin: 32px 0;
-	line-height: 25px;
+	line-height: 26px;
 }
 
 .post--bottom-bar a,
@@ -63,10 +63,6 @@
 	max-width: 100%;
 	width: auto;
 	max-height: 600px;
-}
-
-.post--content p {
-	line-height: 26px;	
 }
 
 .post--content table {
