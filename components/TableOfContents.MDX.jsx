@@ -1,33 +1,54 @@
-import Link from "next/link";
+import tw from "twin.macro";
 
-// TODO optimise TOC
-import TOCStyle from "@/styles/table-of-contents.module.css"
+import { CustomLink } from "./CustomLink";
 
-const TOCItem = ({ linkable, slug }) => {
-	const linkText = linkable.headingText
-	const hash = linkText.replace(/\s/g, "-").toLowerCase()
+/** 
+ * @typedef TOCLink_Props
+ * @property {any} children
+ * @property {any} linkable
+ * @property {string} slug
+*/
 
-	return <li>
-		<Link href={{
-			pathname: `/post/[slug]`,
-			hash,
+/**
+ * @param {TOCLink_Props} props
+ */
+const TOCLink = (props) => {
+	const { linkable, slug } = props;
+	const linkText = linkable.headingText;
+
+	return <li css={[tw`mt-1`]}>
+		<CustomLink href={{
+			pathname: "/post/[slug]",
+			hash: linkText.replace(/\s/g, "-").toLowerCase(),
 			query: { slug }
 		}}>
-			<a className={TOCStyle["toc-link"]}>{linkText}</a>
-		</Link>
+			{linkText}
+		</CustomLink>
 
-		{/* Show the next-level headings if present */}
+		{props.children}
+	</li>
+}
+
+/**
+ * @param {TOCLink_Props} props
+ */
+const FirstLevelLink = (props) => {
+	const { linkable, slug } = props;
+
+	return <TOCLink {...props}>
 		{linkable.innerHeadings.length === 0 ? null : (
-			<ul key={linkable.headingText}>
-				{linkable.innerHeadings.map(innerLinkable => <TOCItem
-					key={innerLinkable.headingText}
-					linkable={innerLinkable}
-					slug={slug}
-				/>
+			<ul key={linkable.headingText} css={tw`list-disc pl-5`}>
+				{linkable.innerHeadings.map(innerLinkable => (
+					<li key={innerLinkable.headingText}>
+						<TOCLink
+							linkable={innerLinkable}
+							slug={slug}
+						/>
+					</li>)
 				)}
 			</ul>
 		)}
-	</li>
+	</TOCLink>
 }
 
 export const TableOfContents = ({ source, slug }) => {
@@ -81,12 +102,12 @@ export const TableOfContents = ({ source, slug }) => {
 	})(headingObjArr)
 
 	return (
-		<section className={TOCStyle["parent-section"]}>
-			<h3 className={TOCStyle["toc-heading"]}>Table Of Contents</h3>
+		<section>
+			<h3 css={[tw`mb-3`]}>Table Of Contents</h3>
 
-			<ol className={TOCStyle["links-container"]}>
+			<ol css={tw`pl-9`}>
 				{headingMap.map(linkable => {
-					return <TOCItem linkable={linkable} slug={slug} key={linkable.headingText} />
+					return <FirstLevelLink key={linkable.headingText} linkable={linkable} slug={slug} />
 				})}
 			</ol>
 		</section>
