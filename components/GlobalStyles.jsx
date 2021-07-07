@@ -103,8 +103,7 @@ const CustomStyles = createGlobalStyle`
 		opacity: 1;
 	}
 	
-	.footer {
-		
+	footer {
 		font-size: .72rem;
 		opacity: .4;
 		

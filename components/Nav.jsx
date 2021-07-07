@@ -1,18 +1,15 @@
 import Link from 'next/link'
 
-export const Nav = ({ showLogo }) => {
-	if (showLogo === undefined) { showLogo = true; }
-
+export const Nav = ({ hideLogo }) => {
 	return (
 		<nav>
 			{
-				showLogo ?
+				hideLogo ? <div></div> :
 					<Link href="/">
 						<a className="name nav--logo reset">
 							Sahithyan
 						</a>
 					</Link>
-					: <div></div>
 			}
 
 			<ul className="nav--links-container">
