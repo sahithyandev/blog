@@ -102,13 +102,6 @@ const CustomStyles = createGlobalStyle`
 	.nav--link:hover {
 		opacity: 1;
 	}
-	
-	footer {
-		font-size: .72rem;
-		opacity: .4;
-		
-		margin: 40px 0 30px;
-	}
 `;
 
 export const GlobalStyles = () => {
