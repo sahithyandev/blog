@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-import { HeadBase, Nav, Footer, PostCard } from "@/components/"
+import { HeadBase, Nav, Footer, PostsContainer } from "@/components/"
 import { getAllPosts } from "@/helpers/post"
 import { SITE_CONSTANTS } from "../global"
 import { isTag } from "@/helpers/other"
@@ -112,10 +112,7 @@ const PostsPage = props => {
 						onChange={searchInputHandler} />
 				</div>
 
-				<div className="posts-container">
-					{filterPosts(posts)
-						.map(_post => <PostCard key={_post.meta.title} {..._post.meta} />)}
-				</div>
+				<PostsContainer posts={filterPosts(posts)} />
 			</main>
 
 			<Footer />

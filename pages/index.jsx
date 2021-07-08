@@ -1,6 +1,6 @@
 import tw from "twin.macro";
 
-import { HeadBase, Nav, Footer, PostCard, SocialLinks } from '@/components'
+import { HeadBase, Nav, Footer, PostCard, SocialLinks, PostsContainer } from '@/components'
 import { getAllPosts } from "@/helpers/post"
 
 export default function Home({ latestPosts }) {
@@ -22,9 +22,7 @@ export default function Home({ latestPosts }) {
         <section>
           <h2 css={tw`text-xl`}>Latest Posts</h2>
 
-          <div className="posts-container">
-            {latestPosts.map(post => <PostCard key={post.meta.title} {...post.meta} />)}
-          </div>
+          <PostsContainer posts={latestPosts} />
         </section>
       </main>
 

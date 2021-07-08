@@ -25,9 +25,3 @@
   font-family: monospace;
   font-size: 1.1em;
 }
-
-.posts-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
- }
