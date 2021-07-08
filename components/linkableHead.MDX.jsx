@@ -1,4 +1,6 @@
 import Link from "next/link"
+import tw from "twin.macro";
+import styled from "styled-components";
 
 const getHeadContent = (children) => {
 	if (typeof children === "string") {
@@ -10,28 +12,39 @@ const getHeadContent = (children) => {
 	return getHeadContent(children.props.children)
 }
 
-import linkableHeadStyle from "@/styles/linkable-head.module.css"
+const HeadElement = styled.h2`
+		${tw`mb-6 sm:relative`}
+		
+		@media (min-width: 640px) {
+			left: -24px;
+		}
+	`;
+
+const LinkHashtag = styled.a`
+	${tw`font-medium font-mono opacity-60 mr-2 hover:opacity-80`}
+	font-size: 1.1em;
+`;
 
 /**
- * @param {"h2" | "h3"} HeadElement
+ * @param {"h2" | "h3"} headElementTagName
  */
-const linkableHead = (HeadElement) => {
+const linkableHead = (headElementTagName) => {
 	// eslint-disable-next-line react/display-name
 	return ({ children, slug }) => {
 		const elementId = getHeadContent(children).replace(/\s/g, "-").toLowerCase()
 
 		return (
-			<HeadElement className={linkableHeadStyle["linkable"]} id={elementId}>
+			<HeadElement id={elementId} as={headElementTagName}>
 				{slug === undefined ? null :
-					<Link href={{
+					<Link passHref={true} href={{
 						pathname: `/post/[slug]`,
 						hash: elementId,
 						query: { slug }
 					}}>
-						<a className={["reset", linkableHeadStyle["link-hashtag"]].join(" ")}>#</a>
+						<LinkHashtag className="reset">#</LinkHashtag>
 					</Link>
 				}
-				<span className="linkable--heading-text">
+				<span>
 					{children}
 				</span>
 			</HeadElement>
