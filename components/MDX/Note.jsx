@@ -1,7 +1,9 @@
-import postStyles from "@/styles/blog-post.module.css"
+import tw from "twin.macro";
+import styled from "styled-components";
 
-const Note = props => {
-	return <div className={postStyles["note"]} {...props} />
-}
+const Note = styled.div`
+	${tw`relative -left-3.5 py-3 px-5 rounded`}
+	border: 3px dashed #c7c720;
+`;
 
 export default Note;

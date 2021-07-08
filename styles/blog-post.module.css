@@ -76,14 +76,6 @@
 	scroll-margin-top: 20px;
 }
 
-.note {
-	position: relative;
-	left: -4px;
-	padding: 4px 6px;
-	border-radius: 8px;
-	border: 3px dashed rgb(199, 199, 32);
-}
-
 .post--bottom-bar {
 	display: flex;
 	justify-content: space-between;
