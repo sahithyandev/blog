@@ -6,7 +6,7 @@ export const Nav = ({ hideLogo }) => {
 			{
 				hideLogo ? <div></div> :
 					<Link href="/">
-						<a className="name nav--logo reset">
+						<a className="nav--logo reset">
 							Sahithyan
 						</a>
 					</Link>

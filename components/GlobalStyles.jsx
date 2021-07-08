@@ -72,6 +72,12 @@ const CustomStyles = createGlobalStyle`
 		}
 	}
 	
+	a.reset {
+		text-decoration: none;
+		color: inherit;	
+		border-bottom: none;
+	}
+	
 	nav {
 		margin-top: 10px;
 		margin-bottom: 20px;
@@ -82,6 +88,10 @@ const CustomStyles = createGlobalStyle`
 	
 	.nav--logo {
 		text-transform: uppercase;
+		width: fit-content;
+		font-weight: bold;
+		font-size: 1.2em;
+		letter-spacing: 0.1px;	
 	}
 	
 	.nav--links-container {

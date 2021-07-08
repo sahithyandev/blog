@@ -3,8 +3,6 @@ import Head from "next/head"
 import { Page } from "@/components"
 import { GlobalStyles } from "@/components/GlobalStyles";
 
-import '@/styles/globals.css';
-
 function MyApp({ Component, pageProps }) {
   return <>
     <GlobalStyles />
