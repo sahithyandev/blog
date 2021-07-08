@@ -1,19 +1,16 @@
+import tw from "twin.macro";
+
 import { HeadBase, Nav, Footer } from "@/components"
 import { SITE_CONSTANTS } from "../global"
 
-import styles from "@/styles/not-found.module.css";
-
 const NotFoundPage = () => {
 	return (
-		<div className={styles.page}>
+		<div css={tw`flex flex-col h-screen`}>
 			<HeadBase title={`NoT_foUND`} description={`Page not found - ${SITE_CONSTANTS.description}`} />
 
 			<Nav />
 
-			<div className={styles["page-container"]}>
-				<h1 className={styles["not-found-message"]}>{"!> pAgE n0T_f0uNd"}</h1>
-
-			</div>
+			<h1 css={tw`text-light m-auto text-center`}>{"!> pAgE n0T_f0uNd"}</h1>
 
 			<Footer />
 		</div >
