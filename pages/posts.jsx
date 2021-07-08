@@ -1,4 +1,6 @@
 import { useState } from "react"
+import tw from "twin.macro";
+import styled from "styled-components";
 
 import { HeadBase, Nav, Footer, PostsContainer } from "@/components/"
 import { getAllPosts } from "@/helpers/post"
@@ -6,7 +8,15 @@ import { SITE_CONSTANTS } from "../global"
 import { isTag } from "@/helpers/other"
 import { generateRSS } from "@/scripts/generate-rss"
 
-import styles from "@/styles/posts.module.css"
+const Input = styled.input`
+	${tw`border-none w-full py-2 px-4 rounded text-small`}
+	background-color: #2d2f2ff3;
+	
+	&::placeholder {
+		${tw`opacity-80 text-light`}
+		font-family: Inter, ui-sans-serif, sans-serif;
+	}
+`;
 
 const debounce = (func, timeout = 400) => {
 	let timer;
@@ -107,9 +117,10 @@ const PostsPage = props => {
 
 				<p>Here are the articles I wrote before. Use the search to filter by title and/or tag.</p>
 
-				<div className={styles["search-container"]}>
-					<input type="text" className={styles["search-input"]} placeholder="Search articles"
-						onChange={searchInputHandler} />
+				<div css={tw`mt-3 mb-9`}>
+					<Input type="text" placeholder="Search posts" />
+					{/* <input type="text" className={styles["search-input"]} placeholder="Search articles"
+						onChange={searchInputHandler} /> */}
 				</div>
 
 				<PostsContainer posts={filterPosts(posts)} />
