@@ -1,4 +1,5 @@
 import Head from "next/head"
+import tw from "twin.macro"
 
 import { Nav } from "./Nav"
 import { HeadBase } from "./HeadBase"
@@ -45,16 +46,16 @@ export const BlogPost = (props) => {
 			</Head>
 
 			<Nav />
-			<main className="post-container">
-				<h1 className={styles["post--title"]}>{title}</h1>
+			<main>
+				<h1 css={tw`text-2xl mb-1 mt-8`}>{title}</h1>
 
-				<div className={styles["post--head"]}>
+				<div css={tw`flex justify-between text-sm opacity-90`}>
 
-					<span className={styles["post--time"]}>
+					<span>
 						{NormalDateFormat.format(dateCreated)}
 					</span>
 
-					<div style={{ display: 'flex', gap: 4, flexDirection: 'column', alignItems: 'flex-end' }}>
+					<div css={tw`flex flex-col gap-1 items-end`}>
 						<span>{estReadTime} min read</span>
 
 						<TagsContainer tags={tags} />
@@ -76,8 +77,8 @@ export const BlogPost = (props) => {
 					</CustomLink>
 				</div>
 
-				<div className={styles["post--share-section"]}>
-					<span>Share this article on</span>
+				<div css={tw`flex items-center`}>
+					<span css={tw`opacity-70 mr-2`}>Share this article on</span>
 
 					<div>
 						{shareLinks.map(link => {
