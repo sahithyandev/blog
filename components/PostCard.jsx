@@ -1,26 +1,54 @@
 import Link from "next/link"
+import tw from "twin.macro"
+import styled from "styled-components"
 
 import { TagsContainer } from "./TagsContainer"
 import { NormalDateFormat } from "@/helpers/other"
 
-import styles from "@/styles/post-card.module.css"
+const PostCardContainer = styled.a`
+	--post-created-time-opacity: 0;
+	--card-bg: var(--post-card-bg);
+	
+	:focus {
+		--card-bg: var(--post-card-bg-hover);
+		--post-created-time-opacity: .8;
+	}
+`;
+
+const PostCardContainerDiv = styled.div`
+	${tw`py-3 px-4 rounded`}
+	transition: all .3s;
+	background-color: var(--card-bg);
+	
+	:hover {
+		--post-created-time-opacity: .9;
+		--card-bg: var(--post-card-bg-hover);
+	}
+`;
+
+const PostCreatedTime = styled.span`
+	${tw`text-sm transition-opacity`}
+	opacity: var(--post-created-time-opacity);
+`;
 
 export const PostCard = (postMeta) => {
 	const { slug, title, description, dateCreated, tags } = postMeta
 
 	return (
-		<Link href={`/post/${slug}`}>
-			<a className="reset">
-				<div className={styles["post-card"]}>
-					<h3 className={styles["title"]}>{title}</h3>
-					<p className={styles["description"]}>{description}</p>
+		<Link href={`/post/${slug}`} passHref={true}>
+			<PostCardContainer className="reset">
+				<PostCardContainerDiv>
+					<h3 css={tw`mt-0 mb-2`}>{title}</h3>
+					<p css={tw`text-sm mb-2`}>{description}</p>
 
-					<div className={styles["meta"]}>
-						<span className={styles["post-created-time"]}>{NormalDateFormat.format(dateCreated)}</span>
+					<div css={tw`flex justify-between`}>
+						<PostCreatedTime>
+							{NormalDateFormat.format(dateCreated)}
+						</PostCreatedTime>
 						<TagsContainer tags={tags} />
 					</div>
-				</div>
-			</a>
-		</Link >
+				</PostCardContainerDiv>
+			</PostCardContainer>
+		</Link>
 	)
 }
