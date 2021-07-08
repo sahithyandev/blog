@@ -39,13 +39,12 @@ const FirstLevelLink = (props) => {
 		{linkable.innerHeadings.length === 0 ? null : (
 			<ul key={linkable.headingText} css={tw`list-disc pl-5`}>
 				{linkable.innerHeadings.map(innerLinkable => (
-					<li key={innerLinkable.headingText}>
-						<TOCLink
-							linkable={innerLinkable}
-							slug={slug}
-						/>
-					</li>)
-				)}
+					<TOCLink
+						key={innerLinkable.headingText}
+						linkable={innerLinkable}
+						slug={slug}
+					/>
+				))}
 			</ul>
 		)}
 	</TOCLink>

@@ -1,5 +1,4 @@
-import tw from "twin.macro"
-import styled from "styled-components"
+import tw, { styled } from "twin.macro"
 
 const Container = tw.div`flex gap-1`;
 const Tag = styled.span`
@@ -7,7 +6,7 @@ const Tag = styled.span`
 		content: '#';
 		${tw`m-px opacity-50`}
 	}
-`;
+	`;
 
 export const TagsContainer = (props) => {
 	const tags = props.tags || []
