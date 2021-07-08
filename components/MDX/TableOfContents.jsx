@@ -1,6 +1,6 @@
 import tw from "twin.macro";
 
-import { CustomLink } from "./CustomLink";
+import { CustomLink } from "../CustomLink";
 
 /** 
  * @typedef TOCLink_Props
@@ -51,7 +51,7 @@ const FirstLevelLink = (props) => {
 	</TOCLink>
 }
 
-export const TableOfContents = ({ source, slug }) => {
+const TableOfContents = ({ source, slug }) => {
 	const actualHeadingContent = (_content) => {
 		return _content
 			// remove spaces and line breaks
@@ -113,3 +113,5 @@ export const TableOfContents = ({ source, slug }) => {
 		</section>
 	)
 }
+
+export default TableOfContents;

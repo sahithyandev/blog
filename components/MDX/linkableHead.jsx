@@ -52,4 +52,7 @@ const linkableHead = (headElementTagName) => {
 	}
 }
 
+export const linkableH2 = linkableHead("h2")
+export const linkableH3 = linkableHead("h3")
+
 export default linkableHead
