@@ -1,8 +1,8 @@
-import { CustomLink } from "./CustomLink"
+import tw from "twin.macro";
 
+import { CustomLink } from "./CustomLink"
 import { GithubIcon, InstagramIcon, RSSIcon, TelegramIcon, TwitterIcon } from "@/assets/icons"
 import { SITE_CONSTANTS } from "global";
-import styles from "@/styles/social-links.module.css"
 
 export const SocialLinks = (props) => {
 	/**
@@ -43,10 +43,10 @@ export const SocialLinks = (props) => {
 		}))
 
 	return (
-		<div className={styles["social-media-icons-container"]}>
+		<div css={tw`mt-2 flex gap-2`}>
 			{SocialMediaLinks.map(s => {
 				return (
-					<CustomLink className="reset" href={s.link} key={s.providerName} title={`${s.providerName} (${s.id})`}>
+					<CustomLink css={tw`opacity-60 hover:opacity-100 transition-opacity`} className="reset" href={s.link} key={s.providerName} title={`${s.providerName} (${s.id})`}>
 
 						{s.icon ? <s.icon /> : (console.error(`provider ${s.providerName} doesn't have an icon`), null)}
 					</CustomLink>
