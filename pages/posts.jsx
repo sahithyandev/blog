@@ -118,9 +118,7 @@ const PostsPage = props => {
 				<p>Here are the articles I wrote before. Use the search to filter by title and/or tag.</p>
 
 				<div css={tw`mt-3 mb-9`}>
-					<Input type="text" placeholder="Search posts" />
-					{/* <input type="text" className={styles["search-input"]} placeholder="Search articles"
-						onChange={searchInputHandler} /> */}
+					<Input type="text" placeholder="Search posts" onChange={searchInputHandler} />
 				</div>
 
 				<PostsContainer posts={filterPosts(posts)} />
