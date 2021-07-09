@@ -35,20 +35,3 @@
 	border-spacing: 40px 4px;
 	font-size: 1.1em;
 }
-
-.post--bottom-bar {
-	display: flex;
-	justify-content: space-between;
-	font-size: .88em;
-}
-
-@media (max-width: 600px) {
-	.post--bottom-bar {
-		flex-direction: column;
-		gap: 8px;
-		/* background: red; */
-	}
-	.post--share-section {
-		justify-content: space-between;
-	}
-}

@@ -71,14 +71,14 @@ export const BlogPost = (props) => {
 				</div>
 			</main>
 
-			<div className={styles["post--bottom-bar"]}>
+			<div css={tw`flex flex-col sm:flex-row justify-between text-sm gap-2 sm:gap-0`}>
 				<div>
 					<Anchor href={encodeURI(`https://twitter.com/search?q=${postLink}`)}>
 						Discuss On Twitter
 					</Anchor>
 				</div>
 
-				<div css={tw`flex items-center`}>
+				<div css={tw`flex items-center justify-between sm:justify-start`}>
 					<span css={tw`opacity-70 mr-2`}>Share this article on</span>
 
 					<div>
