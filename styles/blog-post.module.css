@@ -3,8 +3,3 @@
 .post--content {
 	margin: 32px 0;
 }
-
-.post--content strong {
-	font-weight: 600;
-	text-decoration: underline solid white 2px;
-}

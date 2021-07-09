@@ -5,7 +5,7 @@ import { SITE_CONSTANTS } from "../global"
 
 import postStyles from "@/styles/blog-post.module.css"
 
-const { p: Paragraph, Anchor } = MDXComponents
+const { p: Paragraph, Anchor, strong: Strong } = MDXComponents
 
 const AboutPage = () => {
 
@@ -31,7 +31,7 @@ const AboutPage = () => {
 
 				<h3>About the blog</h3>
 				<Paragraph>
-					<strong>This is a place for me to write on the things I love: Web Dev, Tech and Mathematics.</strong><br /><br />
+					<Strong>This is a place for me to write on the things I love: Web Dev, Tech and Mathematics.</Strong><br /><br />
 
 					This blog is built using <Anchor href="https://nextjs.org">Next.js</Anchor> and <Anchor href="https://mdx.js">MDX</Anchor>. To learn more, read <Anchor href="/post/introduction-to-my-blog">Introduction To My Blog</Anchor>.
 				</Paragraph>

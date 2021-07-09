@@ -7,11 +7,13 @@ import Note from "./Note";
 import Image from "./Image";
 import Paragraph from "./Paragraph";
 import Table from "./Table";
+import Strong from "./Strong";
 
 export const MDXComponents = {
 	a: Anchor,
 	img: Image,
 	p: Paragraph,
+	strong: Strong,
 	table: Table,
 	Anchor,
 	BlockQuote,
