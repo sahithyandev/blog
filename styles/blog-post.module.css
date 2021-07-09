@@ -8,23 +8,3 @@
 	font-weight: 600;
 	text-decoration: underline solid white 2px;
 }
-
-.post--content figure {
-	margin-left: 0;
-	margin-right: 6vw;
-	position: relative;
-}
-
-.post--content figure blockquote {
-	margin-right: 2vw;
-	margin-left: 20px;
-}
-
-.post--content figure figcaption::before {
-	content: "— ";
-}
-
-.post--content figure figcaption {
-	margin-left: auto;
-	text-align: right;
-}
