@@ -11,6 +11,7 @@
 	
 	color: var(--color);
 	transition: color .1s;
+	text-decoration: underline;
 }
 
 .post--bottom-bar a:hover,

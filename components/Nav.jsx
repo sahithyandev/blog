@@ -1,27 +1,20 @@
 import Link from 'next/link'
 
+import { CustomLink } from "./CustomLink";
+
 export const Nav = ({ hideLogo }) => {
 	return (
 		<nav>
 			{
-				hideLogo ? <div></div> :
-					<Link href="/">
-						<a className="nav--logo reset">
-							Sahithyan
-						</a>
-					</Link>
+				hideLogo ? <div></div> : <CustomLink href="/" className="nav--logo">Sahithyan</CustomLink>
 			}
 
 			<ul className="nav--links-container">
 				<li className="nav--link">
-					<Link href="/posts">
-						<a className="reset">Posts</a>
-					</Link>
+					<CustomLink href="/posts">Posts</CustomLink>
 				</li>
 				<li className="nav--link">
-					<Link href="/about">
-						<a className="reset">About</a>
-					</Link>
+					<CustomLink href="/about">About</CustomLink>
 				</li>
 			</ul>
 

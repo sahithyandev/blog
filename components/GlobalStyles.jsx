@@ -69,7 +69,7 @@ const CustomStyles = createGlobalStyle`
 		}
 	}
 	
-	a.reset {
+	a {
 		${tw`no-underline border-b-0`}
 		color: inherit;
 	}
