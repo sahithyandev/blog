@@ -11,7 +11,6 @@ import { TagsContainer } from "./TagsContainer"
 import { SITE_CONSTANTS } from "../global"
 import { NormalDateFormat } from "@/helpers/other"
 
-import styles from "@/styles/blog-post.module.css"
 import { TwitterIcon } from "@/assets/icons"
 
 const PRISM_THEME_URL = "https://unpkg.com/prismjs@1.23.0/themes/prism-twilight.css"
@@ -64,7 +63,7 @@ export const BlogPost = (props) => {
 					</div>
 				</div>
 
-				<div className={styles["post--content"]}>
+				<div css={tw`my-8`}>
 					<article>
 						{children}
 					</article>
