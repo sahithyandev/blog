@@ -1,11 +1,11 @@
 import tw from "twin.macro";
 
-import { HeadBase, Footer, Nav, CustomLink, SocialLinks, MDXComponents } from "@/components"
+import { HeadBase, Footer, Nav, SocialLinks, MDXComponents } from "@/components"
 import { SITE_CONSTANTS } from "../global"
 
 import postStyles from "@/styles/blog-post.module.css"
 
-const { p: Paragraph } = MDXComponents
+const { p: Paragraph, Anchor } = MDXComponents
 
 const AboutPage = () => {
 
@@ -33,7 +33,7 @@ const AboutPage = () => {
 				<Paragraph>
 					<strong>This is a place for me to write on the things I love: Web Dev, Tech and Mathematics.</strong><br /><br />
 
-					This blog is built using <CustomLink href="https://nextjs.org">Next.js</CustomLink> and <CustomLink href="https://mdx.js">MDX</CustomLink>. To learn more, read <CustomLink href="/post/introduction-to-my-blog">Introduction To My Blog</CustomLink>.
+					This blog is built using <Anchor href="https://nextjs.org">Next.js</Anchor> and <Anchor href="https://mdx.js">MDX</Anchor>. To learn more, read <Anchor href="/post/introduction-to-my-blog">Introduction To My Blog</Anchor>.
 				</Paragraph>
 
 
@@ -41,7 +41,7 @@ const AboutPage = () => {
 
 				<h3>Contact me</h3>
 				<Paragraph>
-					The fastest and the easiest way would be direct messaging me on Twitter <CustomLink href="https://www.twitter.com/sahithyandev">@sahithyandev</CustomLink>. You can also use the below-listed social media accounts too. And you can also email me at <CustomLink href="mailto:sahithyan2701@gmail.com">sahithyan2701@gmail.com</CustomLink>.
+					The fastest and the easiest way would be direct messaging me on Twitter <Anchor href="https://www.twitter.com/sahithyandev">@sahithyandev</Anchor>. You can also use the below-listed social media accounts too. And you can also email me at <Anchor href="mailto:sahithyan2701@gmail.com">sahithyan2701@gmail.com</Anchor>.
 				</Paragraph>
 
 				<div css={tw`m-auto w-min`}>

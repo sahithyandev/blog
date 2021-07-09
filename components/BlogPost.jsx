@@ -1,11 +1,12 @@
 import Head from "next/head"
 import tw from "twin.macro"
 
+import Anchor from "./MDX/Anchor"
 import { Nav } from "./Nav"
 import { HeadBase } from "./HeadBase"
 import { ViewCounter } from "./ViewCounter"
-import { Footer } from "./Footer"
 import { CustomLink } from "./CustomLink"
+import { Footer } from "./Footer"
 import { TagsContainer } from "./TagsContainer"
 import { SITE_CONSTANTS } from "../global"
 import { NormalDateFormat } from "@/helpers/other"
@@ -72,9 +73,9 @@ export const BlogPost = (props) => {
 
 			<div className={styles["post--bottom-bar"]}>
 				<div>
-					<CustomLink href={encodeURI(`https://twitter.com/search?q=${postLink}`)}>
+					<Anchor href={encodeURI(`https://twitter.com/search?q=${postLink}`)}>
 						Discuss On Twitter
-					</CustomLink>
+					</Anchor>
 				</div>
 
 				<div css={tw`flex items-center`}>
@@ -82,7 +83,7 @@ export const BlogPost = (props) => {
 
 					<div>
 						{shareLinks.map(link => {
-							return <CustomLink href={link.url} key={link.name} title={link.name} className="reset">
+							return <CustomLink href={link.url} key={link.name} title={link.name}>
 								<link.icon width="20" height="20" />
 							</CustomLink>
 						})}

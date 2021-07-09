@@ -35,7 +35,7 @@ If you are interested to see how XCalc is coded, Good news, XCalc is [open-sourc
 <linkableH2 slug={slug}>How I built it</linkableH2>
 
 <linkableH3 slug={slug}>
-	<CustomLink href="https://typescriptlang.org">TypeScript</CustomLink>
+	<Anchor href="https://typescriptlang.org">TypeScript</Anchor>
 </linkableH3>
 
 TypeScript is a strict syntactical superset of JavaScript and adds optional strict typing to the language. It compiles to JavaScript.
@@ -58,14 +58,14 @@ When I made XCalc completely working, (as always) I stopped working on it. After
 
 <img alt="XCalc New UI design" src="/post__images/building-xcalc/xcalc-new-design.png" />
 
-<linkableH3 slug={slug}><CustomLink href="https://reactjs.org">React</CustomLink></linkableH3>
+<linkableH3 slug={slug}><Anchor href="https://reactjs.org">React</Anchor></linkableH3>
 When I first started developing XCalc, I didn't use any front-end libraries. I wanted to write all the code by myself. The state of the app (the input), the dynamic UI rendering were all done by the code I wrote. At first, It worked without any problems.  But when I came back after 3 months, I understood none of it. That's when I realized that I should have used a front-end library.
 
 When I started rewriting the app, I chose to go with React, which is my favorite front-end library.
 
 To be honest, the React code is not that good either. But it is a lot more readable than my code.
 
-<linkableH3 slug={slug}><CustomLink href="https://sass-lang.com">Sass</CustomLink></linkableH3>
+<linkableH3 slug={slug}><Anchor href="https://sass-lang.com">Sass</Anchor></linkableH3>
 Sass is a pre-compiler for CSS. It provides some additional functionalities which results in a better developer experience. That’s the one and only reason I decided to use Sass.
 
 <linkableH3 slug={slug}>Off-thread evaluations</linkableH3>
@@ -87,10 +87,10 @@ With the use of service workers, web apps can now deliver a custom offline exper
 Like that sudoku game, XCalc doesn’t need an active internet connection to work. So, as you may guess, I wanted to make XCalc completely offline, just like that game. So, I added a service worker to do that. It pre-caches all the required resources. After that, the resources will be loaded from the cache.
 
 <linkableH3 slug={slug}>
-<CustomLink href="https://webassembly.org">
+<Anchor href="https://webassembly.org">
 		WebAssembly
-	 </CustomLink>{" "}
-	(<CustomLink href="https://www.assemblyscript.org">AssemblyScript</CustomLink>)
+	 </Anchor>{" "}
+	(<Anchor href="https://www.assemblyscript.org">AssemblyScript</Anchor>)
 </linkableH3>
 
 WebAssembly (WASM, in short) is a new type of code that can be run inside web browsers. It is a low-level assembly-like language which runs with near-native performance.

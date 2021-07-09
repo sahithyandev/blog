@@ -5,7 +5,11 @@ module.exports = {
 			dark: "#131315",
 			light: "#FFFBFE",
 			main: "#FAF33E",
-			secondary: "#087F8C"
+			secondary: "#087F8C",
+			link: {
+				DEFAULT: "#60A5FA",
+				hover: "#2563EB"
+			}
 		},
 		fontSize: {
 			'xs': '.75rem',

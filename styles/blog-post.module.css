@@ -4,21 +4,6 @@
 	margin: 32px 0;
 }
 
-.post--bottom-bar a,
-.post--content a {
-	--color: #60a5fa;
-	--hover-color: #2563eb;
-	
-	color: var(--color);
-	transition: color .1s;
-	text-decoration: underline;
-}
-
-.post--bottom-bar a:hover,
-.post--content a:hover {
-	color: var(--hover-color);
-}
-
 .post--content strong {
 	font-weight: 600;
 	text-decoration: underline solid white 2px;

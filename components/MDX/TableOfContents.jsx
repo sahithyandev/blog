@@ -1,6 +1,6 @@
 import tw from "twin.macro";
 
-import { CustomLink } from "../CustomLink";
+import Anchor from "./Anchor";
 
 /** 
  * @typedef TOCLink_Props
@@ -17,13 +17,13 @@ const TOCLink = (props) => {
 	const linkText = linkable.headingText;
 
 	return <li css={[tw`mt-1`]}>
-		<CustomLink href={{
+		<Anchor href={{
 			pathname: "/post/[slug]",
 			hash: linkText.replace(/\s/g, "-").toLowerCase(),
 			query: { slug }
 		}}>
 			{linkText}
-		</CustomLink>
+		</Anchor>
 
 		{props.children}
 	</li>
