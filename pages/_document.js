@@ -1,20 +1,17 @@
 import Document, { Html, Head, Main, NextScript } from "next/document"
 import { ServerStyleSheet } from "styled-components"
 
-
-// TODO make it ready to use
-// Not ready to use yet
-// REASON: CSS files are loaded using client-side javascript
-// POSSIBLE_FIX: Inline css
+// TODO decide if its worth using
 class HeadProduction extends Head {
 	render() {
-		const { head } = this.context;
+		const { head, styles } = this.context;
 		const children = this.props.children;
 
 		return (
 			<head {...this.props}>
 				{children}
 				{head}
+				{styles}
 			</head>
 		)
 	}
