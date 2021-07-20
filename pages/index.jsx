@@ -18,7 +18,6 @@ export default function Home({ latestPosts }) {
           <SocialLinks />
         </div>
 
-
         <section>
           <h2 css={tw`text-xl`}>Latest Posts</h2>
 

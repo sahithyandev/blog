@@ -17,7 +17,7 @@ export const HeadBase = ({ title, description }) => {
 
 				{/* For Twitter */}
 				<meta name="twitter:title" value={title} />
-				<meta name="twitter:card" value="summary" />
+				<meta name="twitter:card" value="summary_large_image" />
 				<meta name="twitter:description" value={description} />
 				<meta name="twitter:creator" value={SITE_CONSTANTS.author} />
 
@@ -26,7 +26,7 @@ export const HeadBase = ({ title, description }) => {
 				<meta key="og-title" property="og:title" content={title} />
 				<meta key="og-url" property="og:url" content="sahithyandev.github.io" />
 				<meta key="og-site-name" property="og:site_name" content={siteName} />
-				<meta key="og-image" property="og:image" content="https://sahithyandev.github.io/fav-me.png" />
+				<meta key="og-image" property="og:image" content="https://sahithyandev.github.io/og-image-base.png" />
 				<meta key="og-image--alt" property="og:image:alt" content="Sahithyan's official profile picture" />
 			</Head>
 		</>
