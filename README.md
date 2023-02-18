@@ -1,6 +1,6 @@
 # Sahithyan's Blog
 
-This is the code for my official blog. And it will include the blog posts as well.
+This repository contains the code for my old blog. I used Next.js to build it. This repository also includes my old blog posts.
 
 ## A note about the License
 
